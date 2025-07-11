@@ -8,11 +8,14 @@
 
 [node name="Gravity Well" parent="." instance=ExtResource("1_r0meq")]
 position = Vector2(535, 306)
+collision_mask = 2
 affected_group = "grabbable"
 
 [node name="Star" type="RigidBody2D" parent="." groups=["grabbable"]]
-position = Vector2(476, 231)
+position = Vector2(441, 120)
+collision_layer = 2
 gravity_scale = 0.0
+linear_velocity = Vector2(0, 27.51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
 shape = SubResource("CircleShape2D_ftbjc")
