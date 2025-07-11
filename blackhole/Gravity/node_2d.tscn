@@ -4,12 +4,19 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dj3dr"]
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(15.835, 15.14, 1)
+emission_shape = 1
+emission_sphere_radius = 35.48
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 0.185
 gravity = Vector3(0, 0, 0)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 2
+emitting = false
+amount = 68
+lifetime = 10.32
 process_material = SubResource("ParticleProcessMaterial_dj3dr")
 
 [node name="Gravity Well" type="Node2D" parent="."]

@@ -1,1 +1,2 @@
-res://main.tscn
+res://Gravity/node_2d.tscn
+res://gravity_well.gd
