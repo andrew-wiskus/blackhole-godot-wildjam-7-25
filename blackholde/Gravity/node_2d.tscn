@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg2seuxe2cpw0"]
+
+[ext_resource type="Script" uid="uid://dhqxmry7jc0b7" path="res://gravity_well.gd" id="1_7gie3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dj3dr"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_dj3dr")
+
+[node name="Gravity Well" type="Node2D" parent="."]
+script = ExtResource("1_7gie3")
