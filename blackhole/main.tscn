@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://tiudc2yx5cnh"]
+[gd_scene load_steps=2 format=3 uid="uid://tiudc2yx5cnh"]
+
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="1_0xm2m"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="LaunchController" type="Node2D" parent="."]
+position = Vector2(278, 321)
+
+[node name="Launch Dragger" type="Node2D" parent="LaunchController"]
+position = Vector2(1, 1)
+metadata/_edit_group_ = true
+
+[node name="Circle" type="Sprite2D" parent="LaunchController/Launch Dragger"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_0xm2m")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3auj8t7m3ngj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_click"]
+size = Vector2(64, 64)
+
+[node name="Grid Drag & Drop" type="Node2D"]
+z_index = 10
+metadata/_edit_group_ = true
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("RectangleShape2D_click")
