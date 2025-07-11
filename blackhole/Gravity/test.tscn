@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://w238e3l43xna"]
+
+[ext_resource type="PackedScene" uid="uid://5pkj5t0rttfq" path="res://Gravity/gravity_well.tscn" id="1_r0meq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftbjc"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Gravity Well" parent="." instance=ExtResource("1_r0meq")]
+position = Vector2(535, 306)
+affected_group = "grabbable"
+
+[node name="Star" type="RigidBody2D" parent="." groups=["grabbable"]]
+position = Vector2(476, 231)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
+shape = SubResource("CircleShape2D_ftbjc")
