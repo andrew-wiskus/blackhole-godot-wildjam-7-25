@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6uskfmkiqy77"]
+[gd_scene load_steps=3 format=3 uid="uid://b6uskfmkiqy77"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2i20x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftbjc"]
 
 [node name="Star" type="RigidBody2D"]
 mass = 0.049
+physics_material_override = SubResource("PhysicsMaterial_2i20x")
 linear_velocity = Vector2(0, 19.52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

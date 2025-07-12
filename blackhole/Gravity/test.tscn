@@ -27,6 +27,7 @@ shape = SubResource("CircleShape2D_r0meq")
 position = Vector2(335, 151)
 
 [node name="Star4" parent="." instance=ExtResource("1_ftbjc")]
+visible = false
 position = Vector2(720, 249)
 
 [node name="Star5" parent="." instance=ExtResource("1_ftbjc")]
