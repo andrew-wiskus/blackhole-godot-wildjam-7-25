@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @onready var line_2d: Line2D = $"../Drag Indiactor Line"
-@export var impulse_strength: float = 100.0
+@export var impulse_strength: float = 300.0
 var drag_origin: Vector2
 var max_distance: float = 300.0
 

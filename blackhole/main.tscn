@@ -1,13 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://tiudc2yx5cnh"]
+[gd_scene load_steps=10 format=3 uid="uid://tiudc2yx5cnh"]
 
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://d0yuuatbtexiq" path="res://blackhole.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5pkj5t0rttfq" path="res://Gravity/gravity_well.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://eofade53c0ol" path="res://Launcher/drag_input_controller.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main.gd" id="4_main"]
+[ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://star_bg_1.gdshader" id="5_lquwl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("5_lquwl")
+shader_parameter/mouse = Vector2(50, 50)
+shader_parameter/time = 0.0
+shader_parameter/speed2 = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7mycd"]
+size = Vector2(50000, 50000)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lquwl"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Scene" type="Node2D"]
+script = ExtResource("4_main")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lquwl")
+position = Vector2(0, 178)
+texture = SubResource("PlaceholderTexture2D_7mycd")
+offset = Vector2(100, 100)
 
 [node name="Drag Indiactor Line" type="Line2D" parent="."]
 
@@ -29,6 +47,9 @@ script = ExtResource("3_1bvp3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blackhole/Drag Input Signaller"]
 scale = Vector2(4.88002, 4.88002)
 shape = SubResource("CircleShape2D_lquwl")
+
+[node name="Camera2D" type="Camera2D" parent="Blackhole"]
+position_smoothing_speed = 3.0
 
 [connection signal="handle_drag" from="Blackhole/Drag Input Signaller" to="Blackhole" method="_handle_drag"]
 [connection signal="on_drag_start" from="Blackhole/Drag Input Signaller" to="Blackhole" method="_on_drag_start"]
