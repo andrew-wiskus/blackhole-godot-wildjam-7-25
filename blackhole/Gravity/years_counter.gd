@@ -1,6 +1,6 @@
 extends Node2D
 var year = 0
-func _ready():
+
 func _on_timer_timeout() -> void:
 	year+=1
 	$Label.text = "Year: " + str(year)

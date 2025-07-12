@@ -15,6 +15,6 @@ offset_left = 110.0
 offset_top = 76.0
 offset_right = 150.0
 offset_bottom = 99.0
-text = "Year: "
+text = "Year: 0"
 
 [connection signal="timeout" from="Years Counter/Timer" to="Years Counter" method="_on_timer_timeout"]
