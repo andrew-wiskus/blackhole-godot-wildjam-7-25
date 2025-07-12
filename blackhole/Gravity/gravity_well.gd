@@ -5,7 +5,6 @@ extends Area2D
 @export var gravity_force: float = 500.0
 
 ## Maximum distance at which gravity is applied
-@export var max_distance: float = 500.0
 
 ## Whether to use inverse square law (realistic gravity) or linear falloff
 @export var use_inverse_square_law: bool = true
@@ -49,17 +48,19 @@ func _physics_process(delta: float) -> void:
 				force_magnitude = gravity_force / (distance * distance/10000)
 				# Prevent extreme forces when very close
 				force_magnitude = min(force_magnitude, gravity_force * 10)
+
+			direction = direction.normalized()
+			var force = direction * force_magnitude * delta
+			
+			if body is RigidBody2D:
+				body.apply_central_force(force)
 			else:
-				# Linear falloff
-				force_magnitude = gravity_force * (1.0 - distance / max_distance)
-				
-			# Only apply force if within max_distance
-			if distance <= max_distance:
-				direction = direction.normalized()
-				var force = direction * force_magnitude * delta
-				
-				if body is RigidBody2D:
-					body.apply_central_force(force)
-				else:
-					# For other physics bodies, try to move them directly
-					body.global_position += force * delta
+				# For other physics bodies, try to move them directly
+				body.global_position += force * delta
+
+
+func _on_blackhole_center_body_entered(body: Node2D) -> void:
+	if body in affected_bodies:
+		affected_bodies.erase(body)
+		body.queue_free()
+	pass # Replace with function body.
