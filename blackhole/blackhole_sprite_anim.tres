@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://benj1shi6etps"]
+
+[ext_resource type="Texture2D" uid="uid://b0tqp5q438vh0" path="res://Assets/blackhole/bh_4.png" id="1_aklan"]
+[ext_resource type="Texture2D" uid="uid://3h3pq3m0sxy0" path="res://Assets/blackhole/bh_1.png" id="1_icitc"]
+[ext_resource type="Texture2D" uid="uid://bqrsff8rw0fyc" path="res://Assets/blackhole/bh_2.png" id="2_x6lqy"]
+[ext_resource type="Texture2D" uid="uid://cldlxi2883ooo" path="res://Assets/blackhole/bh_3.png" id="3_iw2w0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iw2w0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_icitc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x6lqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_aklan")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.5
+}]

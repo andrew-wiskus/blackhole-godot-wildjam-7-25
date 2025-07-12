@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqp2e3me5kuf4"]
+[gd_scene load_steps=5 format=3 uid="uid://bu6ycn6mxhpsj"]
 
-[ext_resource type="Texture2D" uid="uid://bvjnr8qrib0ql" path="res://Assets/planets/p2.png" id="1_t1c18"]
-[ext_resource type="Script" path="res://consumeable_object.gd" id="2_iv8en"]
 [ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="2_qckkc"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://blackhole_sprite_anim.tres" id="3_iv8en"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://rotate_3d_sprite.gd" id="4_gat8e"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="4_iv8en"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_iv8en"]
 
 [node name="TestAutorunner" type="Node3D"]
 
@@ -19,21 +17,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1064, 0, 953.873)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.607, 0, -100.683)
 texture = ExtResource("2_qckkc")
 
-[node name="Planet" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.211, 3.79962, -128.157)
-gravity_scale = 0.0
-script = ExtResource("2_iv8en")
-metadata/_edit_group_ = true
-
-[node name="Sprite3D" type="Sprite3D" parent="Planet"]
-texture = ExtResource("1_t1c18")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Planet"]
-shape = SubResource("SphereShape3D_iv8en")
-
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.9117, 330.846)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="bg" type="Sprite3D" parent="."]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, -401.349)
+modulate = Color(0, 0, 0, 1)
 texture = ExtResource("4_iv8en")
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.4734)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("3_iv8en")
+script = ExtResource("4_gat8e")
+SPEED = 25.0
