@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 var year = 0
 
 func _on_timer_timeout() -> void:

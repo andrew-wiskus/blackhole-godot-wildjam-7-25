@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://uq5xvcrx7cjh"]
+
+[ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="1_2v4r8"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_5l6ej"]
+transparency = 1
+albedo_texture = ExtResource("1_2v4r8")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rtc2k"]
+material = SubResource("ORMMaterial3D_5l6ej")
+
+[node name="Asteroid_Mesh" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_rtc2k")

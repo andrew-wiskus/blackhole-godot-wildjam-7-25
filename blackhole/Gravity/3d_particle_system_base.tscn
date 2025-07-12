@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://duljys18w3lrb"]
+
+[ext_resource type="PackedScene" uid="uid://d2g6113tykm85" path="res://Gravity/asteroids_particles.tscn" id="1_t1xl2"]
+[ext_resource type="PackedScene" uid="uid://qdo170rw40y8" path="res://Gravity/attractor_rigid_body_3D.tscn" id="2_urqns"]
+[ext_resource type="Script" uid="uid://dblwq7k42nm1b" path="res://Gravity/attractor_3D.gd" id="3_t1xl2"]
+[ext_resource type="PackedScene" uid="uid://1wn3sti3r32" path="res://Gravity/other_attractor.tscn" id="3_x8i04"]
+[ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="5_0ed6j"]
+[ext_resource type="Script" uid="uid://ctwy1osudqog1" path="res://Gravity/cpu_particles_3d.gd" id="6_0ed6j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ed6j"]
+transparency = 1
+albedo_texture = ExtResource("5_0ed6j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ufc4q"]
+material = SubResource("StandardMaterial3D_0ed6j")
+orientation = 2
+
+[node name="3D Particle System BASE" type="Node3D"]
+
+[node name="Attractor_Body" parent="." instance=ExtResource("2_urqns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -5.585)
+linear_velocity = Vector3(-100, 0, 0)
+script = ExtResource("3_t1xl2")
+
+[node name="Camera3D" type="Camera3D" parent="Attractor_Body"]
+
+[node name="GPUParticles3D" parent="Attractor_Body" instance=ExtResource("1_t1xl2")]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0.00730357, 0.032413, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
+
+[node name="Other_Attractor" parent="." instance=ExtResource("3_x8i04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.1, -1.92738, -115.443)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0963013, 0, 3.06746)
+visible = false
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+mesh = SubResource("PlaneMesh_ufc4q")
+script = ExtResource("6_0ed6j")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.997635, 0, -0.0687292, 0.0345265, 0.864661, -0.501168, 0.0594275, -0.502356, -0.862616, 0, 0.104929, 0.722661)

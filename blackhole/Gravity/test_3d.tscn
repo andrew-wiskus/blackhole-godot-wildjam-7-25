@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dri8to31k5y58"]
+
+[ext_resource type="Texture2D" uid="uid://bvjnr8qrib0ql" path="res://Assets/planets/p2.png" id="1_smb1r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_smb1r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7pf68"]
+radius = 8.45459
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vuuyf"]
+radius = 3.94596
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_smb1r"]
+
+[node name="Test3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05019, 0, 0)
+mass = 10.826
+physics_material_override = SubResource("PhysicsMaterial_smb1r")
+
+[node name="Area3D" type="Area3D" parent="RigidBody3D"]
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
+shape = SubResource("SphereShape3D_7pf68")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_vuuyf")
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D"]
+texture = ExtResource("1_smb1r")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.6504)
+
+[node name="Star" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8173, 0)
+mass = 0.04
+linear_velocity = Vector3(0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Star"]
+shape = SubResource("SphereShape3D_smb1r")

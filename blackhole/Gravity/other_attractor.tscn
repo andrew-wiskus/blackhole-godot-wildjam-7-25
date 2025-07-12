@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://1wn3sti3r32"]
+
+[ext_resource type="Texture2D" uid="uid://cc51e8u4xfypq" path="res://Assets/planets/p4.png" id="1_brnfn"]
+[ext_resource type="Script" uid="uid://3xmqorrp0qo7" path="res://Gravity/area_3d.gd" id="1_yt087"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1xl2"]
+radius = 50.0282
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
+radius = 168.76
+
+[node name="Other_Attractor" type="RigidBody3D"]
+disable_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t1xl2")
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+radius = 49.9252
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+strength = 23.78
+radius = 168.35
+
+[node name="Area3D" type="Area3D" parent="."]
+disable_mode = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+script = ExtResource("1_yt087")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_x8i04")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(12.7727, 0, 0, 0, 12.4246, 0, 0, 0, 28.1502, 0, 0, 0)
+texture = ExtResource("1_brnfn")

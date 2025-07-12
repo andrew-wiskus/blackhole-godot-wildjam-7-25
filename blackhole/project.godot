@@ -14,8 +14,15 @@ config/name="blackholde"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[file_customization]
+
+folder_colors={
+"res://Gravity/DNU/": "red"
+}
+
 [physics]
 
+3d/default_gravity=0.0
 2d/default_gravity=0.0
 
 [rendering]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu2w3u34p8ud3"]
+
+[ext_resource type="PackedScene" uid="uid://qdo170rw40y8" path="res://Gravity/attractor_rigid_body_3D.tscn" id="1_glmm2"]
+[ext_resource type="Script" uid="uid://dblwq7k42nm1b" path="res://Gravity/attractor_3D.gd" id="2_172bm"]
+[ext_resource type="PackedScene" uid="uid://d2g6113tykm85" path="res://Gravity/asteroids_particles.tscn" id="3_wtb3c"]
+[ext_resource type="PackedScene" uid="uid://1wn3sti3r32" path="res://Gravity/other_attractor.tscn" id="4_gmml5"]
+[ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="5_d1tm5"]
+[ext_resource type="Script" uid="uid://ctwy1osudqog1" path="res://Gravity/cpu_particles_3d.gd" id="6_b1vi2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ed6j"]
+transparency = 1
+albedo_texture = ExtResource("5_d1tm5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ufc4q"]
+material = SubResource("StandardMaterial3D_0ed6j")
+orientation = 2
+
+[node name="main_Sion" type="Node3D"]
+
+[node name="Attractor_Body" parent="." instance=ExtResource("1_glmm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -0.658499)
+mass = 4.066
+linear_velocity = Vector3(0, 0, 500)
+script = ExtResource("2_172bm")
+
+[node name="Camera3D" type="Camera3D" parent="Attractor_Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 203.876)
+keep_aspect = 0
+
+[node name="GPUParticles3D" parent="Attractor_Body" instance=ExtResource("3_wtb3c")]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0.00730357, 0.032413, 0)
+
+[node name="Other_Attractor" parent="." instance=ExtResource("4_gmml5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 190.1, -1.92738, -115.443)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0963013, 0, 3.06746)
+visible = false
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+mesh = SubResource("PlaneMesh_ufc4q")
+script = ExtResource("6_b1vi2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
+
+[node name="Other_Attractor2" parent="." instance=ExtResource("4_gmml5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -247.271, -1.92738, -811.79)
+
+[node name="Other_Attractor3" parent="." instance=ExtResource("4_gmml5")]
+transform = Transform3D(0.91108, 0, 0.41223, 0, 1, 0, -0.41223, 0, 0.91108, 238.841, 81.4152, -934.705)

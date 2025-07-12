@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu6ycn6mxhpsj"]
+[gd_scene load_steps=6 format=3 uid="uid://bqp2e3me5kuf4"]
 
 [ext_resource type="Texture2D" uid="uid://bvjnr8qrib0ql" path="res://Assets/planets/p2.png" id="1_t1c18"]
-[ext_resource type="Script" uid="uid://dkevt8dyyvagy" path="res://consumeable_object.gd" id="2_iv8en"]
+[ext_resource type="Script" path="res://consumeable_object.gd" id="2_iv8en"]
 [ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="2_qckkc"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="4_iv8en"]
 

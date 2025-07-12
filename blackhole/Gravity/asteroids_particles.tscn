@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2g6113tykm85"]
+
+[ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="1_xmoaw"]
+[ext_resource type="Script" uid="uid://bl1qk6gqhvv4w" path="res://Gravity/asteroids_particles.gd" id="2_ou5ws"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_urqns"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou5ws"]
+transparency = 1
+albedo_texture = ExtResource("1_xmoaw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3t5vb"]
+material = SubResource("StandardMaterial3D_ou5ws")
+orientation = 2
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+amount = 1500
+lifetime = 20.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_urqns")
+draw_passes = 2
+draw_pass_1 = SubResource("PlaneMesh_3t5vb")
+draw_pass_2 = null
+script = ExtResource("2_ou5ws")

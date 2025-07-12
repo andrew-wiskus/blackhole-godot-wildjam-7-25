@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8pjqc70i1utu"]
 
-[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/gravity_node.tscn" id="1_nps6w"]
+[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/DNU/gravity_node.tscn" id="1_nps6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftbjc"]
 

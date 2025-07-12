@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dcbxvlylaf2h7" path="res://Gravity/years_counter.gd" id="1_cl81c"]
 
-[node name="Numbers_Go_Up" type="Node2D"]
+[node name="Numbers_Go_Up" type="Node3D"]
 
-[node name="Years Counter" type="Node2D" parent="."]
+[node name="Years Counter" type="Node3D" parent="."]
 script = ExtResource("1_cl81c")
 
 [node name="Timer" type="Timer" parent="Years Counter"]
+wait_time = 5.0
 autostart = true
 
-[node name="Label" type="Label" parent="Years Counter"]
-offset_left = 110.0
-offset_top = 76.0
-offset_right = 150.0
-offset_bottom = 99.0
+[node name="Label" type="Label3D" parent="Years Counter"]
 text = "Year: 0"
+
+[node name="Camera3D" type="Camera3D" parent="Years Counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.13871)
 
 [connection signal="timeout" from="Years Counter/Timer" to="Years Counter" method="_on_timer_timeout"]
