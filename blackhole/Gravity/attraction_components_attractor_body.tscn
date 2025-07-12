@@ -10,7 +10,7 @@ strength = 41.28
 radius = 81.71
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
-radius = 4.18545
+radius = 11.1019
 
 [node name="Rigid_Body_Gravity_Area" type="Area3D" parent="."]
 disable_mode = 2

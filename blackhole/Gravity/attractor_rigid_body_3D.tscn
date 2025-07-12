@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://qdo170rw40y8"]
+[gd_scene load_steps=6 format=3 uid="uid://qdo170rw40y8"]
 
 [ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Gravity/attractor_rigid_body_3d.gd" id="1_hf0rb"]
 [ext_resource type="Texture2D" uid="uid://bvjnr8qrib0ql" path="res://Assets/planets/p2.png" id="1_qnenn"]
 [ext_resource type="PackedScene" uid="uid://cwl4pcg2iks7p" path="res://Gravity/attraction_components_attractor_body.tscn" id="2_vrwos"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]
-radius = 4.01593
+radius = 4.15902
 
-[node name="Attractor_Body" type="RigidBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_hf0rb"]
+radius = 4.89871
+
+[node name="Attractor_Body_3D" type="RigidBody3D"]
 disable_mode = 2
 axis_lock_angular_y = true
 script = ExtResource("1_hf0rb")
@@ -15,11 +18,23 @@ script = ExtResource("1_hf0rb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vrwos")
 
+[node name="Detectable Inner Radius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detectable Inner Radius"]
+shape = SubResource("SphereShape3D_hf0rb")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture = ExtResource("1_qnenn")
 
 [node name="Attraction_Components_Attractor_Body" parent="." instance=ExtResource("2_vrwos")]
 
+[node name="GPUParticlesCollisionSphere3D" parent="Attraction_Components_Attractor_Body" index="1"]
+radius = 4.06427
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.995655, 0.0931178, 0, -0.0931178, 0.995655, 0, 27.4318, 78.3659)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_area_entered"]
 
 [editable path="Attraction_Components_Attractor_Body"]
