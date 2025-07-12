@@ -8,6 +8,10 @@
 
 [node name="Gravity Well" parent="." instance=ExtResource("1_r0meq")]
 position = Vector2(535, 306)
+<<<<<<< Updated upstream
+=======
+collision_mask = 2
+>>>>>>> Stashed changes
 affected_group = "grabbable"
 
 [node name="Star" type="RigidBody2D" parent="." groups=["grabbable"]]
