@@ -6,7 +6,7 @@ radius = 81.8525
 [node name="Attraction_Components_Attractor_Body" type="Node3D"]
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
-strength = 41.28
+strength = 77.85
 radius = 81.71
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
