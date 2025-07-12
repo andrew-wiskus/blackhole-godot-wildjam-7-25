@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8pjqc70i1utu"]
+
+[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/gravity_node.tscn" id="1_nps6w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftbjc"]
+
+[node name="Star2" type="RigidBody2D"]
+mass = 0.049
+linear_velocity = Vector2(0, 19.52)
+
+[node name="Gravity Node" parent="." instance=ExtResource("1_nps6w")]
+scale = Vector2(0.164946, 0.182186)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ftbjc")

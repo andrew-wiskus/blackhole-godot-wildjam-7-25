@@ -1,21 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://w238e3l43xna"]
+[gd_scene load_steps=5 format=3 uid="uid://w238e3l43xna"]
 
-[ext_resource type="PackedScene" uid="uid://5pkj5t0rttfq" path="res://Gravity/gravity_well.tscn" id="1_r0meq"]
+[ext_resource type="PackedScene" uid="uid://b6uskfmkiqy77" path="res://Gravity/star.tscn" id="1_ftbjc"]
+[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/gravity_node.tscn" id="1_r0meq"]
+[ext_resource type="PackedScene" uid="uid://c8pjqc70i1utu" path="res://Gravity/Attractor.tscn" id="2_8hrh7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ftbjc"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0meq"]
 
 [node name="Test" type="Node2D"]
 
-[node name="Gravity Well" parent="." instance=ExtResource("1_r0meq")]
-position = Vector2(535, 306)
-collision_mask = 2
-affected_group = "grabbable"
+[node name="Star" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(456, 105)
 
-[node name="Star" type="RigidBody2D" parent="." groups=["grabbable"]]
-position = Vector2(450, 185)
-collision_layer = 2
-gravity_scale = 0.0
-linear_velocity = Vector2(0, 27.51)
+[node name="Attractor" parent="." instance=ExtResource("2_8hrh7")]
+position = Vector2(612, 109)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
-shape = SubResource("CircleShape2D_ftbjc")
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(533, 245)
+
+[node name="Gravity Node" parent="RigidBody2D" instance=ExtResource("1_r0meq")]
+scale = Vector2(0.164946, 0.182186)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_r0meq")
+
+[node name="Star3" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(335, 151)
+
+[node name="Star4" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(720, 249)
+
+[node name="Star5" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(474, 27)
+
+[node name="Star6" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(363, 261)
+
+[node name="Star7" parent="." instance=ExtResource("1_ftbjc")]
+position = Vector2(412, 133)
