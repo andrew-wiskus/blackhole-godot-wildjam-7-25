@@ -10,6 +10,7 @@ extends RigidBody3D
 @export var min_color: Color = Color.GREEN
 @export var max_color: Color = Color.RED
 
+
 var debug_mesh_instance: MeshInstance3D
 var immediate_mesh: ImmediateMesh
 

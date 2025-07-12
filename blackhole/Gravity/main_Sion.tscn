@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu2w3u34p8ud3"]
+[gd_scene load_steps=8 format=3 uid="uid://bu2w3u34p8ud3"]
 
 [ext_resource type="PackedScene" uid="uid://qdo170rw40y8" path="res://Gravity/attractor_rigid_body_3D.tscn" id="1_glmm2"]
 [ext_resource type="PackedScene" uid="uid://d2g6113tykm85" path="res://Gravity/asteroids_particles.tscn" id="3_wtb3c"]
+[ext_resource type="PackedScene" uid="uid://1wn3sti3r32" path="res://Gravity/other_attractor.tscn" id="5_8q5kf"]
 [ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="5_d1tm5"]
 [ext_resource type="Script" uid="uid://ctwy1osudqog1" path="res://Gravity/cpu_particles_3d.gd" id="6_b1vi2"]
 
@@ -15,12 +16,15 @@ orientation = 2
 
 [node name="main_Sion" type="Node3D"]
 
+[node name="Other_Attractor" parent="." instance=ExtResource("5_8q5kf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06433, 0.711884, -471.876)
+
 [node name="Attractor_Body_3D" parent="." instance=ExtResource("1_glmm2")]
 force_multiplier = 205
 use_color_for_speed = false
-max_line_length = 50.0
+max_line_length = 150.0
 
-[node name="GPUParticles3D" parent="Attractor_Body_3D" instance=ExtResource("3_wtb3c")]
+[node name="Asteroid_Particles_GPU" parent="Attractor_Body_3D" instance=ExtResource("3_wtb3c")]
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0963013, 0, 3.06746)
