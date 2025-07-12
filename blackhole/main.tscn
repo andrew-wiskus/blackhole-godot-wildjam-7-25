@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://d0yuuatbtexiq" path="res://blackhole.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5pkj5t0rttfq" path="res://Gravity/gravity_well.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://eofade53c0ol" path="res://Launcher/drag_input_controller.gd" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main.gd" id="4_main"]
-[ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://star_bg_1.gdshader" id="5_lquwl"]
+[ext_resource type="Script" path="res://main.gd" id="4_main"]
+[ext_resource type="Shader" path="res://star_bg_1.gdshader" id="5_lquwl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
 shader = ExtResource("5_lquwl")
