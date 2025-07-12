@@ -64,3 +64,7 @@ func _on_blackhole_center_body_entered(body: Node2D) -> void:
 		affected_bodies.erase(body)
 		body.queue_free()
 	pass # Replace with function body.
+
+func modify_outer_radius(pixel_amount):
+	$Outer_radius.shape.radius += pixel_amount
+	
