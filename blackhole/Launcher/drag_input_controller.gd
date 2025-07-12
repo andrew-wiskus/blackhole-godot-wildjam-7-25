@@ -28,7 +28,7 @@ func _start_drag(mouse_pos: Vector2) -> void:
 	_start_drag_mouse_offset = Vector2(mouse_pos - _original_position)
 	
 	z_index = 100
-	on_drag_start.emit(self)
+	on_drag_start.emit(global_position)
 
 func _end_drag() -> void:
 	if not is_dragging:

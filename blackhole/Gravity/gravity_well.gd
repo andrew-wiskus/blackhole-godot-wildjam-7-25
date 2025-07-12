@@ -12,6 +12,7 @@ extends Area2D
 ## Group name for objects that can be affected by this gravity well
 @export var affected_group: String = "grabbable"
 
+
 func _ready() -> void:
 	# Connect the signal for bodies entering the area
 	body_entered.connect(_on_body_entered)
@@ -45,7 +46,7 @@ func _physics_process(delta: float) -> void:
 			var force_magnitude: float
 			if use_inverse_square_law:
 				# Inverse square law (realistic gravity)
-				force_magnitude = gravity_force / (distance * distance/10000)
+				force_magnitude = gravity_force*get_parent().mass *body.mass / (distance * distance/10000)
 				# Prevent extreme forces when very close
 				force_magnitude = min(force_magnitude, gravity_force * 10)
 
@@ -64,3 +65,5 @@ func _on_blackhole_center_body_entered(body: Node2D) -> void:
 		affected_bodies.erase(body)
 		body.queue_free()
 	pass # Replace with function body.
+
+	
