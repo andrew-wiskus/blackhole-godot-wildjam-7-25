@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://8e8dqmrcgvqm"]
+
+[ext_resource type="Script" uid="uid://dcbxvlylaf2h7" path="res://Gravity/years_counter.gd" id="1_cl81c"]
+
+[node name="Numbers_Go_Up" type="Node2D"]
+
+[node name="Years Counter" type="Node2D" parent="."]
+script = ExtResource("1_cl81c")
+
+[node name="Timer" type="Timer" parent="Years Counter"]
+autostart = true
+
+[node name="Label" type="Label" parent="Years Counter"]
+offset_left = 110.0
+offset_top = 76.0
+offset_right = 150.0
+offset_bottom = 99.0
+text = "Year: 0"
+
+[connection signal="timeout" from="Years Counter/Timer" to="Years Counter" method="_on_timer_timeout"]
