@@ -1,10 +1,11 @@
 extends RigidBody3D
 
-@onready var target_position: Node3D = $"../Target Position"
+
 
 
 
 func _ready() -> void:
+	var target_position = get_tree().get_nodes_in_group("target_position")[0]
 	self.linear_damp = 0
 	self.angular_damp = 0
 	var drag_origin = target_position.global_position
