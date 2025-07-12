@@ -8,7 +8,6 @@
 
 [node name="Gravity Well" parent="." instance=ExtResource("1_r0meq")]
 position = Vector2(535, 306)
-affected_group = "grabbable"
 
 [node name="Star" type="RigidBody2D" parent="." groups=["grabbable"]]
 position = Vector2(476, 231)
