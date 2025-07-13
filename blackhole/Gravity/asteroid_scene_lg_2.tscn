@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmwdmf70if2ed"]
+
+[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Gravity/other_attractor.gd" id="1_u5cyd"]
+[ext_resource type="Script" uid="uid://3xmqorrp0qo7" path="res://Gravity/area_3d.gd" id="2_y60u7"]
+[ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="3_yj4ql"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u5cyd"]
+height = 0.654073
+radius = 2.76953
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6hkjx"]
+radius = 6.07181
+
+[node name="Asteroid_Scene_lg_2" type="RigidBody3D"]
+disable_mode = 2
+gravity_scale = 0.606
+script = ExtResource("1_u5cyd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999999, -0.00164059, 0, 0.00164059, -0.999999, 0, 5.96046e-08, 0.0101395)
+shape = SubResource("CylinderShape3D_u5cyd")
+
+[node name="Area3D" type="Area3D" parent="."]
+disable_mode = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+script = ExtResource("2_y60u7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_6hkjx")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+axis = 1
+texture = ExtResource("3_yj4ql")
