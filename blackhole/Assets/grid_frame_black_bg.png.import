@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pfxp52jd3mrp"
-path.s3tc="res://.godot/imported/p3.png-4402199eda1e1f490e6635caf5214eb4.s3tc.ctex"
+uid="uid://8hgem0na7s0f"
+path.s3tc="res://.godot/imported/grid_frame_black_bg.png-4783fb3abd5d8aff728d1f4ea55e1ad0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/planets/p3.png"
-dest_files=["res://.godot/imported/p3.png-4402199eda1e1f490e6635caf5214eb4.s3tc.ctex"]
+source_file="res://Assets/grid_frame_black_bg.png"
+dest_files=["res://.godot/imported/grid_frame_black_bg.png-4783fb3abd5d8aff728d1f4ea55e1ad0.s3tc.ctex"]
 
 [params]
 

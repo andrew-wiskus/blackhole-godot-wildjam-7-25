@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://rvu5nya4qd6h"]
+
+[ext_resource type="Texture2D" uid="uid://dcv6nv7bxrxam" path="res://Assets/grid_frame_white_bg.png" id="1_1oj5k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx7mw"]
+albedo_texture = ExtResource("1_1oj5k")
+uv1_scale = Vector3(5000, 5000, 5000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ykeeq"]
+material = SubResource("StandardMaterial3D_yx7mw")
+size = Vector2(500, 500)
+
+[node name="MainGame" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.587093, 0, -0.809519, 0, 1, 0, 0.809519, 0, 0.587093, 0, 0.0873209, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+gi_lightmap_texel_scale = 4.9355
+mesh = SubResource("PlaneMesh_ykeeq")
