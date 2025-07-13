@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq205txmxkog3"]
+
+[ext_resource type="Script" uid="uid://do8iaxy7i3s5h" path="res://Actors/asteroid_system.gd" id="1_akvxb"]
+[ext_resource type="PackedScene" uid="uid://qk5awbg5lktq" path="res://Actors/consumeable_object.tscn" id="2_ueqjm"]
+
+[node name="Asteroid_System" type="Node3D"]
+script = ExtResource("1_akvxb")
+asteroid_scenes = Array[PackedScene]([ExtResource("2_ueqjm")])
+total_asteroids = 930
+continuous_spawning = true
+boundary_size = Vector3(1000, 50, 1000)
+max_velocity = 10.365
+noise_scale = 11.745

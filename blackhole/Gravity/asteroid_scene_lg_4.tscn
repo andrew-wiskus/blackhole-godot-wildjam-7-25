@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cg764rvaiml3i"]
 
-[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Gravity/other_attractor.gd" id="1_j57aj"]
+[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_j57aj"]
 [ext_resource type="Script" uid="uid://3xmqorrp0qo7" path="res://Gravity/area_3d.gd" id="2_maj65"]
 [ext_resource type="Texture2D" uid="uid://d1g2klsm0e82" path="res://Assets/astroids/a_lg_4.png" id="3_6hhyb"]
 

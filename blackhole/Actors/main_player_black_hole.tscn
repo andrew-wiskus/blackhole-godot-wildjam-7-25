@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs78l0x4hyviy"]
 
-[ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Gravity/attractor_rigid_body_3d.gd" id="1_hf0rb"]
-[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://blackhole_sprite_anim.tres" id="3_ekjeq"]
-[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://rotate_3d_sprite.gd" id="4_1dynj"]
+[ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="1_hf0rb"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_ekjeq"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_1dynj"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="5_qoil4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]

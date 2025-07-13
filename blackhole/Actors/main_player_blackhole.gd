@@ -1,4 +1,3 @@
-class_name MainPlayerRigidBody3D
 extends RigidBody3D
 @export_group("Movement")
 @export var force_multiplier = 5
@@ -49,6 +48,7 @@ func _physics_process(delta: float):
 	
 	if general_size != general_size_holder:
 		general_size_holder = general_size
+		#update_size()
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()
@@ -96,6 +96,7 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
 			game_end()
 			
 	pass # Replace with function body.
+
 func game_end():
 	#you died here: write code for it
 	print("you die here, write code for it")

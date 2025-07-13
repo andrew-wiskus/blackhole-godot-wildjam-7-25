@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://cjts4kko3q1u8"]
 
-[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main.gd" id="1_c4cag"]
-[ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://star_bg_1.gdshader" id="2_5q42u"]
-[ext_resource type="Script" uid="uid://d0yuuatbtexiq" path="res://blackhole.gd" id="3_ij5mv"]
+[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_c4cag"]
+[ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://_archive_/star_bg_1.gdshader" id="2_5q42u"]
+[ext_resource type="Script" uid="uid://d0yuuatbtexiq" path="res://_archive_/blackhole_2d.gd" id="3_ij5mv"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="4_r63ls"]
 [ext_resource type="PackedScene" uid="uid://5pkj5t0rttfq" path="res://Gravity/DNU/gravity_well.tscn" id="5_gol01"]
 [ext_resource type="Script" uid="uid://eofade53c0ol" path="res://Launcher/drag_input_controller.gd" id="6_nq2pl"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhelq35441kr6"]
+
+[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
+
+[node name="main_game" type="Node3D"]
+script = ExtResource("1_1bvp3")
+
+[node name="Asteroid_System" parent="." instance=ExtResource("2_h2yge")]
+
+[node name="Main Character" parent="." instance=ExtResource("3_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7284, 0)
+force_multiplier = 20
+use_color_for_speed = false
+max_line_length = 150.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
