@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu6ycn6mxhpsj"]
 
 [ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="2_qckkc"]
-[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://blackhole_sprite_anim.tres" id="3_iv8en"]
-[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://rotate_3d_sprite.gd" id="4_gat8e"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_iv8en"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_gat8e"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="4_iv8en"]
 
 [node name="TestAutorunner" type="Node3D"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://rvu5nya4qd6h"]
 
-[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://blackhole_sprite_anim.tres" id="1_ykeeq"]
-[ext_resource type="Texture2D" uid="uid://c7u2eck8q1f8x" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_NormalGL.png" id="2_2pltu"]
-[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://rotate_3d_sprite.gd" id="2_6bm6p"]
-[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="3_dugkq"]
-[ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="3_f52ns"]
+[ext_resource type="Texture2D" uid="uid://c7u2eck8q1f8x" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_NormalGL.png" id="1_ww0sx"]
+[ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="2_gi817"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_81qql"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_eqk86"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="5_omck4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pltu"]
 
@@ -16,11 +16,11 @@ size = Vector2(5000, 5000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dugkq"]
 roughness = 0.4
-roughness_texture = ExtResource("3_f52ns")
+roughness_texture = ExtResource("2_gi817")
 roughness_texture_channel = 3
 normal_enabled = true
 normal_scale = 0.1
-normal_texture = ExtResource("2_2pltu")
+normal_texture = ExtResource("1_ww0sx")
 clearcoat_enabled = true
 uv1_scale = Vector3(250, 250, 250)
 
@@ -57,11 +57,27 @@ transform = Transform3D(0.168826, 0, 0, 0, 0.168826, 0, 0, 0, 1, 0, 2.52166, 6.2
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
 rotation_edit_mode = 1
-sprite_frames = ExtResource("1_ykeeq")
-script = ExtResource("2_6bm6p")
+sprite_frames = ExtResource("3_81qql")
+script = ExtResource("4_eqk86")
 SPEED = 25.0
 
 [node name="Sprite3D" type="Sprite3D" parent="Blackhole Animated Sprite"]
 transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
 modulate = Color(0.214103, 0.214103, 0.214103, 1)
-texture = ExtResource("3_dugkq")
+texture = ExtResource("5_omck4")
+
+[node name="Blackhole Animated Sprite2" type="Node3D" parent="."]
+transform = Transform3D(0.168826, 0, 0, 0, -0.0146026, 0.996252, 0, -0.168193, -0.086495, 6.04466, 1.78383, 0.459715)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite2"]
+transform = Transform3D(0.0903912, -0.995906, -0.000961582, 0.995817, 0.0903959, -0.0132849, 0.0133176, 0.000243305, 0.999911, 0, 40.1666, 0.588744)
+rotation_edit_mode = 1
+sprite_frames = ExtResource("3_81qql")
+script = ExtResource("4_eqk86")
+SPEED = 25.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Blackhole Animated Sprite2"]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+visible = false
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("5_omck4")
