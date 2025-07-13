@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2g6113tykm85"]
+[gd_scene load_steps=8 format=3 uid="uid://d2g6113tykm85"]
 
 [ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="1_an3rd"]
-[ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="2_2xf61"]
 [ext_resource type="Script" uid="uid://bl1qk6gqhvv4w" path="res://Gravity/asteroids_particles.gd" id="2_ou5ws"]
 
 [sub_resource type="Curve" id="Curve_ou5ws"]
@@ -29,21 +28,11 @@ albedo_texture = ExtResource("1_an3rd")
 material = SubResource("StandardMaterial3D_24xn8")
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3t5vb"]
-transparency = 1
-albedo_texture = ExtResource("2_2xf61")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_6fj7i"]
-material = SubResource("StandardMaterial3D_3t5vb")
-orientation = 2
-
 [node name="Asteroid_Particles_GPU" type="GPUParticles3D"]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 amount = 1500
 lifetime = 25.17
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_urqns")
-draw_passes = 2
 draw_pass_1 = SubResource("PlaneMesh_xmoaw")
-draw_pass_2 = SubResource("PlaneMesh_6fj7i")
 script = ExtResource("2_ou5ws")

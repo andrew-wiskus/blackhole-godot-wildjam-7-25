@@ -5,13 +5,6 @@ radius = 81.8525
 
 [node name="Attraction_Components_Attractor_Body" type="Node3D"]
 
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
-strength = 77.85
-radius = 81.71
-
-[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
-radius = 11.1019
-
 [node name="Rigid_Body_Gravity_Area" type="Area3D" parent="."]
 disable_mode = 2
 gravity_space_override = 1
