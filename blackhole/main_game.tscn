@@ -1,20 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://rvu5nya4qd6h"]
+[gd_scene load_steps=9 format=3 uid="uid://rvu5nya4qd6h"]
 
-[ext_resource type="Texture2D" uid="uid://dcv6nv7bxrxam" path="res://Assets/grid_frame_white_bg.png" id="1_1oj5k"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://blackhole_sprite_anim.tres" id="1_ykeeq"]
+[ext_resource type="Texture2D" uid="uid://c7u2eck8q1f8x" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_NormalGL.png" id="2_2pltu"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://rotate_3d_sprite.gd" id="2_6bm6p"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="3_dugkq"]
+[ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="3_f52ns"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx7mw"]
-albedo_texture = ExtResource("1_1oj5k")
-uv1_scale = Vector3(5000, 5000, 5000)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5ukw"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ykeeq"]
-material = SubResource("StandardMaterial3D_yx7mw")
-size = Vector2(500, 500)
+[sub_resource type="PlaneMesh" id="PlaneMesh_1oj5k"]
+lightmap_size_hint = Vector2i(50, 50)
+material = SubResource("StandardMaterial3D_l5ukw")
+uv2_padding = 0.0
+size = Vector2(5000, 5000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dugkq"]
+roughness = 0.4
+roughness_texture = ExtResource("3_f52ns")
+roughness_texture_channel = 3
+normal_enabled = true
+normal_scale = 0.1
+normal_texture = ExtResource("2_2pltu")
+clearcoat_enabled = true
+uv1_scale = Vector3(250, 250, 250)
 
 [node name="MainGame" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.587093, 0, -0.809519, 0, 1, 0, 0.809519, 0, 0.587093, 0, 0.0873209, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 281.223, 324.98)
+light_energy = 1.515
+light_indirect_energy = 1.484
+light_volumetric_fog_energy = 2.051
+light_angular_distance = 53.3
+light_specular = 2.293
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-gi_lightmap_texel_scale = 4.9355
-mesh = SubResource("PlaneMesh_ykeeq")
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.53927, -4.4017)
+visible = false
+light_energy = 0.435
+light_indirect_energy = 2.859
+light_volumetric_fog_energy = 2.051
+light_specular = 0.096
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.994254, 0.107045, 0, -0.107045, 0.994254, 0.0794346, 3.56423, 15.7281)
+fov = 58.9
+frustum_offset = Vector2(-0.37, -0.21)
+
+[node name="GroundMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00114441, 1.73194, -1.06697)
+mesh = SubResource("PlaneMesh_1oj5k")
+surface_material_override/0 = SubResource("StandardMaterial3D_dugkq")
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="."]
+transform = Transform3D(0.168826, 0, 0, 0, 0.168826, 0, 0, 0, 1, 0, 2.52166, 6.26046)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("1_ykeeq")
+script = ExtResource("2_6bm6p")
+SPEED = 25.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Blackhole Animated Sprite"]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("3_dugkq")

@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu2w3u34p8ud3"]
+[gd_scene load_steps=8 format=3 uid="uid://bhelq35441kr6"]
 
-[ext_resource type="PackedScene" uid="uid://qdo170rw40y8" path="res://Gravity/attractor_rigid_body_3D.tscn" id="1_glmm2"]
-[ext_resource type="PackedScene" uid="uid://d2g6113tykm85" path="res://Gravity/asteroids_particles.tscn" id="3_wtb3c"]
-[ext_resource type="PackedScene" uid="uid://1wn3sti3r32" path="res://Gravity/other_attractor.tscn" id="5_8q5kf"]
+[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Gravity/attractor_rigid_body_3D.tscn" id="1_glmm2"]
+[ext_resource type="PackedScene" path="res://Gravity/asteroids_particles.tscn" id="3_wtb3c"]
+[ext_resource type="PackedScene" path="res://Gravity/other_attractor.tscn" id="5_8q5kf"]
 [ext_resource type="Texture2D" uid="uid://ccrwpfe6ywpc" path="res://Assets/astroids/a_lg_3.png" id="5_d1tm5"]
-[ext_resource type="Script" uid="uid://ctwy1osudqog1" path="res://Gravity/cpu_particles_3d.gd" id="6_b1vi2"]
+[ext_resource type="Script" path="res://Gravity/cpu_particles_3d.gd" id="6_b1vi2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ed6j"]
 transparency = 1

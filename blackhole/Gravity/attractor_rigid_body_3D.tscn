@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://qdo170rw40y8"]
+[gd_scene load_steps=6 format=3 uid="uid://cs78l0x4hyviy"]
 
 [ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Gravity/attractor_rigid_body_3d.gd" id="1_hf0rb"]
 [ext_resource type="Texture2D" uid="uid://bvjnr8qrib0ql" path="res://Assets/planets/p2.png" id="1_qnenn"]
-[ext_resource type="PackedScene" uid="uid://cwl4pcg2iks7p" path="res://Gravity/attraction_components_attractor_body.tscn" id="2_vrwos"]
+[ext_resource type="PackedScene" path="res://Gravity/attraction_components_attractor_body.tscn" id="2_vrwos"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]
 radius = 4.15902
