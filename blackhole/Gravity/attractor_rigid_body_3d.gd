@@ -1,3 +1,4 @@
+class_name MainPlayerRigidBody3D
 extends RigidBody3D
 @export_group("Movement")
 @export var force_multiplier = 5
@@ -48,7 +49,6 @@ func _physics_process(delta: float):
 	
 	if general_size != general_size_holder:
 		general_size_holder = general_size
-		update_size()
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()
