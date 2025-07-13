@@ -13,12 +13,14 @@ extends RigidBody3D
 
 var debug_mesh_instance: MeshInstance3D
 var immediate_mesh: ImmediateMesh
-
+var general_size_holder
 
 @export_group("size")
 @export var general_size: float = 1.0
 
 func _ready() -> void:
+
+	general_size_holder = general_size
 	linear_velocity.x = 1
 	
 	# Create debug mesh instance for directional line
@@ -33,20 +35,20 @@ func _ready() -> void:
 	material.vertex_color_use_as_albedo = true
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	debug_mesh_instance.material_override = material
-func _on_body_entered(body: Node) -> void:
-	if body is GPUParticles3D:
-		print("entered GPUParticles")
-		print(body)
-	pass # Replace with function body.
+
 func _physics_process(delta: float):
 	var forward_back =  Input.get_axis("S", "W")
 	var left_right =  Input.get_axis("D", "A")
-	var f = (Vector3.FORWARD*forward_back + Vector3.LEFT*left_right)*force_multiplier
+	var up_down = Input.get_axis("Space","C")
+	var f = (Vector3.FORWARD*forward_back + Vector3.LEFT*left_right+ Vector3.DOWN*up_down)*force_multiplier
 	constant_force = f
 	
 	if show_velocity_line:
 		draw_velocity_line()
-
+	
+	if general_size != general_size_holder:
+		general_size_holder = general_size
+		update_size()
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()
@@ -97,11 +99,19 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
 func game_end():
 	#you died here: write code for it
 	print("you die here, write code for it")
-func update_size(size:Vector3):
-	$Sprite3D.scale = size
-	$CollisionShape3D.scale = size
-	$Area3D/CollisionShape3D.scale =  size
+
 func increase_size(step:Vector3):
-	$Sprite3D.scale += step
+	$"Blackhole Animated Sprite/AnimatedSprite3D".scale += step
 	$CollisionShape3D.scale += step
-	$Area3D/CollisionShape3D.scale +=  step		
+	$Area3D/CollisionShape3D.scale +=  step
+
+
+func _on_rigid_body_gravity_area_area_entered(area: Area3D) -> void:
+	print("enterd")
+	print(area)
+	pass # Replace with function body.
+
+
+func _on_rigid_body_gravity_area_body_entered(body: Node3D) -> void:
+	print(body)
+	pass # Replace with function body.

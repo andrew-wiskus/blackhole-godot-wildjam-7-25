@@ -1,17 +1,16 @@
-[gd_resource type="Theme" load_steps=67 format=3 uid="uid://dvy0k10dvgmfs"]
+[gd_resource type="Theme" load_steps=66 format=3 uid="uid://3b6jfloh1m1l"]
 
-[ext_resource type="Texture2D" uid="uid://crnrlbavwukpg" path="res://icons/slider_grabber.svg" id="1_a5rho"]
-[ext_resource type="Texture2D" uid="uid://03nobdvaymon" path="res://icons/slider_grabber_hl.svg" id="2_fj6ix"]
-[ext_resource type="Texture2D" uid="uid://dl0sjn06cmtjy" path="res://icons/hslider_tick.svg" id="3_fj6ix"]
-[ext_resource type="Texture2D" uid="uid://ds8ykqp5nlia2" path="res://icons/unchecked.svg" id="4_350wl"]
-[ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://icons/arrow_down.svg" id="4_up5n0"]
-[ext_resource type="Texture2D" uid="uid://duw1tgvi0xo3b" path="res://icons/checked.svg" id="5_tkshw"]
-[ext_resource type="Texture2D" uid="uid://bsssp742q6akw" path="res://icons/toggle_on.svg" id="5_xfeew"]
-[ext_resource type="Texture2D" uid="uid://bka3n8jxnudrg" path="res://icons/toggle_on_mirrored.svg" id="6_6c6no"]
-[ext_resource type="Texture2D" uid="uid://mmrh38p4gqim" path="res://icons/radio_checked.svg" id="6_23ocb"]
-[ext_resource type="Texture2D" uid="uid://b1fmnuufcjas1" path="res://icons/radio_unchecked.svg" id="7_350wl"]
-[ext_resource type="Texture2D" uid="uid://gq4fme83umik" path="res://icons/vslider_tick.svg" id="8_23ocb"]
-[ext_resource type="FontFile" uid="uid://csv3f8jdvqgdv" path="res://Assets/Fonts/ShadowsIntoLight-Regular.ttf" id="12_auats"]
+[ext_resource type="Texture2D" uid="uid://crnrlbavwukpg" path="res://UI/black_and_white_theme/icons/slider_grabber.svg" id="1_a5rho"]
+[ext_resource type="Texture2D" uid="uid://03nobdvaymon" path="res://UI/black_and_white_theme/icons/slider_grabber_hl.svg" id="2_fj6ix"]
+[ext_resource type="Texture2D" uid="uid://dl0sjn06cmtjy" path="res://UI/black_and_white_theme/icons/hslider_tick.svg" id="3_fj6ix"]
+[ext_resource type="Texture2D" uid="uid://ds8ykqp5nlia2" path="res://UI/black_and_white_theme/icons/unchecked.svg" id="4_350wl"]
+[ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://UI/black_and_white_theme/icons/arrow_down.svg" id="4_up5n0"]
+[ext_resource type="Texture2D" uid="uid://duw1tgvi0xo3b" path="res://UI/black_and_white_theme/icons/checked.svg" id="5_tkshw"]
+[ext_resource type="Texture2D" uid="uid://bsssp742q6akw" path="res://UI/black_and_white_theme/icons/toggle_on.svg" id="5_xfeew"]
+[ext_resource type="Texture2D" uid="uid://bka3n8jxnudrg" path="res://UI/black_and_white_theme/icons/toggle_on_mirrored.svg" id="6_6c6no"]
+[ext_resource type="Texture2D" uid="uid://mmrh38p4gqim" path="res://UI/black_and_white_theme/icons/radio_checked.svg" id="6_23ocb"]
+[ext_resource type="Texture2D" uid="uid://b1fmnuufcjas1" path="res://UI/black_and_white_theme/icons/radio_unchecked.svg" id="7_350wl"]
+[ext_resource type="Texture2D" uid="uid://gq4fme83umik" path="res://UI/black_and_white_theme/icons/vslider_tick.svg" id="8_23ocb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60qmb"]
 
@@ -49,7 +48,7 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12f15"]
 content_margin_left = 4.0
 content_margin_right = 4.0
-bg_color = Color(0.359069, 0.359069, 0.359069, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -405,7 +404,6 @@ content_margin_right = 2.0
 bg_color = Color(1, 1, 1, 1)
 
 [resource]
-default_font = ExtResource("12_auats")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
@@ -417,7 +415,6 @@ Button/colors/icon_hover_color = Color(1, 1, 1, 1)
 Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 30
 Button/styles/focus = SubResource("StyleBoxEmpty_60qmb")
 Button/styles/hover = SubResource("StyleBoxFlat_81hlo")
 Button/styles/normal = SubResource("StyleBoxFlat_dsnp2")
@@ -467,7 +464,6 @@ HSlider/styles/grabber_area = SubResource("StyleBoxFlat_mmmbi")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_8usut")
 HSlider/styles/slider = SubResource("StyleBoxFlat_77rre")
 Label/colors/font_color = Color(1, 1, 1, 1)
-Label/font_sizes/font_size = 25
 Label/styles/normal = SubResource("StyleBoxEmpty_81hlo")
 LineEdit/colors/clear_button_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_color = Color(1, 1, 1, 1)

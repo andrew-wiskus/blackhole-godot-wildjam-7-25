@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://kkcebf4wi2i"]
+
+[node name="CutSceneBackground" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.60473)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 3452.0
+offset_bottom = 1964.0

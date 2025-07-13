@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="3_dugkq"]
 [ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="3_f52ns"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5ukw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pltu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1oj5k"]
 lightmap_size_hint = Vector2i(50, 50)
-material = SubResource("StandardMaterial3D_l5ukw")
+material = SubResource("StandardMaterial3D_2pltu")
 uv2_padding = 0.0
 size = Vector2(5000, 5000)
 
