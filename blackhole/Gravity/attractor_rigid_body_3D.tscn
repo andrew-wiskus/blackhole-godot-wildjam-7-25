@@ -27,17 +27,15 @@ shape = SubResource("SphereShape3D_vrwos")
 shape = SubResource("SphereShape3D_hf0rb")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0449181, 0)
 texture = ExtResource("1_qnenn")
 
 [node name="Attraction_Components_Attractor_Body" parent="." instance=ExtResource("2_vrwos")]
 
-[node name="GPUParticlesCollisionSphere3D" parent="Attraction_Components_Attractor_Body" index="1"]
-radius = 4.06427
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995655, 0.0931178, 0, -0.0931178, 0.995655, 0, 27.4318, 78.3659)
+transform = Transform3D(1, 0, 0, 0, 0.033661, 0.999433, 0, -0.999433, 0.033661, 0, 78.1221, -0.150326)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_area_entered"]
+[connection signal="body_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_body_entered"]
 
 [editable path="Attraction_Components_Attractor_Body"]

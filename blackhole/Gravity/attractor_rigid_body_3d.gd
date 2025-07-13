@@ -14,6 +14,10 @@ extends RigidBody3D
 var debug_mesh_instance: MeshInstance3D
 var immediate_mesh: ImmediateMesh
 
+
+@export_group("size")
+@export var general_size: float = 1.0
+
 func _ready() -> void:
 	linear_velocity.x = 1
 	
@@ -42,9 +46,7 @@ func _physics_process(delta: float):
 	
 	if show_velocity_line:
 		draw_velocity_line()
-func _on_detectable_inner_radius_area_entered(area: Area3D) -> void:
-	print(area)
-	pass # Replace with function body.
+
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()
@@ -79,3 +81,27 @@ func draw_velocity_line():
 	immediate_mesh.surface_add_vertex(end_pos)
 	
 	immediate_mesh.surface_end()
+
+
+func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
+	if body == $".":
+		pass
+	else:
+		# check if body is larger
+		if body.general_size <= general_size:
+			body.queue_free()
+		else:
+			game_end()
+			
+	pass # Replace with function body.
+func game_end():
+	#you died here: write code for it
+	print("you die here, write code for it")
+func update_size(size:Vector3):
+	$Sprite3D.scale = size
+	$CollisionShape3D.scale = size
+	$Area3D/CollisionShape3D.scale =  size
+func increase_size(step:Vector3):
+	$Sprite3D.scale += step
+	$CollisionShape3D.scale += step
+	$Area3D/CollisionShape3D.scale +=  step		
