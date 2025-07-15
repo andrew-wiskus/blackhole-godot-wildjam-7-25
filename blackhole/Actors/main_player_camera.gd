@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	var new_rotation_y = lerp(current_rotation.y, target_rotation_y, smoothing_speed * delta)
 	
 	# Apply the new rotation
-	get_parent().rotate_x(new_rotation_x*0.00005)
+	#get_parent().rotate_x(new_rotation_x*0.00005)
 	get_parent().rotate_y(new_rotation_y*0.00005)
 func zoom(size):
 	

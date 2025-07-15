@@ -114,8 +114,8 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
 	else:
 		# check if body is larger
 		if body.general_size <= general_size:
-			increase_size(0.1)
-			increase_move_speed(0.01)
+			increase_size(0.01)
+			increase_move_speed(0.001)
 			body.queue_free()
 		else:
 			print("You died")
