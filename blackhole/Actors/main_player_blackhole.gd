@@ -23,6 +23,7 @@ var general_size_holder
 
 @export_group("consuming")
 @export var camera_distancing_step: float = 0.0001
+@export var initial_gravity = 9.8
 
 func _ready() -> void:
 	

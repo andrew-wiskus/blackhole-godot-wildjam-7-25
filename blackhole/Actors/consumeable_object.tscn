@@ -15,13 +15,13 @@ radius = 8.958
 
 [node name="Consumeable Object" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
-gravity_scale = 0.431
 script = ExtResource("1_is3l8")
 general_size = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.395, 0, 0, 0, 1.39451, -0.0369793, 0, 0.0369793, 1.39451, 0, 0.00259061, 0.0102082)
 shape = SubResource("SphereShape3D_onj7j")
+debug_color = Color(0.966632, 0.151832, 0.266338, 0.42)
 
 [node name="Area3D" type="Area3D" parent="."]
 disable_mode = 2

@@ -1,27 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=5 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://qk5awbg5lktq" path="res://Actors/consumeable_object.tscn" id="4_1bvp3"]
 
 [node name="main_game" type="Node3D"]
 script = ExtResource("1_1bvp3")
 
 [node name="Main Character" parent="." instance=ExtResource("3_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20348, 0)
-max_speed = 100
 show_velocity_line = false
-max_speed_for_color = 10.0
-min_color = Color(0, 1, 0, 1)
-max_color = Color(1, 0, 0, 1)
-general_size = 1.0
+general_size = 0.6
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
 
 [node name="Asteroid_System" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.991, 500)
-total_asteroids = 350
-spawn_rate = 29.46
+total_asteroids = 100
+spawn_rate = 0.0
 boundary_radius = 75.0
-boundary_size = Vector3(500, 500, 500)
+boundary_size = Vector3(498.99, 500, 500)
+
+[node name="Star_System" type="Node3D" parent="."]
+
+[node name="Consumeable Object" parent="Star_System" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -157.023)
+general_size = 5.0
+gravity_area_strength = 53.765

@@ -51,8 +51,8 @@ shape = SubResource("SphereShape3D_3ll2g")
 [node name="Main_Player_Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.909701, 0.415265, 0, -0.415265, 0.909701, 0, 1.718, 4.513)
 script = ExtResource("2_pe21h")
-rotation_speed = 44.035
-zoom_speed = 0.01
+rotation_speed = 208.265
+zoom_speed = 0.05
 max_zoom = 20000.0
 
 [node name="Blackhole Animated Sprite" type="Node3D" parent="."]

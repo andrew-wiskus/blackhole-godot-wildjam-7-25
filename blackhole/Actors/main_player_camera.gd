@@ -1,5 +1,5 @@
 extends Camera3D
-
+@export var target_node: RigidBody3D #assign this node as the parent 
 @export var rotation_speed: float = 0.005
 @export var zoom_speed: float = 0.1
 @export var min_zoom: float = 2.0
@@ -28,6 +28,8 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			dragging = event.pressed
 			if dragging == false:
+				target_rotation_x = 0.0
+				target_rotation_y = 0.0
 				pass
 		# Zoom with scroll wheel
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -46,6 +48,7 @@ func _input(event):
 		
 
 func _physics_process(delta: float) -> void:
+	
 	# Existing smoothing code
 	var current_rotation = get_parent().rotation
 	
