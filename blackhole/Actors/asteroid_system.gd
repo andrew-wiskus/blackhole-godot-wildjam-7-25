@@ -65,7 +65,6 @@ func _process(delta):
 			for i in range(to_spawn):
 				spawn_single_asteroid()
 	
-
 func _find_player_node():
 	var potential_players = get_tree().get_nodes_in_group("player")
 	if potential_players.size() > 0:

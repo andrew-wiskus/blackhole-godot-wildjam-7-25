@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://3uyj251aegy0"]
+
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://UI/black_and_white_theme/black_and_white.tres" id="1_l3f2g"]
+[ext_resource type="Script" uid="uid://brw86s4u532ag" path="res://Shop/_scripts_/shop_ui_upgrade_node.gd" id="2_jn75n"]
+
+[node name="Upgrade Node" type="Button" groups=["shop_ui_upgrade_nodes"]]
+offset_right = 69.0
+offset_bottom = 64.0
+theme = ExtResource("1_l3f2g")
+theme_type_variation = &"FlatButton"
+text = "<ICON>"
+script = ExtResource("2_jn75n")
+
+[node name="UpgradeTooltipContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_right = 293.0
+offset_bottom = 129.0
+theme = ExtResource("1_l3f2g")
+
+[node name="Panel" type="Panel" parent="UpgradeTooltipContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeTooltipContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="UpgradeText_VBox" type="VBoxContainer" parent="UpgradeTooltipContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="upgrade_title_txt" type="RichTextLabel" parent="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox"]
+layout_mode = 2
+text = "UPGRADE_TITLE"
+fit_content = true
+
+[node name="__margin_1" type="ColorRect" parent="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox"]
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="PurchaseButton" type="Button" parent="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox"]
+layout_mode = 2
+theme = ExtResource("1_l3f2g")
+text = "purchase: 500kg"
+
+[node name="__margin_2" type="ColorRect" parent="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox"]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="level_description_txt" type="RichTextLabel" parent="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox"]
+layout_mode = 2
+text = "- level X description"
+fit_content = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_upgrade_node_clicked"]
+[connection signal="pressed" from="UpgradeTooltipContainer/MarginContainer/UpgradeText_VBox/PurchaseButton" to="." method="_on_purchase_button_pressed"]

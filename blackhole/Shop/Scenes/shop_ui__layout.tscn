@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdf4hg8dq6sfp"]
+
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://UI/black_and_white_theme/black_and_white.tres" id="1_6vd86"]
+[ext_resource type="Script" uid="uid://cmw1bhshxa2v3" path="res://Shop/_scripts_/shop_ui__layout.gd" id="2_nr7od"]
+[ext_resource type="PackedScene" uid="uid://3uyj251aegy0" path="res://Shop/Scenes/shop_ui__upgrade_node.tscn" id="3_4o111"]
+
+[node name="ShopUI_Layout" type="ColorRect"]
+custom_minimum_size = Vector2(10000, 10000)
+layout_direction = 4
+mouse_filter = 1
+theme = ExtResource("1_6vd86")
+color = Color(0.0904823, 0.0904823, 0.0904823, 1)
+script = ExtResource("2_nr7od")
+metadata/_edit_vertical_guides_ = [5004.0]
+metadata/_edit_horizontal_guides_ = [5007.0]
+
+[node name="Upgrade - Gravity 1" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 1
+offset_left = 4975.0
+offset_top = 4973.0
+offset_right = 5044.0
+offset_bottom = 5037.0
+is_first_upgrade = true
+
+[node name="Upgrade - Size 1" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 4611.0
+offset_top = 4720.0
+offset_right = 4680.0
+offset_bottom = 4784.0
+upgrade_id = 1
+
+[node name="Upgrade - Speed 1" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 5299.0
+offset_top = 4720.0
+offset_right = 5368.0
+offset_bottom = 4784.0
+upgrade_id = 2
+
+[node name="Upgrade - Speed 2" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 5566.0
+offset_top = 4446.0
+offset_right = 5635.0
+offset_bottom = 4510.0
+upgrade_id = 2
+
+[node name="Upgrade - Speed 3" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 5091.0
+offset_top = 4437.0
+offset_right = 5160.0
+offset_bottom = 4501.0
+upgrade_id = 2

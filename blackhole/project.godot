@@ -15,6 +15,11 @@ run/main_scene="uid://rvu5nya4qd6h"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Assets/icon.svg"
 
+[autoload]
+
+GameState="*res://Global/GameState.gd"
+ShopConfig="*res://Shop/ShopConfig.gd"
+
 [display]
 
 window/size/viewport_width=3456
@@ -25,6 +30,11 @@ window/size/viewport_height=1944
 folder_colors={
 "res://Gravity/Archive/": "red"
 }
+
+[global_group]
+
+shop_ui_upgrade_nodes=""
+shop_ui_controller=""
 
 [input]
 
