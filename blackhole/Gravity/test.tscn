@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://w238e3l43xna"]
 
-[ext_resource type="PackedScene" path="res://Gravity/star.tscn" id="1_ftbjc"]
-[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/DNU/gravity_node.tscn" id="1_r0meq"]
-[ext_resource type="PackedScene" uid="uid://c8pjqc70i1utu" path="res://Gravity/DNU/Attractor.tscn" id="2_8hrh7"]
+[ext_resource type="PackedScene" uid="uid://cmlj22f363fvi" path="res://Gravity/star.tscn" id="1_ftbjc"]
+[ext_resource type="PackedScene" uid="uid://bphqsqkanbwj" path="res://Gravity/Archive/gravity_node.tscn" id="1_r0meq"]
+[ext_resource type="PackedScene" uid="uid://c8pjqc70i1utu" path="res://Gravity/Archive/Attractor.tscn" id="2_8hrh7"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0meq"]
 

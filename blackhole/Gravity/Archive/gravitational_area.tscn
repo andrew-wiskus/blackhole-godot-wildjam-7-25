@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bydybg2a467ws"]
 
-[ext_resource type="Script" uid="uid://b2xu62n2c5hxe" path="res://Gravity/DNU/gravitational_area.gd" id="1_8hnjd"]
+[ext_resource type="Script" uid="uid://b2xu62n2c5hxe" path="res://Gravity/Archive/gravitational_area.gd" id="1_8hnjd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wxwr4"]
 radius = 733.0

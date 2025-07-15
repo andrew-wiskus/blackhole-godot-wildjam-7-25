@@ -23,7 +23,7 @@ window/size/viewport_height=1944
 [file_customization]
 
 folder_colors={
-"res://Gravity/DNU/": "red"
+"res://Gravity/Archive/": "red"
 }
 
 [input]
@@ -72,6 +72,8 @@ Space={
 [physics]
 
 3d/default_gravity=0.0
+3d/default_linear_damp=0.3
+3d/default_angular_damp=59.043
 2d/default_gravity=0.0
 
 [rendering]

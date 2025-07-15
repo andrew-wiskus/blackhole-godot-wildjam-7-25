@@ -1,6 +1,9 @@
+class_name MainPlayerRigidBody
 extends RigidBody3D
 @export_group("Movement")
 @export var force_multiplier = 5
+@export var drag_coefficient = 1
+@export var max_speed = 100
 
 @export_group("directional_line")
 @export var show_velocity_line: bool = true
@@ -18,9 +21,14 @@ var general_size_holder
 @export_group("size")
 @export var general_size: float = 1.0
 
-func _ready() -> void:
+@export_group("consuming")
+@export var camera_distancing_step: float = 0.0001
 
+func _ready() -> void:
+	
 	general_size_holder = general_size
+	initialize_sizes(general_size)
+	
 	linear_velocity.x = 1
 	
 	# Create debug mesh instance for directional line
@@ -37,18 +45,32 @@ func _ready() -> void:
 	debug_mesh_instance.material_override = material
 
 func _physics_process(delta: float):
-	var forward_back =  Input.get_axis("S", "W")
-	var left_right =  Input.get_axis("D", "A")
-	var up_down = Input.get_axis("Space","C")
-	var f = (Vector3.FORWARD*forward_back + Vector3.LEFT*left_right+ Vector3.DOWN*up_down)*force_multiplier
-	constant_force = f
+	var forward_back = Input.get_axis("S", "W")
+	var left_right = Input.get_axis("D", "A")
+	var up_down = Input.get_axis("C", "Space")
+	# Get transformed direction vectors
+	# Convert rotation in degrees to radians
+	#var rotation_rad = rotation * PI / 180.0
+
+	# Create a basis from Euler angles (in radians)
+	var basis = Basis.from_euler(rotation)
+
+	# Get transformed direction vectors
+	var forward = basis * Vector3.FORWARD
+	var left = basis * Vector3.LEFT
+	var up = basis * Vector3.UP
+
+	var f = (forward*forward_back + left*left_right + up*up_down)*force_multiplier
+
+	#constant_force = (Vector3.FORWARD*forward_back + Vector3.LEFT*left_right + Vector3.UP*up_down)*force_multiplier 
+	constant_force = f*force_multiplier
 	
 	if show_velocity_line:
 		draw_velocity_line()
 	
 	if general_size != general_size_holder:
 		general_size_holder = general_size
-		#update_size()
+		update_size(general_size)
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()
@@ -91,24 +113,27 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
 	else:
 		# check if body is larger
 		if body.general_size <= general_size:
+			increase_size(0.1)
+			increase_move_speed(0.01)
 			body.queue_free()
 		else:
-			game_end()
+			print("You died")
 			
 	pass # Replace with function body.
 
-func game_end():
-	#you died here: write code for it
-	print("you die here, write code for it")
 
-func increase_size(step:Vector3):
-	$"Blackhole Animated Sprite/AnimatedSprite3D".scale += step
-	$CollisionShape3D.scale += step
-	$Area3D/CollisionShape3D.scale +=  step
+func initialize_sizes(size):
+	$"Blackhole Animated Sprite".scale  = Vector3.ONE*size
+	$CollisionShape3D.scale = Vector3.ONE*size
+	$Rigid_Body_Gravity_Area/CollisionShape3D.scale =  Vector3.ONE*size
+	$"Detectable Inner Radius/CollisionShape3D".scale =  Vector3.ONE*size
 
-
+func update_size(size):
+	$"Blackhole Animated Sprite".scale  = Vector3.ONE*size
+	$CollisionShape3D.scale = Vector3.ONE*size
+	$Rigid_Body_Gravity_Area/CollisionShape3D.scale =  Vector3.ONE*size
+	$"Detectable Inner Radius/CollisionShape3D".scale =  Vector3.ONE*size
 func _on_rigid_body_gravity_area_area_entered(area: Area3D) -> void:
-	print("enterd")
 	print(area)
 	pass # Replace with function body.
 
@@ -116,3 +141,11 @@ func _on_rigid_body_gravity_area_area_entered(area: Area3D) -> void:
 func _on_rigid_body_gravity_area_body_entered(body: Node3D) -> void:
 	print(body)
 	pass # Replace with function body.
+
+#FOR SWIZZY: Shop Upgrade functions
+func increase_gravity(step):
+	$"Rigid_Body_Gravity_Area".gravity += step
+func increase_move_speed(step):
+	force_multiplier += step
+func increase_size(step):
+	general_size += step

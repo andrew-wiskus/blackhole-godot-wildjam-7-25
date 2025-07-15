@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctqeryw5kllpr"]
 
-[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Gravity/attractor_rigid_body_3D.tscn" id="1_smb1r"]
+[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="1_smb1r"]
 
 [node name="Test3D" type="Node3D"]
 
