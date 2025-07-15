@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccy8kdylj8yqp"]
+
+[ext_resource type="Script" uid="uid://day3527iwke1u" path="res://Shop/_scripts_/shop_ui_controller.gd" id="1_5o4hl"]
+[ext_resource type="Script" uid="uid://c7iwlaa5unup8" path="res://Shop/_scripts_/shop_ui_scroll_controller.gd" id="2_3s3p1"]
+[ext_resource type="PackedScene" uid="uid://cdf4hg8dq6sfp" path="res://Shop/Scenes/shop_ui__layout.tscn" id="3_c4fom"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://UI/black_and_white_theme/black_and_white.tres" id="4_p802c"]
+
+[node name="ShopUI" type="Control" groups=["shop_ui_controller"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_5o4hl")
+
+[node name="ShopUI_ScrollController" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3s3p1")
+
+[node name="ShopUI_Layout" parent="ShopUI_ScrollController" instance=ExtResource("3_c4fom")]
+layout_mode = 2
+
+[node name="CurrencyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 21.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme = ExtResource("4_p802c")
+theme_override_font_sizes/font_size = 32
+text = "1,000,000 kg"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="ShopUI_ScrollController/ShopUI_Layout" to="ShopUI_ScrollController" method="_on_shop_ui_layout_gui_input"]
