@@ -59,7 +59,6 @@ func _physics_process(delta: float) -> void:
 	# Apply the new rotation
 	#get_parent().rotate_x(new_rotation_x*0.00005)
 	get_parent().rotate_y(new_rotation_y*0.00005)
-func zoom(size):
-	
+func increase_zoom():
 	radius = clamp(radius - zoom_speed * radius, min_zoom, max_zoom)
-	position = Vector3(0, 0, radius)
+	position = position.normalized()*radius
