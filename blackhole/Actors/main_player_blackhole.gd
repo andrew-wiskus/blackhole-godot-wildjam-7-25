@@ -13,6 +13,7 @@ extends RigidBody3D
 @export var min_color: Color = Color.GREEN
 @export var max_color: Color = Color.RED
 
+@onready var camera = $Main_Player_Camera
 
 var debug_mesh_instance: MeshInstance3D
 var immediate_mesh: ImmediateMesh
@@ -117,6 +118,7 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void:
 		if body.general_size <= general_size:
 			increase_size(0.01)
 			increase_move_speed(0.001)
+			$Main_Player_Camera.zoom()
 			body.queue_free()
 		else:
 			print("You died")
