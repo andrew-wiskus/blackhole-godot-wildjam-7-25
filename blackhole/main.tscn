@@ -13,8 +13,7 @@ script = ExtResource("1_1bvp3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20348, 0)
 axis_lock_linear_y = true
 axis_lock_angular_z = true
-show_velocity_line = false
-general_size = 0.6
+camera_distancing_step = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
@@ -39,6 +38,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Currency Label" type="Label" parent="GameHUD"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 113.0
+text = "MASS CONSUMED: 
+[a] 999 kg
+[b] 0 kg
+[c] 0 kg"
 
 [node name="ShopUI" parent="." instance=ExtResource("5_lquwl")]
 anchors_preset = -1

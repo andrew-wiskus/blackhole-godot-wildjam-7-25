@@ -82,7 +82,7 @@ func _update_labels_for_current_lvl():
 		
 		if is_max_level:
 			item.label.modulate = Color(255, 255, 0, 1)
-		
+	
 	if is_max_level:
 		purchase_button.hide()
 		_margin_1.hide()
@@ -101,15 +101,16 @@ func _update_labels_for_current_lvl():
 		var hover_box = max_style_box.duplicate()
 		hover_box.bg_color = Color.YELLOW
 		self.add_theme_stylebox_override("hover", hover_box)
-			
-	
+	else:
+		purchase_button.text = str(next_level.cost) + " kg"
+
 func _level_description(value):
 	if upgrade_id == ShopCC.UpgradeID.GRAVITY_1:
-		return "- gravity multi +" + str(int(value * 100)) + "%"
+		return "- gravity multi +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.AOE_1:
-		return "- area of effect +" + str(int(value * 100)) + "%"
+		return "- area of effect +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.SPEED_1:
-		return "- increase speed by " + str(int(value)) + "m/s"
+		return "- increase speed by " + str(int((value - 1) * 100)) + "%"
 	
 	return "NOT_SET"
 

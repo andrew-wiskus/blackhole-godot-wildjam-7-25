@@ -1,11 +1,19 @@
 extends Node
 
-var currency: int = 100000000
+var currency: int = 100:
+	get:
+		return currency
+	set(value):
+		currency = value
+		game_controller.update_currency_hud()
+		
 var current_upgrade_levels: Dictionary[ShopConfig.UpgradeID, int] = {}
 var game_paused: bool = false
+var game_controller: GameController
 
 func _ready():
 	_load_game_state()
+	game_controller = get_tree().get_first_node_in_group("game_controller")
 	pass
 
 func _load_game_state():
@@ -32,3 +40,8 @@ func try_purchase(cost: int):
 	
 	currency = currency - cost
 	return true
+
+func on_consume_increase_currency(object_size: float):
+	print("CONSUMED: ", object_size)
+	currency += ceil(object_size * 10)
+	

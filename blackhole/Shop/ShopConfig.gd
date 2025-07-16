@@ -14,9 +14,9 @@ const UPGRADE_CONFIG = [
 		title = "Gravity Go Up",
 		button_node_label = "Gv",
 		levels = [
-			{ value = 0.2, cost = 100, unlocks = [UpgradeID.AOE_1] },
-			{ value = 0.3, cost = 300, unlocks = [] },
-			{ value = 0.5, cost = 500, unlocks = [UpgradeID.SPEED_1] },
+			{ value = 2.0, cost = 20, unlocks = [UpgradeID.AOE_1] },
+			{ value = 4.0, cost = 30, unlocks = [] },
+			{ value = 6.0, cost = 100, unlocks = [UpgradeID.SPEED_1] },
 		]
 	},
 	
@@ -25,9 +25,9 @@ const UPGRADE_CONFIG = [
 		title = "Zoom Zoom",
 		button_node_label = "Sp",
 		levels = [
-			{ value = 1, cost = 500, unlocks = [] },
-			{ value = 2, cost = 1000, unlocks = [] },
-			{ value = 3, cost = 1500, unlocks = [] },
+			{ value = 1.33, cost = 50, unlocks = [] },
+			{ value = 1.66, cost = 100, unlocks = [] },
+			{ value = 2.00, cost = 250, unlocks = [] },
 		]
 	},
 	
@@ -36,12 +36,12 @@ const UPGRADE_CONFIG = [
 		title = "Growth",
 		button_node_label = "Sz",
 		levels = [
-			{ value = 0.2, cost = 500, unlocks = [] },
-			{ value = 0.3, cost = 1000, unlocks = [] },
-			{ value = 0.4, cost = 1500, unlocks = [] },
-			{ value = 0.6, cost = 2500, unlocks = [] },
-			{ value = 0.7, cost = 4000, unlocks = [] },
-			{ value = 1.5, cost = 10000, unlocks = [] },
+			{ value = 1.2, cost = 50, unlocks = [] },
+			{ value = 1.3, cost = 100, unlocks = [] },
+			{ value = 1.4, cost = 150, unlocks = [] },
+			{ value = 1.6, cost = 250, unlocks = [] },
+			{ value = 2.0, cost = 400, unlocks = [] },
+			{ value = 2.5, cost = 1000, unlocks = [] },
 		]
 	}
 ]
