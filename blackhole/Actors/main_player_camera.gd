@@ -24,6 +24,9 @@ func _ready():
 	
 
 func _input(event):
+	if GameState.game_paused:
+		return
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			dragging = event.pressed

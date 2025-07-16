@@ -72,6 +72,7 @@ func _physics_process(delta: float):
 	if general_size != general_size_holder:
 		general_size_holder = general_size
 		update_size(general_size)
+
 func draw_velocity_line():
 	var velocity = linear_velocity
 	var speed = velocity.length()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=6 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://qk5awbg5lktq" path="res://Actors/consumeable_object.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
 
 [node name="main_game" type="Node3D"]
 script = ExtResource("1_1bvp3")
@@ -30,3 +31,17 @@ boundary_size = Vector3(300, 10, 300)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -157.023)
 general_size = 5.0
 gravity_area_strength = 53.765
+
+[node name="GameHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopUI" parent="." instance=ExtResource("5_lquwl")]
+offset_left = 874.0
+offset_top = 545.0
+offset_right = -985.0
+offset_bottom = -538.0
