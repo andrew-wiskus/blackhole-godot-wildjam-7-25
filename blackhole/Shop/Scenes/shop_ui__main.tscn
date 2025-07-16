@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7iwlaa5unup8" path="res://Shop/_scripts_/shop_ui_scroll_controller.gd" id="2_3s3p1"]
 [ext_resource type="PackedScene" uid="uid://cdf4hg8dq6sfp" path="res://Shop/Scenes/shop_ui__layout.tscn" id="3_c4fom"]
 
-[node name="ShopUI" type="Control" groups=["shop_ui_controller"]]
+[node name="ShopUI" type="Control" node_paths=PackedStringArray("shop_layout") groups=["shop_ui_controller"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5o4hl")
+shop_layout = NodePath("ShopUI_ScrollController/ShopUI_Layout")
 
 [node name="ShopUI_ScrollController" type="ScrollContainer" parent="."]
 layout_mode = 1

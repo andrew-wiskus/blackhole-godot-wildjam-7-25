@@ -2,7 +2,7 @@ class_name ShopCC extends Node
 
 enum UpgradeID {
 	GRAVITY_1,
-	SIZE_1,
+	AOE_1,
 	SPEED_1,
 	MASS_EFFICENCY_1,
 	PASSIVE_MASS_1,
@@ -12,8 +12,9 @@ const UPGRADE_CONFIG = [
 	{
 		id = UpgradeID.GRAVITY_1,
 		title = "Gravity Go Up",
+		button_node_label = "Gv",
 		levels = [
-			{ value = 0.2, cost = 100, unlocks = [UpgradeID.SIZE_1] },
+			{ value = 0.2, cost = 100, unlocks = [UpgradeID.AOE_1] },
 			{ value = 0.3, cost = 300, unlocks = [] },
 			{ value = 0.5, cost = 500, unlocks = [UpgradeID.SPEED_1] },
 		]
@@ -22,6 +23,7 @@ const UPGRADE_CONFIG = [
 	{
 		id = UpgradeID.SPEED_1,
 		title = "Zoom Zoom",
+		button_node_label = "Sp",
 		levels = [
 			{ value = 1, cost = 500, unlocks = [] },
 			{ value = 2, cost = 1000, unlocks = [] },
@@ -30,8 +32,9 @@ const UPGRADE_CONFIG = [
 	},
 	
 	{
-		id = UpgradeID.SIZE_1,
+		id = UpgradeID.AOE_1,
 		title = "Growth",
+		button_node_label = "Sz",
 		levels = [
 			{ value = 0.2, cost = 500, unlocks = [] },
 			{ value = 0.3, cost = 1000, unlocks = [] },

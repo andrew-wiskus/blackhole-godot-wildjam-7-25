@@ -1,7 +1,7 @@
 extends Node
 
-var currency: int = 10
-var upgrades: Dictionary[ShopConfig.UpgradeID, int] = {}
+var currency: int = 100000000
+var current_upgrade_levels: Dictionary[ShopConfig.UpgradeID, int] = {}
 var game_paused: bool = false
 
 func _ready():
@@ -10,7 +10,7 @@ func _ready():
 
 func _load_game_state():
 	for item in ShopConfig.UPGRADE_CONFIG:
-		upgrades.set(item.id, 0) # TODO: load in currently bought upgrades/current/etc
+		current_upgrade_levels.set(item.id, 0) # TODO: load in currently bought upgrades/current/etc
 	
 
 func _save_game_state():
@@ -24,3 +24,11 @@ func _handle_game_paused(paused: bool):
 func pause_game(): _handle_game_paused(true)
 func resume_game(): _handle_game_paused(false)
 func toggle_pause(): _handle_game_paused(!game_paused)
+
+
+func try_purchase(cost: int):
+	if currency < cost:
+		return false
+	
+	currency = currency - cost
+	return true

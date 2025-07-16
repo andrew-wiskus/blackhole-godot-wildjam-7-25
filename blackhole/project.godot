@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="blackholde"
-run/main_scene="uid://rvu5nya4qd6h"
+run/main_scene="uid://bhelq35441kr6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Assets/icon.svg"
 
@@ -19,6 +19,12 @@ config/icon="res://Assets/icon.svg"
 
 GameState="*res://Global/GameState.gd"
 ShopConfig="*res://Shop/ShopConfig.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_local_constant=0
+gdscript/warnings/narrowing_conversion=0
 
 [display]
 
@@ -38,6 +44,7 @@ folder_colors={
 
 shop_ui_upgrade_nodes=""
 shop_ui_controller=""
+game_controller=""
 
 [input]
 

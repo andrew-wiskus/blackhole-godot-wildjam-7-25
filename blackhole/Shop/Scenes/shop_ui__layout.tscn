@@ -14,42 +14,50 @@ script = ExtResource("2_nr7od")
 metadata/_edit_vertical_guides_ = [5004.0]
 metadata/_edit_horizontal_guides_ = [5007.0]
 
-[node name="Upgrade - Gravity 1" parent="." instance=ExtResource("3_4o111")]
+[node name="Node Line Connections" type="Control" parent="."]
 layout_mode = 1
-offset_left = 4975.0
-offset_top = 4973.0
-offset_right = 5044.0
-offset_bottom = 5037.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade - Gravity 1" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 4988.0
+offset_top = 4992.0
+offset_right = 5018.0
+offset_bottom = 5022.0
 is_first_upgrade = true
 
 [node name="Upgrade - Size 1" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 4611.0
-offset_top = 4720.0
-offset_right = 4680.0
-offset_bottom = 4784.0
+offset_left = 4940.0
+offset_top = 4903.0
+offset_right = 4971.0
+offset_bottom = 4933.0
 upgrade_id = 1
 
 [node name="Upgrade - Speed 1" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 5299.0
-offset_top = 4720.0
-offset_right = 5368.0
-offset_bottom = 4784.0
+offset_left = 5034.0
+offset_top = 4903.0
+offset_right = 5065.0
+offset_bottom = 4933.0
 upgrade_id = 2
 
 [node name="Upgrade - Speed 2" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 5566.0
+offset_left = 5568.0
 offset_top = 4446.0
-offset_right = 5635.0
-offset_bottom = 4510.0
+offset_right = 5599.0
+offset_bottom = 4476.0
 upgrade_id = 2
 
 [node name="Upgrade - Speed 3" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 5091.0
+offset_left = 5093.0
 offset_top = 4437.0
-offset_right = 5160.0
-offset_bottom = 4501.0
+offset_right = 5124.0
+offset_bottom = 4467.0
 upgrade_id = 2

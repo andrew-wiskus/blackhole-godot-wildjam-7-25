@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qk5awbg5lktq" path="res://Actors/consumeable_object.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
 
-[node name="main_game" type="Node3D"]
+[node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_1bvp3")
 
 [node name="Main Character" parent="." instance=ExtResource("3_lquwl")]
