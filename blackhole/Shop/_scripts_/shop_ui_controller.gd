@@ -1,10 +1,8 @@
 class_name ShopController extends Control
 
-@onready var currency_label = $CurrencyLabel
 var shop_ui_active: bool = false
 
 func _ready() -> void:
-	currency_label.text = str(GameState.currency) + "kg"
 	close_shop_ui()
 
 func try_purchase_upgrade(upgrade_node: ShopUI_UpgradeNode):
