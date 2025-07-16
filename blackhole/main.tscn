@@ -41,7 +41,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ShopUI" parent="." instance=ExtResource("5_lquwl")]
-offset_left = 874.0
-offset_top = 545.0
-offset_right = -985.0
-offset_bottom = -538.0
+anchors_preset = -1
+offset_left = 100.0
+offset_top = 75.0
+offset_right = -100.0
+offset_bottom = -75.0

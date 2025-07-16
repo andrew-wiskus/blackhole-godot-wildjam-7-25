@@ -72,6 +72,7 @@ texture = ExtResource("5_qoil4")
 
 [node name="Years Counter" parent="." instance=ExtResource("6_pe21h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16068, 0)
+script = null
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_body_entered"]
