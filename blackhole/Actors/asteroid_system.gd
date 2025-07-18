@@ -105,10 +105,11 @@ func spawn_single_asteroid():
 		)
 
 	
-	#var scale_factor = _rng.randf_range(min_scale, max_scale)
+	var scale_factor = _rng.randf_range(min_scale, max_scale)
+	asteroid_instance.general_size = scale_factor
 	# Add to scene
 	add_child(asteroid_instance)
-	asteroid_instance.global_position = position
+	asteroid_instance.position = position
 	
 	# Add velocity if it's a RigidBody3D
 	if add_random_velocity and asteroid_instance is RigidBody3D:

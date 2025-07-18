@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cs78l0x4hyviy"]
+[gd_scene load_steps=11 format=3 uid="uid://cs78l0x4hyviy"]
 
 [ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="1_hf0rb"]
 [ext_resource type="Script" uid="uid://bx6ucmmgafusc" path="res://Actors/main_player_camera.gd" id="2_pe21h"]
 [ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_ekjeq"]
 [ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_1dynj"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="5_qoil4"]
-[ext_resource type="PackedScene" uid="uid://cocvivhky423" path="res://UI/years_counter.tscn" id="6_pe21h"]
 [ext_resource type="Script" uid="uid://c0bjo2y3cqn0b" path="res://Actors/debug_velocity_line.gd" id="7_ibxld"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rd3fw"]
@@ -53,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 0.909701, 0.415265, 0, -0.415265, 0.909701, 
 script = ExtResource("2_pe21h")
 rotation_speed = 208.265
 zoom_speed = 0.05
-max_zoom = 20000.0
+max_zoom = 10000.0
 
 [node name="Blackhole Animated Sprite" type="Node3D" parent="."]
 transform = Transform3D(0.223807, 0, 0, 0, 0.223807, 0, 0, 0, 0.223807, 0, 0, 0)
@@ -68,10 +67,6 @@ SPEED = 25.0
 transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
 modulate = Color(0.214103, 0.214103, 0.214103, 1)
 texture = ExtResource("5_qoil4")
-
-[node name="Years Counter" parent="." instance=ExtResource("6_pe21h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16068, 0)
-script = null
 
 [node name="DebugVelocityLine" type="Node3D" parent="."]
 script = ExtResource("7_ibxld")
