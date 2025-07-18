@@ -12,11 +12,11 @@ extends RigidBody3D
 
 var debug_mesh_instance: MeshInstance3D
 var immediate_mesh: ImmediateMesh
-var force_multiplier = initial_force_multiplier
+@onready var force_multiplier = initial_force_multiplier
 
 @export_group("size")
 @export var initial_size: float = 1.0
-var general_size: float = initial_size
+@onready var general_size: float = initial_size
 
 @export_group("consuming")
 @export var camera_distancing_step: float = 0.0001
@@ -24,7 +24,7 @@ var general_size: float = initial_size
 
 func _ready() -> void:
 	_update_components_for_size(initial_size)
-	
+	$"Rigid_Body_Gravity_Area".gravity = initial_gravity
 	linear_velocity.x = 1
 	
 	# Create debug mesh instance for directional line
@@ -52,7 +52,7 @@ func _physics_process(delta: float):
 	var up = basis * Vector3.UP
 
 	var f = (forward * forward_back + left * left_right + up * up_down) * force_multiplier
-	constant_force = f * force_multiplier # multiplying by force_multiplier twice? o.o
+	constant_force = f
 	if show_velocity_line:
 		debug_velocity_line.draw_velocity_line(linear_velocity, immediate_mesh, 100.0)
 
@@ -60,11 +60,11 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void: # on CONSUM
 	if body == $".":
 		return
 	
-	if body.general_size <= general_size:
-		GameState.on_consume_increase_currency(body.general_size)
-		body.queue_free()
-	else:
-		print("You died")
+	#if body.general_size <= general_size:
+	GameState.on_consume_increase_currency(body.general_size)
+	body.queue_free()
+	#else:
+		#print("You died")
 
 func _update_components_for_size(size):
 	general_size = size
@@ -82,3 +82,8 @@ func set_movement_multiplier(multiplier):
 func set_player_size_multiplier(multiplier):
 	_update_components_for_size(initial_size * multiplier)
 	
+
+
+func _on_rigid_body_gravity_area_body_entered(body: Node3D) -> void:
+	body.linear_velocity.x = 0.1
+	pass # Replace with function body.

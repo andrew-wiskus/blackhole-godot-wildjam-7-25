@@ -1,23 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://qk5awbg5lktq"]
+[gd_scene load_steps=7 format=3 uid="uid://cfsdog5cuvdxs"]
 
-[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_is3l8"]
-[ext_resource type="Script" uid="uid://3xmqorrp0qo7" path="res://Gravity/area_3d.gd" id="2_jwn76"]
-[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="3_24jsw"]
+[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_3jw68"]
+[ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_3jw68"]
+[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="3_8txd5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onj7j"]
 bounce = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onj7j"]
-radius = 2.24012
+radius = 2.37803
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
-radius = 8.958
+radius = 65.9971
 
-[node name="Consumeable Object" type="RigidBody3D"]
+[node name="Star" type="RigidBody3D"]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
-script = ExtResource("1_is3l8")
-general_size = 0.2
+script = ExtResource("1_3jw68")
+general_size = 200.0
 gravity_area_strength = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -26,15 +26,15 @@ debug_color = Color(0.966632, 0.151832, 0.266338, 0.42)
 
 [node name="Area3D" type="Area3D" parent="."]
 disable_mode = 2
-gravity_space_override = 1
-gravity_point = true
+collision_mask = 3
 gravity_point_center = Vector3(0, 0, 0)
 gravity_direction = Vector3(0, 0, 0)
-script = ExtResource("2_jwn76")
+script = ExtResource("2_3jw68")
+orbital_speed = 50000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 axis = 1
-texture = ExtResource("3_24jsw")
+texture = ExtResource("3_8txd5")
