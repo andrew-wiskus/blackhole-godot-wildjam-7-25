@@ -19,7 +19,7 @@ radius = 1.71858
 radius = 3.1811
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
-radius = 8.55855
+radius = 23.2459
 
 [node name="Attractor_Body_3D" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_rd3fw")
@@ -76,5 +76,4 @@ script = ExtResource("7_ibxld")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_body_entered"]
-[connection signal="area_entered" from="Rigid_Body_Gravity_Area" to="." method="_on_rigid_body_gravity_area_area_entered"]
 [connection signal="body_entered" from="Rigid_Body_Gravity_Area" to="." method="_on_rigid_body_gravity_area_body_entered"]

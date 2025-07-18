@@ -17,6 +17,7 @@ radius = 8.958
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_is3l8")
 general_size = 0.2
+gravity_area_strength = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.395, 0, 0, 0, 1.39451, -0.0369793, 0, 0.0369793, 1.39451, 0, 0.00259061, 0.0102082)

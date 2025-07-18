@@ -82,3 +82,8 @@ func set_movement_multiplier(multiplier):
 func set_player_size_multiplier(multiplier):
 	_update_components_for_size(initial_size * multiplier)
 	
+
+
+func _on_rigid_body_gravity_area_body_entered(body: Node3D) -> void:
+	body.linear_velocity.x = 0.1
+	pass # Replace with function body.
