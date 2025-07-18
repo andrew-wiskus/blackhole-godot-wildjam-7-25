@@ -44,6 +44,7 @@ func _ready() -> void:
 	upgrade_tooltip_container.visible = false
 	
 	var level_idx = 0
+	
 	for level in _config.levels:
 		for unlock_id in level.unlocks:
 			_unlock_lines.append({
