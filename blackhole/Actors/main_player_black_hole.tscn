@@ -31,12 +31,14 @@ camera_distancing_step = 1.17
 shape = SubResource("SphereShape3D_vrwos")
 
 [node name="Detectable Inner Radius" type="Area3D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Detectable Inner Radius"]
 shape = SubResource("SphereShape3D_pe21h")
 
 [node name="Rigid_Body_Gravity_Area" type="Area3D" parent="."]
 disable_mode = 2
+collision_mask = 2
 gravity_space_override = 1
 gravity_point = true
 gravity_point_center = Vector3(0, 0, 0)

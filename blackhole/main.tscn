@@ -13,9 +13,10 @@ script = ExtResource("1_1bvp3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20348, 0)
 axis_lock_linear_y = true
 axis_lock_angular_z = true
-linear_damp = 0.0
+linear_damp = 1.0
 initial_force_multiplier = 30.27
 camera_distancing_step = 5.0
+initial_gravity = 350
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)

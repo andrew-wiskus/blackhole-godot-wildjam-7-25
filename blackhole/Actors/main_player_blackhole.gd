@@ -24,7 +24,7 @@ var general_size: float = initial_size
 
 func _ready() -> void:
 	_update_components_for_size(initial_size)
-	
+	$"Rigid_Body_Gravity_Area".gravity = initial_gravity
 	linear_velocity.x = 1
 	
 	# Create debug mesh instance for directional line

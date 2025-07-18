@@ -14,6 +14,7 @@ radius = 1.7
 radius = 8.958
 
 [node name="Consumeable Object" type="RigidBody3D"]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_is3l8")
 general_size = 0.2
