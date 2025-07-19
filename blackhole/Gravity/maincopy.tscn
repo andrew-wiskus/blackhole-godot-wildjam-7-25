@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cggam04atkvy5"]
+[gd_scene load_steps=15 format=3 uid="uid://cggam04atkvy5"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_8omji"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="2_uwkfm"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="11_x0obl"]
 [ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="12_lsia7"]
 [ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="13_mmskh"]
+[ext_resource type="PackedScene" uid="uid://bi1rpbm67j8q1" path="res://Assets/Sound/sound_node.tscn" id="14_x0obl"]
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_8omji")
@@ -135,3 +136,5 @@ planet_lg_overrides = ExtResource("11_x0obl")
 star_sm_override_size = true
 star_sm_overrides = ExtResource("12_lsia7")
 star_lg_overrides = ExtResource("13_mmskh")
+
+[node name="Sound_Node" parent="." instance=ExtResource("14_x0obl")]

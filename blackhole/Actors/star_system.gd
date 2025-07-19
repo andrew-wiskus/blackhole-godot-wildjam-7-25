@@ -1,7 +1,7 @@
 extends Node3D
 @export var planet_count = 6
 @export var planet_spacing = 250
-
+@export var orbiting_speed = 1000
 var _object_spawner: ObjectSpawnUtil
 func _ready() -> void:
 	_object_spawner = get_tree().get_first_node_in_group("object_spawn_util")

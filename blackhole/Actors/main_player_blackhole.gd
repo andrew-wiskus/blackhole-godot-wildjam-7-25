@@ -64,6 +64,7 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 		if (body.general_size / 2.0) <= general_size: 
 			GameState.on_consume_increase_currency(body.general_size)
 			body.queue_free()
+			$"../Sound_Node".play_mass_consumed_sound()
 		else:
 			#spawn particles on body
 			pass
