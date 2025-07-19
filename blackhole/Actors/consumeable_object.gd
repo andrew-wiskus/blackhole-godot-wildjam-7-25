@@ -2,6 +2,7 @@ class_name ConsumeableObject extends RigidBody3D
 
 @export var custom_size: float = 0.0
 @export var use_custom_sprite: bool = false
+@export var particles: GPUParticles3D
 
 @onready var _gravity_area_3d = $GravityArea3D
 @onready var _gravity_collision_shape = $GravityArea3D/CollisionShape3D
@@ -45,7 +46,10 @@ func set_size(to_size): # set to 20.0
 	_collision_detector.scale = Vector3.ONE * general_size
 	_gravity_collision_shape.scale = Vector3.ONE * general_size
 	_sprite.scale = Vector3.ONE * general_size
-
+	if particles:
+		particles.multiplier_particle_size(to_size)
+	if has_node("Player_Vicinity_Check"):
+		$Player_Vicinity_Check.get_child(0).scale = Vector3.ONE * general_size
 func set_size_multiplier(multi): # increase by 2.0x
 	var new_size = general_size * multi
 	set_size(new_size)

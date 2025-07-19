@@ -19,7 +19,7 @@
 script = ExtResource("1_8omji")
 
 [node name="Main Character" parent="." instance=ExtResource("2_uwkfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.858, 0, -334.565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.346, 0, -97.2042)
 axis_lock_linear_y = true
 axis_lock_angular_z = true
 linear_damp = 1.0
