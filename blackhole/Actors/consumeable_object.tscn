@@ -36,5 +36,6 @@ script = ExtResource("2_jwn76")
 shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 axis = 1
 texture = ExtResource("3_24jsw")

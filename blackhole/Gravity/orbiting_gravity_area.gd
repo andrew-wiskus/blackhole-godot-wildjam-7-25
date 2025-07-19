@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body not in bodies:
-		if body == get_parent():
+		if body == get_parent() or body is MainPlayerRigidBody:
 			return
 		bodies.append(body)
 		

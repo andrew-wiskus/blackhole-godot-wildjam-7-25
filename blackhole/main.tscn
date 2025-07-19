@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=6 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bla3m48h3nbgs" path="res://Actors/star_system.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
@@ -27,6 +28,7 @@ boundary_type = 1
 boundary_size = Vector3(500, 0, 500)
 min_scale = 0.4
 max_scale = 1.0
+max_velocity = 1.0
 noise_scale = 1000.0
 
 [node name="Asteroid_System2" parent="." instance=ExtResource("2_h2yge")]
@@ -37,6 +39,7 @@ boundary_type = 1
 boundary_size = Vector3(500, 0, 500)
 min_scale = 0.4
 max_scale = 1.0
+max_velocity = 1.0
 noise_scale = 1000.0
 
 [node name="Asteroid_System3" parent="." instance=ExtResource("2_h2yge")]
@@ -47,6 +50,7 @@ boundary_type = 1
 boundary_size = Vector3(500, 0, 500)
 min_scale = 0.4
 max_scale = 1.0
+max_velocity = 1.0
 noise_scale = 1000.0
 
 [node name="Medium Asteroid Spawner" parent="." instance=ExtResource("2_h2yge")]
@@ -59,6 +63,7 @@ min_distance_from_center = 500.0
 min_scale = 5.0
 max_scale = 30.0
 add_random_velocity = false
+max_velocity = 0.0
 
 [node name="Planet_Spawner" parent="." instance=ExtResource("2_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -656.34, -2.991, -1502.72)
@@ -70,6 +75,7 @@ min_distance_from_center = 500.0
 min_scale = 2.0
 max_scale = 4.0
 add_random_velocity = false
+max_velocity = 0.0
 
 [node name="GameHUD" type="Control" parent="."]
 layout_mode = 3
@@ -96,3 +102,17 @@ offset_left = 100.0
 offset_top = 75.0
 offset_right = -100.0
 offset_bottom = -75.0
+
+[node name="Star System" parent="." instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4872.96)
+planet_count = 8
+
+[node name="Star System2" parent="." instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4557.45, 0, -1500.44)
+planet_count = 2
+star_size = 30
+
+[node name="Star System3" parent="." instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4005.72, 0, 4812.34)
+planet_count = 15
+star_size = 100

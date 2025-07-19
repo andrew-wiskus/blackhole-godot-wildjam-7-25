@@ -36,5 +36,6 @@ orbital_speed = 50000.0
 shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0171906, 0.999852, 0, -0.999852, 0.0171906, 0, 0, 0)
 axis = 1
 texture = ExtResource("3_8txd5")
