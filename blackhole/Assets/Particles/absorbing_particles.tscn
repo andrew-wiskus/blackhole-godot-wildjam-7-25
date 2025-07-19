@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://8bi6wjwfekka"]
 
-[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="1_lvq6v"]
+[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="1_7sgrf"]
 
 [sub_resource type="Curve" id="Curve_lvq6v"]
 _limits = [-200.0, 5.0, 0.0, 1.0]
@@ -22,10 +22,11 @@ gravity = Vector3(0, 0, 0)
 radial_accel_min = -100.0
 radial_accel_max = -2.23517e-06
 radial_accel_curve = SubResource("CurveTexture_br3hy")
+collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br3hy"]
 shading_mode = 0
-albedo_texture = ExtResource("1_lvq6v")
+albedo_texture = ExtResource("1_7sgrf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_lvq6v"]
 material = SubResource("StandardMaterial3D_br3hy")

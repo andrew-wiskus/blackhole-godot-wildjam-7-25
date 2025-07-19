@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfsdog5cuvdxs"]
+[gd_scene load_steps=8 format=3 uid="uid://cfsdog5cuvdxs"]
 
 [ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_3jw68"]
 [ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_3jw68"]
 [ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="3_8txd5"]
+[ext_resource type="PackedScene" uid="uid://dqjjso6d3h21u" path="res://Assets/Particles/repelling_particles.tscn" id="4_1uqp5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onj7j"]
 bounce = 1.0
@@ -10,11 +11,17 @@ bounce = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_onj7j"]
 radius = 2.37803
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
-radius = 65.9971
+[sub_resource type="SphereShape3D" id="SphereShape3D_1uqp5"]
+radius = 34.4599
 
 [node name="Star" type="RigidBody3D"]
-collision_layer = 2
+collision_layer = 4
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_3jw68")
 general_size = 200.0
@@ -30,12 +37,16 @@ collision_mask = 3
 gravity_point_center = Vector3(0, 0, 0)
 gravity_direction = Vector3(0, 0, 0)
 script = ExtResource("2_3jw68")
-orbital_speed = 50000.0
+orbital_speed = 20000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_x8i04")
+shape = SubResource("SphereShape3D_1uqp5")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0171906, 0.999852, 0, -0.999852, 0.0171906, 0, 0, 0)
 axis = 1
 texture = ExtResource("3_8txd5")
+
+[node name="Repelling Particles" parent="." instance=ExtResource("4_1uqp5")]
+lifetime = 0.78
+collision_base_size = 12.0

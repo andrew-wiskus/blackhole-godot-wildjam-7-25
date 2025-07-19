@@ -72,6 +72,13 @@ texture = ExtResource("5_qoil4")
 [node name="DebugVelocityLine" type="Node3D" parent="."]
 script = ExtResource("7_ibxld")
 
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+strength = 1000.0
+radius = 124.057
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+radius = 2.33742
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_body_entered"]
 [connection signal="body_entered" from="Rigid_Body_Gravity_Area" to="." method="_on_rigid_body_gravity_area_body_entered"]

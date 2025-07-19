@@ -60,19 +60,20 @@ func _on_detectable_inner_radius_body_entered(body: Node3D) -> void: # on CONSUM
 	if body == $".":
 		return
 	
-	#if body.general_size <= general_size:
-	GameState.on_consume_increase_currency(body.general_size)
-	body.queue_free()
-	#else:
-		#print("You died")
-
+	if body.general_size <= general_size:
+		GameState.on_consume_increase_currency(body.general_size)
+		body.queue_free()
+	else:
+		#spawn particles on body
+		pass
 func _update_components_for_size(size):
 	general_size = size
 	$"Blackhole Animated Sprite".scale  = Vector3.ONE * size
 	$CollisionShape3D.scale = Vector3.ONE * size
 	$Rigid_Body_Gravity_Area/CollisionShape3D.scale = Vector3.ONE * size
 	$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
-	
+	$GPUParticlesAttractorSphere3D.scale = Vector3.ONE * size
+	$GPUParticlesCollisionSphere3D.scale = Vector3.ONE * size
 func set_gravity_multiplier(multiplier):
 	$"Rigid_Body_Gravity_Area".gravity = initial_gravity * multiplier
 
@@ -84,6 +85,8 @@ func set_player_size_multiplier(multiplier):
 	
 
 
-func _on_rigid_body_gravity_area_body_entered(body: Node3D) -> void:
-	body.linear_velocity.x = 0.1
-	pass # Replace with function body.
+func _on_rigid_body_gravity_area_body_entered(body: RigidBody3D) -> void:
+		body.linear_velocity.x = 0.1
+func start_particle_animation(body):
+	var animation = preload("res://Assets/Particles/surface particles.tscn").instantiate()
+	

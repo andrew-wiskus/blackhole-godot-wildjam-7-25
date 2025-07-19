@@ -25,16 +25,19 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body not in bodies:
-		if body == get_parent() or body is MainPlayerRigidBody:
+		if body == get_parent():
+			return
+		elif body is MainPlayerRigidBody:
+			#ignore the player, send particles to him
 			return
 		bodies.append(body)
 		
-		print("Body entered orbit: ", body.name)
+		#print("Body entered orbit: ", body.name)
 
 func _on_body_exited(body: Node3D) -> void:
 	if body in bodies:
 		bodies.erase(body)
-		print("Body left orbit: ", body.name)
+		#print("Body left orbit: ", body.name)
 
 func _ready():
 	# Connect the signals

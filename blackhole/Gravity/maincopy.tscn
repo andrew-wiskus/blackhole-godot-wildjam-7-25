@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://sbtwanfre7ky"]
+
+[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_8omji"]
+[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="2_uwkfm"]
+[ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="3_pqtma"]
+[ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="4_vplck"]
+[ext_resource type="PackedScene" uid="uid://bla3m48h3nbgs" path="res://Actors/star_system.tscn" id="5_smx4s"]
+
+[node name="main_game" type="Node3D" groups=["game_controller"]]
+script = ExtResource("1_8omji")
+
+[node name="Main Character" parent="." instance=ExtResource("2_uwkfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 316.858, 0, -334.565)
+axis_lock_linear_y = true
+axis_lock_angular_z = true
+linear_damp = 1.0
+initial_force_multiplier = 122.875
+camera_distancing_step = 5.0
+initial_gravity = 350
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
+
+[node name="Asteroid_System" parent="." instance=ExtResource("3_pqtma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1625.78)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(500, 0, 500)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Asteroid_System2" parent="." instance=ExtResource("3_pqtma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.57681)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(200, 0, 200)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Asteroid_System3" parent="." instance=ExtResource("3_pqtma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1453.33, 0, -98.9722)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(500, 0, 500)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Medium Asteroid Spawner" parent="." instance=ExtResource("3_pqtma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1361.96, -2.991, 500)
+total_asteroids = 15
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(3000, 0, 3000)
+min_distance_from_center = 500.0
+min_scale = 5.0
+max_scale = 30.0
+add_random_velocity = false
+max_velocity = 0.0
+
+[node name="Planet_Spawner" parent="." instance=ExtResource("3_pqtma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -656.34, -2.991, -1502.72)
+total_asteroids = 30
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(3000, 0, 3000)
+min_distance_from_center = 500.0
+min_scale = 2.0
+max_scale = 4.0
+add_random_velocity = false
+max_velocity = 0.0
+
+[node name="GameHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Currency Label" type="Label" parent="GameHUD"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 113.0
+text = "MASS CONSUMED: 
+[a] 999 kg
+[b] 0 kg
+[c] 0 kg"
+
+[node name="ShopUI" parent="." instance=ExtResource("4_vplck")]
+anchors_preset = -1
+offset_left = 100.0
+offset_top = 75.0
+offset_right = -100.0
+offset_bottom = -75.0
+
+[node name="Star System" parent="." instance=ExtResource("5_smx4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4872.96)
+planet_count = 8
+
+[node name="Star System2" parent="." instance=ExtResource("5_smx4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 325.597, 0, -373.665)
+planet_count = 2
+star_size = 30
+
+[node name="Star System3" parent="." instance=ExtResource("5_smx4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4005.72, 0, 4812.34)
+planet_count = 15
+star_size = 100
