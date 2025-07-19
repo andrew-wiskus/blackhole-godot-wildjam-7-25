@@ -35,6 +35,7 @@ var _noise: FastNoiseLite
 var _spawn_timer: float = 0.0
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _player_node: Node3D = null
+var _object_spawner: ObjectSpawnUtil
 
 func _ready():
 	if asteroid_scenes.size() == 0:
@@ -43,16 +44,14 @@ func _ready():
 	
 	_rng.seed = noise_seed if noise_seed > 0 else Time.get_unix_time_from_system()
 	
-	# Initialize noise for distribution
 	_noise = FastNoiseLite.new()
 	_noise.seed = _rng.randi()
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	_noise.fractal_type = FastNoiseLite.FRACTAL_FBM
 	
-	# Try to find player node (assuming it has "player" in its name)
-	_find_player_node()
+	_player_node = get_tree().get_first_node_in_group("player_node")
+	_object_spawner = get_tree().get_first_node_in_group("object_spawn_util")
 	
-	# Initial spawn
 	if spawn_on_ready:
 		spawn_asteroid_field(total_asteroids)
 
@@ -63,73 +62,22 @@ func _process(delta):
 		if to_spawn >= 1:
 			_spawn_timer -= to_spawn / spawn_rate
 			for i in range(to_spawn):
-				spawn_single_asteroid()
+				spawn_single_object(CC.ConsumableType.ASTEROID_SM)
 	
-func _find_player_node():
-	var potential_players = get_tree().get_nodes_in_group("player")
-	if potential_players.size() > 0:
-		_player_node = potential_players[0]
-	else:
-		# Try to find by name pattern
-		var root = get_tree().root
-		for child in root.get_children():
-			if "player" in child.name.to_lower():
-				_player_node = child
-				break
-
 func spawn_asteroid_field(count: int):
 	for i in range(count):
-		spawn_single_asteroid()
+		spawn_single_object(CC.ConsumableType.ASTEROID_SM)
 
-func spawn_single_asteroid():
-	if asteroid_scenes.size() == 0:
-		return
+func spawn_single_object(type: CC.ConsumableType):
+	var id
+	if randf() > 0.5:
+		id = CC.ConsumableType.ASTEROID_LG
+	else:
+		id = CC.ConsumableType.ASTEROID_SM
+	_object_spawner.spawn_consumable_object(self, id, _get_spawn_position())
 	
-	# Select a random asteroid scene
-	var scene_index = _rng.randi() % asteroid_scenes.size()
-	var asteroid_instance = asteroid_scenes[scene_index].instantiate()
-	
-	# Set position based on boundary type
-	var position = _get_random_position()
-	
-	# Skip if position is in the excluded cone (in front of player)
-	if _player_node and _is_in_excluded_cone(position):
-		return
-	
-	# Set random rotation
-	if randomize_rotation:
-		asteroid_instance.rotation = Vector3(
-			_rng.randf_range(0, TAU),
-			_rng.randf_range(0, TAU),
-			_rng.randf_range(0, TAU)
-		)
 
-	
-	var scale_factor = _rng.randf_range(min_scale, max_scale)
-	asteroid_instance.general_size = scale_factor
-	# Add to scene
-	add_child(asteroid_instance)
-	asteroid_instance.position = position
-	
-	# Add velocity if it's a RigidBody3D
-	if add_random_velocity and asteroid_instance is RigidBody3D:
-		var velocity_direction = Vector3(
-			_rng.randf_range(-1, 1),
-			_rng.randf_range(-1, 1),
-			_rng.randf_range(-1, 1)
-		).normalized()
-		
-		var velocity_magnitude = _rng.randf_range(min_velocity, max_velocity)
-		asteroid_instance.linear_velocity = velocity_direction * velocity_magnitude
-		
-		# Add some spin
-		asteroid_instance.angular_velocity = Vector3(
-			_rng.randf_range(-1, 1),
-			_rng.randf_range(-1, 1),
-			_rng.randf_range(-1, 1)
-		) * _rng.randf_range(0.1, 1.0)
-
-func _get_random_position() -> Vector3:
+func _get_spawn_position() -> Vector3:
 	var position: Vector3
 	
 	if use_noise_for_distribution:
@@ -192,17 +140,6 @@ func _get_basic_random_position() -> Vector3:
 	
 	return position
 
-func _is_in_excluded_cone(position: Vector3) -> bool:
-	if not _player_node or exclude_cone_angle <= 0:
-		return false
-	
-	var to_asteroid = position - _player_node.global_position
-	var forward = -_player_node.global_transform.basis.z
-	
-	var angle = rad_to_deg(forward.angle_to(to_asteroid))
-	return angle < exclude_cone_angle
-
-# Public methods for external control
 func clear_asteroids():
 	for child in get_children():
 		if child.is_in_group("asteroid") or child.name.begins_with("Asteroid"):

@@ -1,14 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=11 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b4qjrrpfjiea0" path="res://Global/ObjectSpawnUtil.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="6_272bh"]
+[ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cj281qse2gxa0" path="res://Actors/base_consumable_config.gd" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://d1g2klsm0e82" path="res://Assets/astroids/a_lg_4.png" id="8_kek77"]
+
+[sub_resource type="Resource" id="Resource_4c57u"]
+script = ExtResource("8_5vw27")
+_min_size = 3.0
+_max_size = 5.0
+_gravity = 0.0
+_sprite_list = Array[Texture2D]([ExtResource("8_kek77")])
+_min_velocity = Vector3(0, 0, 0)
+_max_velocity = Vector3(0, 0, 0)
+_min_magnitude = 0.1
+_max_magnitude = 0.1
+_min_spin_direction = Vector3(0, 0, 0)
+_max_spin_direction = Vector3(0, 0, 0)
+_min_spin_magnitude = 0.0
+_max_spin_magnitude = 1.0
+metadata/_custom_type_script = "uid://cj281qse2gxa0"
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_1bvp3")
 
-[node name="Main Character" parent="." instance=ExtResource("3_lquwl")]
+[node name="Main Character" parent="." groups=["player_node"] instance=ExtResource("3_lquwl")]
 axis_lock_linear_y = true
 axis_lock_angular_z = true
 linear_damp = 1.0
@@ -96,3 +117,9 @@ offset_left = 100.0
 offset_top = 75.0
 offset_right = -100.0
 offset_bottom = -75.0
+
+[node name="Object Spawn Util" parent="." groups=["object_spawn_util"] instance=ExtResource("5_7mycd")]
+script = ExtResource("6_272bh")
+global_settings = ExtResource("7_272bh")
+asteroid_lg_override_size = true
+asteroid_lg_overrides = SubResource("Resource_4c57u")

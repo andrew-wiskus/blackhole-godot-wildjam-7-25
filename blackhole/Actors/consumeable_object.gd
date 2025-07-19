@@ -1,29 +1,35 @@
-extends RigidBody3D
-@export_group("size")
-@export var general_size: float = 1.0
-@export var gravity_area_strength = 9.8
+class_name ConsumeableObject extends RigidBody3D
 
-func init(): # set sprite/size/gravity/etc
-	pass
+@onready var _gravity_area_3d = $GravityArea3D
+@onready var _gravity_collision_shape = $GravityArea3D/CollisionShape3D
+@onready var _collision_detector = $CollisionShape3D
+@onready var _sprite = $"Sprite3D"
+var type: CC.ConsumableType = CC.ConsumableType.NOT_SET
 
 func _ready() -> void:
-	$Area3D.gravity = gravity_area_strength
-	$Sprite3D.scale = Vector3.ONE*general_size
-	#make collision shapes unique
-	$CollisionShape3D.shape = $CollisionShape3D.shape.duplicate()
-	$Area3D/CollisionShape3D.shape = $Area3D/CollisionShape3D.shape.duplicate()
-	$CollisionShape3D.scale = Vector3.ONE*general_size
-	$Area3D/CollisionShape3D.scale = Vector3.ONE*general_size
+	_collision_detector.shape = _collision_detector.shape.duplicate()
+	_gravity_collision_shape.shape = _gravity_collision_shape.shape.duplicate()
 
-
-func update_size(multiplier: float):
-	var scale_multi = Vector3.ONE * multiplier
-	general_size = multiplier
-	$Sprite3D.scale = scale_multi
-	$CollisionShape3D.scale = scale_multi
-	$Area3D/CollisionShape3D.scale =  scale_multi
-func increase_gravity(step):
-	$"Rigid_Body_Gravity_Area".gravity += step
-func increase_size(step):
-	general_size += step	
-	# update gravity/etc
+func init(
+		type_id: CC.ConsumableType, 
+		grav_str: float, 
+		size_value: float, 
+		texture: Texture2D, 
+		velocity_direction: Vector3, 
+		velocity_mag: float, 
+		spin_direction: Vector3, 
+		spin_speed: float,
+	):
+	
+	type = type_id
+	_gravity_area_3d.gravity = grav_str
+	
+	_sprite.scale = Vector3.ONE * size_value
+	_sprite.texture = texture
+	
+	_collision_detector.scale = Vector3.ONE * size_value
+	_gravity_collision_shape.scale = Vector3.ONE * size_value
+	
+	linear_velocity = velocity_direction * velocity_mag
+	angular_velocity = spin_direction * spin_speed
+	rotation = Vector3(90, 90, 0)

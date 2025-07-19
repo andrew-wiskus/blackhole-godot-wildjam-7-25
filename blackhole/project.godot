@@ -19,6 +19,7 @@ config/icon="res://Assets/icon.svg"
 
 GameState="*res://Global/GameState.gd"
 ShopConfig="*res://Shop/ShopConfig.gd"
+CC="*res://Global/CC.gd"
 
 [debug]
 
@@ -45,6 +46,8 @@ folder_colors={
 shop_ui_upgrade_nodes=""
 shop_ui_controller=""
 game_controller=""
+player_node=""
+object_spawn_util=""
 
 [input]
 
