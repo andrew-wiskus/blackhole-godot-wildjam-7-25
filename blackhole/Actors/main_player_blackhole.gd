@@ -26,6 +26,7 @@ var immediate_mesh: ImmediateMesh
 @export var initial_gravity = 10
 
 @onready var debug_sphere = $"Blackhole Animated Sprite/EDITOR_DEBUG_SPHERE"
+var _audio_controller: AudioController
 
 func _ready() -> void:
 	_update_components_for_size(initial_size)
@@ -49,7 +50,8 @@ func _ready() -> void:
 	if spawn_at_origin:
 		global_position = Vector3(0, global_position.y, 0)
 		
-	debug_sphere.hide()
+	#debug_sphere.hide()
+	_audio_controller = get_tree().get_first_node_in_group("audio_controller")
 
 func _physics_process(delta: float):
 	var forward_back = Input.get_axis("S", "W")
@@ -76,6 +78,7 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 			var amount = ceil(general_size * 10) # need to add/adjust a new value instead of general size.. add into configs.. after the suck-particle system so we can do both at once
 			GameState.on_consume_increase_currency(amount)
 			_spawn_floating_number_go_up(amount)
+			_audio_controller.play_mass_consumed_sound
 			body.queue_free()
 		else:
 			#spawn particles on body

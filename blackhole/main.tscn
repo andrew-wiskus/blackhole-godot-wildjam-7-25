@@ -1,88 +1,162 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=28 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="2_82xsv"]
+[ext_resource type="Script" uid="uid://bx6ucmmgafusc" path="res://Actors/main_player_camera.gd" id="3_getpj"]
+[ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://_archive_/star_bg_1.gdshader" id="4_ryguw"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="5_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="6_1u8w0"]
 [ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="7_0odxb"]
 [ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="7_272bh"]
 [ext_resource type="Resource" uid="uid://b7t4878gb74r" path="res://Actors/Consumable Object Configs/asteroid_sm_config.tres" id="7_dg77c"]
+[ext_resource type="Script" uid="uid://c0bjo2y3cqn0b" path="res://Actors/debug_velocity_line.gd" id="8_lswn8"]
 [ext_resource type="Resource" uid="uid://c7fl57er0sg3u" path="res://Actors/Consumable Object Configs/asteroid_lg_config.tres" id="8_ycdy4"]
 [ext_resource type="Resource" uid="uid://chdx73brdevmk" path="res://Actors/Consumable Object Configs/planet_sm_config.tres" id="9_w48qg"]
 [ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="10_vivmo"]
 [ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="11_2cqfq"]
 [ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="12_yaehf"]
+[ext_resource type="Script" uid="uid://cpcum24i1xlux" path="res://fix_paper_sprite_z_levels.gd" id="18_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://bhci000xmt8cc" path="res://Assets/paper_sheet_texture_4k.png" id="19_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://bi1rpbm67j8q1" path="res://Assets/Sound/sound_node.tscn" id="20_qsp4k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rd3fw"]
+friction = 0.15
+absorbent = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]
+radius = 1.71858
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pe21h"]
+radius = 3.1811
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
+radius = 23.2459
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ttpe4"]
+size = Vector2(1500, 900)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43eny"]
+render_priority = 0
+shader = ExtResource("4_ryguw")
+shader_parameter/sky_color = Color(0.05, 0.05, 0.1, 1)
+shader_parameter/star_color = Color(1, 1, 1, 1)
+shader_parameter/star_density = 168.0
+shader_parameter/star_chance = 0.41
+shader_parameter/twinkle_speed_min = 0.5
+shader_parameter/twinkle_speed_max = 4.0
+shader_parameter/twinkle_intensity = 0.71
+shader_parameter/twinkle_scale = 3.3
+shader_parameter/star_size_min = 0.02
+shader_parameter/star_size_max = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv5a0"]
+shading_mode = 0
+albedo_color = Color(0.819608, 0, 0, 1)
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_1bvp3")
 
-[node name="Main Character" parent="." groups=["player_node"] instance=ExtResource("3_lquwl")]
+[node name="Main Character" type="RigidBody3D" parent="." groups=["player_node"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -268.876, -437.705)
+collision_layer = 9
 axis_lock_linear_y = true
 axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_rd3fw")
 linear_damp = 1.0
+script = ExtResource("2_82xsv")
+spawn_at_origin = false
 initial_force_multiplier = 60.0
 camera_distancing_step = 5.0
 initial_gravity = 350
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character"]
+shape = SubResource("SphereShape3D_vrwos")
+
+[node name="Detectable Inner Radius" type="Area3D" parent="Main Character"]
+collision_layer = 9
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character/Detectable Inner Radius"]
+shape = SubResource("SphereShape3D_pe21h")
+debug_color = Color(0.87451, 0, 0.380392, 0.784314)
+
+[node name="Rigid_Body_Gravity_Area" type="Area3D" parent="Main Character"]
+disable_mode = 2
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 200.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character/Rigid_Body_Gravity_Area"]
+shape = SubResource("SphereShape3D_3ll2g")
+
+[node name="Main_Player_Camera_ORTHO" type="Camera3D" parent="Main Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.5701)
+projection = 1
+current = true
+size = 200.0
+near = 0.001
+far = 100000.0
+script = ExtResource("3_getpj")
+zoom_speed = 10.0
+max_zoom = 400.0
+
+[node name="bg_scales_to_max_camera_size" type="MeshInstance3D" parent="Main Character/Main_Player_Camera_ORTHO"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 6.10352e-05, -130.387)
+mesh = SubResource("PlaneMesh_ttpe4")
+surface_material_override/0 = SubResource("ShaderMaterial_43eny")
+
+[node name="Main_Player_Camera_PERSPECTIVE" type="Camera3D" parent="Main Character"]
+transform = Transform3D(1, 0, 0, 0, 0.918895, -0.394503, 0, 0.394503, 0.918895, 0, -10.3348, 28.6815)
+visible = false
+fov = 121.5
+size = 200.0
+near = 0.001
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="Main Character"]
+transform = Transform3D(1, 0, 0, 0, 1, -7.10543e-15, 0, 7.10543e-15, 1, 0, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Main Character/Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("5_d13ii")
+script = ExtResource("6_1u8w0")
+SPEED = 25.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Main Character/Blackhole Animated Sprite"]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+visible = false
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("7_0odxb")
+
+[node name="EDITOR_DEBUG_SPHERE" type="CSGSphere3D" parent="Main Character/Blackhole Animated Sprite"]
+transform = Transform3D(10, 0, 0, 0, 10, 2.84217e-14, 0, -2.84217e-14, 10, 0, 3.05176e-05, 0.603851)
+visible = false
+material = SubResource("StandardMaterial3D_kv5a0")
+
+[node name="DebugVelocityLine" type="Node3D" parent="Main Character"]
+script = ExtResource("8_lswn8")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Main Character"]
+strength = 1000.0
+radius = 124.057
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Main Character"]
+radius = 2.33742
+
+[node name="bg_scales_to_max_camera_size" type="MeshInstance3D" parent="Main Character"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 9.15527e-05, -89.2408)
+mesh = SubResource("PlaneMesh_ttpe4")
+skeleton = NodePath("../Main_Player_Camera_PERSPECTIVE")
+surface_material_override/0 = SubResource("ShaderMaterial_43eny")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
-
-[node name="Asteroid_System" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1625.78)
-total_asteroids = 150
-spawn_rate = 0.0
-boundary_type = 1
-boundary_size = Vector3(500, 0, 500)
-min_scale = 0.4
-max_scale = 1.0
-max_velocity = 1.0
-noise_scale = 1000.0
-
-[node name="Asteroid_System2" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -802.283)
-total_asteroids = 150
-spawn_rate = 0.0
-boundary_type = 1
-boundary_size = Vector3(500, 0, 500)
-min_scale = 0.4
-max_scale = 1.0
-max_velocity = 1.0
-noise_scale = 1000.0
-
-[node name="Asteroid_System3" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1453.33, 0, -98.9722)
-total_asteroids = 150
-spawn_rate = 0.0
-boundary_type = 1
-boundary_size = Vector3(500, 0, 500)
-min_scale = 0.4
-max_scale = 1.0
-max_velocity = 1.0
-noise_scale = 1000.0
-
-[node name="Medium Asteroid Spawner" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1361.96, -2.991, 500)
-total_asteroids = 15
-spawn_rate = 0.0
-boundary_type = 1
-boundary_size = Vector3(3000, 0, 3000)
-min_distance_from_center = 500.0
-min_scale = 5.0
-max_scale = 30.0
-add_random_velocity = false
-max_velocity = 0.0
-
-[node name="Planet_Spawner" parent="." instance=ExtResource("2_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -656.34, -2.991, -1502.72)
-total_asteroids = 30
-spawn_rate = 0.0
-boundary_type = 1
-boundary_size = Vector3(3000, 0, 3000)
-min_distance_from_center = 500.0
-min_scale = 2.0
-max_scale = 4.0
-add_random_velocity = false
-max_velocity = 0.0
 
 [node name="GameHUD" type="Control" parent="."]
 layout_mode = 3
@@ -121,3 +195,117 @@ planet_lg_overrides = ExtResource("10_vivmo")
 star_sm_override_size = true
 star_sm_overrides = ExtResource("11_2cqfq")
 star_lg_overrides = ExtResource("12_yaehf")
+
+[node name="BG_AREA_paper_circle" type="Node3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, -294.533, 0)
+
+[node name="paper_sprites" type="Node3D" parent="BG_AREA_paper_circle"]
+script = ExtResource("18_a6jrf")
+
+[node name="PaperTexture5" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3121, -0.100006, 1.30339)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture6" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.874983, 0, -0.484153, 0, 1, 0, 0.484153, 0, 0.874983, -67.8138, -0.0999985, 93.2505)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture7" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.905376, 0, 0.42461, 0, 1, 0, -0.42461, 0, 0.905376, 36.8018, -0.0999985, 93.2505)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture8" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.140434, 0, 0.990089, 0, 1, 0, -0.990089, 0, 0.140434, 100.129, -0.0999985, 1.8204)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture9" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.0580694, 0, 0.998312, 0, 1, 0, -0.998312, 0, -0.0580694, -119.982, -0.0999985, -39.2625)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture10" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.989264, 0, 0.146135, 0, 1, 0, -0.146135, 0, 0.989264, -13.1347, -0.0999985, -97.2893)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture11" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.081382, 0, 0.996682, 0, 1, 0, -0.996682, 0, -0.081382, 197.434, -0.0999985, -19.1981)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture12" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.898342, 0, -0.439296, 0, 1, 0, 0.439296, 0, 0.898342, 110.431, -0.0999985, -111.279)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture13" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.845848, 0, 0.533422, 0, 1, 0, -0.533422, 0, 0.845848, -106.23, -0.0999985, -155.627)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture14" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.244072, 0, -0.969756, 0, 1, 0, 0.969756, 0, -0.244072, -209.482, -0.0999985, -109.925)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture15" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(0.404854, 0, -0.91438, 0, 1, 0, 0.91438, 0, 0.404854, -190.863, -0.0999985, 16.3479)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture16" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.939075, 0, 0.343708, 0, 1, 0, -0.343708, 0, -0.939075, -174.275, -0.0999985, 119.6)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture17" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.950287, 0, -0.311373, 0, 1, 0, 0.311373, 0, -0.950287, -37.1692, -0.0999985, 173.427)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture18" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.941252, 0, 0.337703, 0, 1, 0, -0.337703, 0, -0.941252, 154.779, -0.0999985, 72.2057)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="PaperTexture19" type="Sprite3D" parent="BG_AREA_paper_circle/paper_sprites"]
+transform = Transform3D(-0.941252, 0, 0.337703, 0, 1, 0, -0.337703, 0, -0.941252, 99.2594, -0.0999985, 152.099)
+pixel_size = 0.05
+axis = 1
+texture = ExtResource("19_xuqvo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -278.237, 0)
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1032.83, 0, -24.867)
+visible = false
+depth = 100.0
+polygon = PackedVector2Array(-1470.79, -417.656, -1649.37, -465.05, -1739.92, -106.206, -1648.52, -79.9694, -1715.38, -45.2698, -1616.36, 183.24, -1695.07, 393.13, -1345.53, 521.772, -1320.99, 463.375, -1260.05, 657.185, -905.441, 539.545, -918.136, 509.077, -656.619, 608.098, -580.449, 382.974, -520.36, 406.671, -425.571, 155.311, -379.869, 152.772, -412.029, -216.229, -569.447, -206.073, -524.591, -300.016, -863.124, -465.897, -899.516, -386.341, -1077.25, -362.644, -1219.09, -590.172, -1359.68, -502.823, -1382.97, -481.194, -1419.57, -458.733)
+
+[node name="Sound_Node" parent="." groups=["audio_controller"] instance=ExtResource("20_qsp4k")]
+
+[connection signal="body_entered" from="Main Character" to="Main Character" method="_on_body_entered"]
+[connection signal="body_entered" from="Main Character/Detectable Inner Radius" to="Main Character" method="_on_detectable_inner_radius_body_entered"]
+[connection signal="body_entered" from="Main Character/Rigid_Body_Gravity_Area" to="Main Character" method="_on_rigid_body_gravity_area_body_entered"]

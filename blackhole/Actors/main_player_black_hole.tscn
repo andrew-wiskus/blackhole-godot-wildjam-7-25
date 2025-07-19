@@ -51,7 +51,6 @@ shape = SubResource("SphereShape3D_3ll2g")
 transform = Transform3D(1, 0, 0, 0, 0.909701, 0.415265, 0, -0.415265, 0.909701, 0, 1.718, 4.513)
 far = 100000.0
 script = ExtResource("2_pe21h")
-rotation_speed = 208.265
 zoom_speed = 0.05
 max_zoom = 10000.0
 
@@ -60,6 +59,7 @@ transform = Transform3D(0.223807, 0, 0, 0, 0.223807, 0, 0, 0, 0.223807, 0, 0, 0)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
 rotation_edit_mode = 1
+modulate = Color(1, 0.176471, 0.176471, 1)
 sprite_frames = ExtResource("3_ekjeq")
 script = ExtResource("4_1dynj")
 SPEED = 25.0

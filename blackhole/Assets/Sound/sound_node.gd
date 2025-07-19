@@ -1,4 +1,4 @@
-extends Node3D
+class_name AudioController extends Node3D
 
 @export var sfx_pitch_variation_range: float = 0.2
 

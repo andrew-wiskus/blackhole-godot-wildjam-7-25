@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="blackholde"
-run/main_scene="uid://bhelq35441kr6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Assets/icon.svg"
 
@@ -48,7 +47,7 @@ shop_ui_controller=""
 game_controller=""
 player_node=""
 object_spawn_util=""
-sound_controller=""
+audio_controller=""
 
 [input]
 
