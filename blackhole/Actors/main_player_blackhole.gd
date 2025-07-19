@@ -56,16 +56,18 @@ func _physics_process(delta: float):
 	if show_velocity_line:
 		debug_velocity_line.draw_velocity_line(linear_velocity, immediate_mesh, 100.0)
 
-func _on_detectable_inner_radius_body_entered(body: Node3D) -> void: # on CONSUME :D
+func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 	if body == $".":
 		return
 	
-	if body.general_size <= general_size:
-		GameState.on_consume_increase_currency(body.general_size)
-		body.queue_free()
-	else:
-		#spawn particles on body
-		pass
+	if body is ConsumeableObject:
+		if (body.general_size / 2.0) <= general_size: 
+			GameState.on_consume_increase_currency(body.general_size)
+			body.queue_free()
+		else:
+			#spawn particles on body
+			pass
+
 func _update_components_for_size(size):
 	general_size = size
 	$"Blackhole Animated Sprite".scale  = Vector3.ONE * size
@@ -87,6 +89,7 @@ func set_player_size_multiplier(multiplier):
 
 func _on_rigid_body_gravity_area_body_entered(body: RigidBody3D) -> void:
 		body.linear_velocity.x = 0.1
-func start_particle_animation(body):
-	var animation = preload("res://Assets/Particles/surface particles.tscn").instantiate()
+
+#func start_particle_animation(body):
+	#var animation = preload("res://Assets/Particles/surface particles.tscn").instantiate()
 	

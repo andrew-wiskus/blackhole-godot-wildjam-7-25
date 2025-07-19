@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://sbtwanfre7ky"]
+[gd_scene load_steps=14 format=3 uid="uid://cggam04atkvy5"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_8omji"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="2_uwkfm"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="3_pqtma"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="4_vplck"]
 [ext_resource type="PackedScene" uid="uid://bla3m48h3nbgs" path="res://Actors/star_system.tscn" id="5_smx4s"]
+[ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="6_smx4s"]
+[ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="7_mgq33"]
+[ext_resource type="Resource" uid="uid://b7t4878gb74r" path="res://Actors/Consumable Object Configs/asteroid_sm_config.tres" id="8_ih8yi"]
+[ext_resource type="Resource" uid="uid://c7fl57er0sg3u" path="res://Actors/Consumable Object Configs/asteroid_lg_config.tres" id="9_081ml"]
+[ext_resource type="Resource" uid="uid://chdx73brdevmk" path="res://Actors/Consumable Object Configs/planet_sm_config.tres" id="10_foobu"]
+[ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="11_x0obl"]
+[ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="12_lsia7"]
+[ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="13_mmskh"]
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_8omji")
@@ -111,9 +119,19 @@ planet_count = 8
 [node name="Star System2" parent="." instance=ExtResource("5_smx4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 325.597, 0, -373.665)
 planet_count = 2
-star_size = 30
 
 [node name="Star System3" parent="." instance=ExtResource("5_smx4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4005.72, 0, 4812.34)
 planet_count = 15
-star_size = 100
+
+[node name="Object Spawn Util" type="Node" parent="." groups=["object_spawn_util"]]
+script = ExtResource("6_smx4s")
+global_settings = ExtResource("7_mgq33")
+asteroid_sm_overrides = ExtResource("8_ih8yi")
+asteroid_lg_override_size = true
+asteroid_lg_overrides = ExtResource("9_081ml")
+planet_sm_overrides = ExtResource("10_foobu")
+planet_lg_overrides = ExtResource("11_x0obl")
+star_sm_override_size = true
+star_sm_overrides = ExtResource("12_lsia7")
+star_lg_overrides = ExtResource("13_mmskh")

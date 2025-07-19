@@ -8,4 +8,4 @@ script = ExtResource("1_5d8rt")
 planet_count = 10
 
 [node name="Star" parent="." instance=ExtResource("1_oj11w")]
-general_size = 50.0
+custom_size = 50.0

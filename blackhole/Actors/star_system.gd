@@ -1,13 +1,11 @@
 extends Node3D
 @export var planet_count = 6
 @export var planet_spacing = 250
-@export var star_size = 50
-@export var star_gravity_area = 1000 #meters
 
+var _object_spawner: ObjectSpawnUtil
 func _ready() -> void:
-	var consumable = preload("res://Actors/consumeable_object.tscn")
+	_object_spawner = get_tree().get_first_node_in_group("object_spawn_util")
+	
 	for n in range(planet_count):
-		var planet = consumable.instantiate()
-		planet.position = Vector3.FORWARD*(n+1)*planet_spacing
-		planet.general_size = 20 + randi_range(-5,+ 5)
-		add_child(planet)
+		var position = Vector3.FORWARD*(n+1)*planet_spacing
+		_object_spawner.spawn_consumable_object(self, CC.ConsumableType.STAR_SM, position)

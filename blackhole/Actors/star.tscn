@@ -24,22 +24,20 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_3jw68")
-general_size = 200.0
-gravity_area_strength = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_onj7j")
 debug_color = Color(0.966632, 0.151832, 0.266338, 0.42)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="GravityArea3D" type="Area3D" parent="."]
 disable_mode = 2
 collision_mask = 3
 gravity_point_center = Vector3(0, 0, 0)
 gravity_direction = Vector3(0, 0, 0)
 script = ExtResource("2_3jw68")
-orbital_speed = 20000.0
+orbital_speed = 1000.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravityArea3D"]
 shape = SubResource("SphereShape3D_1uqp5")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

@@ -17,14 +17,12 @@ radius = 8.958
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_is3l8")
-general_size = 0.2
-gravity_area_strength = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_onj7j")
 debug_color = Color(0.966632, 0.151832, 0.266338, 0.42)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="GravityArea3D" type="Area3D" parent="."]
 disable_mode = 2
 gravity_space_override = 1
 gravity_point = true
@@ -32,7 +30,7 @@ gravity_point_center = Vector3(0, 0, 0)
 gravity_direction = Vector3(0, 0, 0)
 script = ExtResource("2_jwn76")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravityArea3D"]
 shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

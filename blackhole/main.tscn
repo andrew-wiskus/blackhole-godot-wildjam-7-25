@@ -1,15 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=13 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="3_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bla3m48h3nbgs" path="res://Actors/star_system.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="6_272bh"]
+[ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://b7t4878gb74r" path="res://Actors/Consumable Object Configs/asteroid_sm_config.tres" id="7_dg77c"]
+[ext_resource type="Resource" uid="uid://c7fl57er0sg3u" path="res://Actors/Consumable Object Configs/asteroid_lg_config.tres" id="8_ycdy4"]
+[ext_resource type="Resource" uid="uid://chdx73brdevmk" path="res://Actors/Consumable Object Configs/planet_sm_config.tres" id="9_w48qg"]
+[ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="10_vivmo"]
+[ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="11_2cqfq"]
+[ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="12_yaehf"]
 
 [node name="main_game" type="Node3D" groups=["game_controller"]]
 script = ExtResource("1_1bvp3")
 
-[node name="Main Character" parent="." instance=ExtResource("3_lquwl")]
+[node name="Main Character" parent="." groups=["player_node"] instance=ExtResource("3_lquwl")]
 axis_lock_linear_y = true
 axis_lock_angular_z = true
 linear_damp = 1.0
@@ -103,16 +110,14 @@ offset_top = 75.0
 offset_right = -100.0
 offset_bottom = -75.0
 
-[node name="Star System" parent="." instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4872.96)
-planet_count = 8
-
-[node name="Star System2" parent="." instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4557.45, 0, -1500.44)
-planet_count = 2
-star_size = 30
-
-[node name="Star System3" parent="." instance=ExtResource("5_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4005.72, 0, 4812.34)
-planet_count = 15
-star_size = 100
+[node name="Object Spawn Util" type="Node" parent="." groups=["object_spawn_util"]]
+script = ExtResource("6_272bh")
+global_settings = ExtResource("7_272bh")
+asteroid_sm_overrides = ExtResource("7_dg77c")
+asteroid_lg_override_size = true
+asteroid_lg_overrides = ExtResource("8_ycdy4")
+planet_sm_overrides = ExtResource("9_w48qg")
+planet_lg_overrides = ExtResource("10_vivmo")
+star_sm_override_size = true
+star_sm_overrides = ExtResource("11_2cqfq")
+star_lg_overrides = ExtResource("12_yaehf")
