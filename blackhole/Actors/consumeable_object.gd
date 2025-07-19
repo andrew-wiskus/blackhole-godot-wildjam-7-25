@@ -48,6 +48,7 @@ func set_size(to_size): # set to 20.0
 		particles.multiplier_particle_size(to_size)
 	if has_node("Player_Vicinity_Check"):
 		$Player_Vicinity_Check.get_child(0).scale = Vector3.ONE * general_size
+
 func set_size_multiplier(multi): # increase by 2.0x
 	var new_size = general_size * multi
 	set_size(new_size)
