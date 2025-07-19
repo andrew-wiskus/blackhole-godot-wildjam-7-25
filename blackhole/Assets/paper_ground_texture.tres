@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cvb86ux47cifm"]
+
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="1_ry58l"]
+[ext_resource type="Texture2D" uid="uid://c7u2eck8q1f8x" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_NormalGL.png" id="2_f1ymp"]
+[ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="3_qfh7o"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_ry58l")
+metallic = 0.23
+metallic_specular = 1.0
+metallic_texture_channel = 3
+roughness = 0.6
+roughness_texture = ExtResource("3_qfh7o")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 0.57
+normal_texture = ExtResource("2_f1ymp")
+uv1_scale = Vector3(1, 1, 50)
+distance_fade_max_distance = 0.0

@@ -1,25 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://rvu5nya4qd6h"]
+[gd_scene load_steps=10 format=3 uid="uid://rvu5nya4qd6h"]
 
+[ext_resource type="Texture2D" uid="uid://dasnx4y5bmxw3" path="res://Assets/materials/Paper001_1K-PNG/Paper001_1K-PNG_Color.png" id="1_gi817"]
 [ext_resource type="Texture2D" uid="uid://c7u2eck8q1f8x" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_NormalGL.png" id="1_ww0sx"]
 [ext_resource type="Texture2D" uid="uid://e4i8nfedqynt" path="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png" id="2_gi817"]
 [ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_81qql"]
 [ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_eqk86"]
 [ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="5_omck4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pltu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi817"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1oj5k"]
 lightmap_size_hint = Vector2i(50, 50)
-material = SubResource("StandardMaterial3D_2pltu")
+material = SubResource("StandardMaterial3D_gi817")
 uv2_padding = 0.0
 size = Vector2(5000, 5000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dugkq"]
-roughness = 0.4
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_gi817")
+roughness = 0.44
 roughness_texture = ExtResource("2_gi817")
-roughness_texture_channel = 3
+roughness_texture_channel = 4
 normal_enabled = true
-normal_scale = 0.1
+normal_scale = 4.17
 normal_texture = ExtResource("1_ww0sx")
 clearcoat_enabled = true
 uv1_scale = Vector3(250, 250, 250)
@@ -47,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 0.994254, 0.107045, 0, -0.107045, 0.994254, 
 fov = 58.9
 frustum_offset = Vector2(-0.37, -0.21)
 
-[node name="GroundMesh" type="MeshInstance3D" parent="."]
+[node name="PaperGroundMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00114441, 1.73194, -1.06697)
 mesh = SubResource("PlaneMesh_1oj5k")
 surface_material_override/0 = SubResource("StandardMaterial3D_dugkq")

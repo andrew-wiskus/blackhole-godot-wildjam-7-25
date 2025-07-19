@@ -62,7 +62,9 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 	
 	if body is ConsumeableObject:
 		if (body.general_size / 2.0) <= general_size: 
-			GameState.on_consume_increase_currency(body.general_size)
+			var amount = ceil(general_size * 10) # need to add/adjust a new value instead of general size.. add into configs.. after the suck-particle system so we can do both at once
+			GameState.on_consume_increase_currency(amount)
+			_spawn_floating_number_go_up(amount)
 			body.queue_free()
 		else:
 			#spawn particles on body
@@ -92,4 +94,16 @@ func _on_rigid_body_gravity_area_body_entered(body: RigidBody3D) -> void:
 
 #func start_particle_animation(body):
 	#var animation = preload("res://Assets/Particles/surface particles.tscn").instantiate()
-	
+
+func _spawn_floating_number_go_up(value):
+		var scene = preload("res://number_go_up_particle.tscn")
+		var number_go_up_particle := scene.instantiate() as NumberGoUpParticle
+		add_child(number_go_up_particle)
+		number_go_up_particle.set_label_values(int(value))
+		number_go_up_particle.global_position = global_position
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Space"):
+		_spawn_floating_number_go_up(2000)
+
+		

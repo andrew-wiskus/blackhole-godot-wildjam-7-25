@@ -41,7 +41,6 @@ func try_purchase(cost: int):
 	currency = currency - cost
 	return true
 
-func on_consume_increase_currency(object_size: float):
-	print("CONSUMED: ", object_size)
-	currency += ceil(object_size * 10)
+func on_consume_increase_currency(amount: float):
+	currency += amount
 	

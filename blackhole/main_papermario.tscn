@@ -1,0 +1,201 @@
+[gd_scene load_steps=22 format=3 uid="uid://c37r438tgc52t"]
+
+[ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_6mevw"]
+[ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="2_tynwn"]
+[ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="3_ifyl5"]
+[ext_resource type="Script" uid="uid://bx6ucmmgafusc" path="res://Actors/main_player_camera.gd" id="3_o0frx"]
+[ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="4_3bpks"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="4_kv5a0"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="5_41ucr"]
+[ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="5_l66ug"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="6_ttpe4"]
+[ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="6_tynwn"]
+[ext_resource type="Script" uid="uid://c0bjo2y3cqn0b" path="res://Actors/debug_velocity_line.gd" id="7_43eny"]
+[ext_resource type="Resource" uid="uid://b7t4878gb74r" path="res://Actors/Consumable Object Configs/asteroid_sm_config.tres" id="7_o0frx"]
+[ext_resource type="Resource" uid="uid://c7fl57er0sg3u" path="res://Actors/Consumable Object Configs/asteroid_lg_config.tres" id="8_kv5a0"]
+[ext_resource type="Resource" uid="uid://chdx73brdevmk" path="res://Actors/Consumable Object Configs/planet_sm_config.tres" id="9_41ucr"]
+[ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="10_ttpe4"]
+[ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="11_43eny"]
+[ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="12_rkx8q"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rd3fw"]
+friction = 0.15
+absorbent = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]
+radius = 1.71858
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pe21h"]
+radius = 3.1811
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
+radius = 23.2459
+
+[node name="main_game" type="Node3D" groups=["game_controller"]]
+script = ExtResource("1_6mevw")
+
+[node name="Main Character" type="RigidBody3D" parent="." groups=["player_node"]]
+axis_lock_linear_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_rd3fw")
+linear_damp = 1.0
+script = ExtResource("2_tynwn")
+initial_force_multiplier = 60.0
+camera_distancing_step = 5.0
+initial_gravity = 350
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character"]
+shape = SubResource("SphereShape3D_vrwos")
+
+[node name="Detectable Inner Radius" type="Area3D" parent="Main Character"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character/Detectable Inner Radius"]
+shape = SubResource("SphereShape3D_pe21h")
+
+[node name="Rigid_Body_Gravity_Area" type="Area3D" parent="Main Character"]
+disable_mode = 2
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 200.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Character/Rigid_Body_Gravity_Area"]
+shape = SubResource("SphereShape3D_3ll2g")
+
+[node name="Main_Player_Camera" type="Camera3D" parent="Main Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.513)
+far = 100000.0
+script = ExtResource("3_o0frx")
+rotation_speed = 208.265
+zoom_speed = 0.05
+max_zoom = 10000.0
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="Main Character"]
+transform = Transform3D(0.223807, 0, 0, 0, 0.223807, 0, 0, 0, 0.223807, 0, 0, 0)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Main Character/Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("4_kv5a0")
+script = ExtResource("5_41ucr")
+SPEED = 25.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Main Character/Blackhole Animated Sprite"]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+visible = false
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("6_ttpe4")
+
+[node name="DebugVelocityLine" type="Node3D" parent="Main Character"]
+script = ExtResource("7_43eny")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Main Character"]
+strength = 1000.0
+radius = 124.057
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Main Character"]
+radius = 2.33742
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104929, 0.722661)
+
+[node name="Asteroid_System" parent="." instance=ExtResource("3_ifyl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1625.78)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(500, 0, 500)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Asteroid_System2" parent="." instance=ExtResource("3_ifyl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -802.283)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(500, 0, 500)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Asteroid_System3" parent="." instance=ExtResource("3_ifyl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1453.33, 0, -98.9722)
+total_asteroids = 150
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(500, 0, 500)
+min_scale = 0.4
+max_scale = 1.0
+max_velocity = 1.0
+noise_scale = 1000.0
+
+[node name="Medium Asteroid Spawner" parent="." instance=ExtResource("3_ifyl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1361.96, -2.991, 500)
+total_asteroids = 15
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(3000, 0, 3000)
+min_distance_from_center = 500.0
+min_scale = 5.0
+max_scale = 30.0
+add_random_velocity = false
+max_velocity = 0.0
+
+[node name="Planet_Spawner" parent="." instance=ExtResource("3_ifyl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -656.34, -2.991, -1502.72)
+total_asteroids = 30
+spawn_rate = 0.0
+boundary_type = 1
+boundary_size = Vector3(3000, 0, 3000)
+min_distance_from_center = 500.0
+min_scale = 2.0
+max_scale = 4.0
+add_random_velocity = false
+max_velocity = 0.0
+
+[node name="GameHUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Currency Label" type="Label" parent="GameHUD"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 113.0
+text = "MASS CONSUMED: 
+[a] 999 kg
+[b] 0 kg
+[c] 0 kg"
+
+[node name="ShopUI" parent="." instance=ExtResource("4_3bpks")]
+anchors_preset = -1
+offset_left = 100.0
+offset_top = 75.0
+offset_right = -100.0
+offset_bottom = -75.0
+
+[node name="Object Spawn Util" type="Node" parent="." groups=["object_spawn_util"]]
+script = ExtResource("5_l66ug")
+global_settings = ExtResource("6_tynwn")
+asteroid_sm_overrides = ExtResource("7_o0frx")
+asteroid_lg_override_size = true
+asteroid_lg_overrides = ExtResource("8_kv5a0")
+planet_sm_overrides = ExtResource("9_41ucr")
+planet_lg_overrides = ExtResource("10_ttpe4")
+star_sm_override_size = true
+star_sm_overrides = ExtResource("11_43eny")
+star_lg_overrides = ExtResource("12_rkx8q")
+
+[connection signal="body_entered" from="Main Character" to="Main Character" method="_on_body_entered"]
+[connection signal="body_entered" from="Main Character/Detectable Inner Radius" to="Main Character" method="_on_detectable_inner_radius_body_entered"]
+[connection signal="body_entered" from="Main Character/Rigid_Body_Gravity_Area" to="Main Character" method="_on_rigid_body_gravity_area_body_entered"]

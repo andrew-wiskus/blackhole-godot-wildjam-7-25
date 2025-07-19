@@ -14,8 +14,7 @@ var general_size
 func _ready() -> void:
 	_collision_detector.shape = _collision_detector.shape.duplicate()
 	_gravity_collision_shape.shape = _gravity_collision_shape.shape.duplicate()
-	set_size(custom_size)
-	
+	if custom_size > 0.0: set_size(custom_size)
 
 func init(
 		type_id: CC.ConsumableType, 
@@ -33,8 +32,7 @@ func init(
 	set_size(custom_size if custom_size > 0.0 else size_value)
 	if use_custom_sprite != true:
 		_sprite.texture = texture
-	
-
+		
 	linear_velocity = velocity_direction * velocity_mag
 	angular_velocity = spin_direction * spin_speed
 	rotation = Vector3(90, 90, 0)
