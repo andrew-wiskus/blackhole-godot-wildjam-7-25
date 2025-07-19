@@ -1,5 +1,8 @@
 class_name MainPlayerRigidBody
 extends RigidBody3D
+
+@export var spawn_at_origin = true
+
 @export_group("Movement")
 @export var initial_force_multiplier = 5.0
 @export var drag_coefficient = 1.0
@@ -22,6 +25,8 @@ var immediate_mesh: ImmediateMesh
 @export var camera_distancing_step: float = 0.0001
 @export var initial_gravity = 10
 
+@onready var debug_sphere = $"Blackhole Animated Sprite/EDITOR_DEBUG_SPHERE"
+
 func _ready() -> void:
 	_update_components_for_size(initial_size)
 	$"Rigid_Body_Gravity_Area".gravity = initial_gravity
@@ -39,6 +44,12 @@ func _ready() -> void:
 	material.vertex_color_use_as_albedo = true
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	debug_mesh_instance.material_override = material
+	
+	# spawn at 0,0 grid cord
+	if spawn_at_origin:
+		global_position = Vector3(0, global_position.y, 0)
+		
+	debug_sphere.hide()
 
 func _physics_process(delta: float):
 	var forward_back = Input.get_axis("S", "W")
@@ -46,7 +57,7 @@ func _physics_process(delta: float):
 	var up_down = Input.get_axis("C", "Space")
 
 	# Create a basis from Euler angles (in radians)
-	var basis = Basis.from_euler(rotation)
+	var basis = Basis.from_euler(Vector3.ZERO)
 	var forward = basis * Vector3.FORWARD
 	var left = basis * Vector3.LEFT
 	var up = basis * Vector3.UP
@@ -66,7 +77,6 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 			GameState.on_consume_increase_currency(amount)
 			_spawn_floating_number_go_up(amount)
 			body.queue_free()
-			$"../Sound_Node".play_mass_consumed_sound()
 		else:
 			#spawn particles on body
 			pass
@@ -79,6 +89,7 @@ func _update_components_for_size(size):
 	$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
 	$GPUParticlesAttractorSphere3D.scale = Vector3.ONE * size
 	$GPUParticlesCollisionSphere3D.scale = Vector3.ONE * size
+	
 func set_gravity_multiplier(multiplier):
 	$"Rigid_Body_Gravity_Area".gravity = initial_gravity * multiplier
 

@@ -35,8 +35,7 @@ func init(
 		_sprite.texture = texture
 		
 	linear_velocity = velocity_direction * velocity_mag
-	angular_velocity = spin_direction * spin_speed
-	rotation = Vector3(0, 0, 0)
+	#angular_velocity = spin_direction * spin_speed
 
 
 func set_size(to_size): # set to 20.0

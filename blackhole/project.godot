@@ -48,6 +48,7 @@ shop_ui_controller=""
 game_controller=""
 player_node=""
 object_spawn_util=""
+sound_controller=""
 
 [input]
 

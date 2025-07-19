@@ -1,161 +1,60 @@
-shader_type canvas_item;
+shader_type spatial;
+render_mode unshaded;
 
-uniform vec2 mouse;
-uniform float time;
+// Base sky color
+uniform vec3 sky_color: source_color = vec3(0.05, 0.05, 0.10);
+// Star color
+uniform vec3 star_color: source_color = vec3(1.0, 1.0, 1.0);
 
-const int iterations = 12;
-const float formuparam2 = 0.79;
-const float volsteps = 7.0;
-const float stepsize = 0.290;
-const float zoom = 1.0;
-const float tile = 0.850;
-uniform float speed2 = 0.2;
+// How many stars per unit (higher = more stars)
+uniform float star_density: hint_range(10.0, 200.0, 1.0) = 50.0;
+// Chance (0–1) that a grid cell contains a star
+uniform float star_chance: hint_range(0.0, 1.0, 0.01) = 0.98;
 
-const float brightness = 0.0015;
-const float darkmatter = 0.100;
-const float distfading = 0.560;
-const float saturation = 0.90;
+// Twinkle controls
+uniform float twinkle_speed_min: hint_range(0.1, 10.0, 0.1) = 0.5;
+uniform float twinkle_speed_max: hint_range(0.1, 10.0, 0.1) = 2.0;
+uniform float twinkle_intensity: hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float twinkle_scale: hint_range(0.1, 10.0, 0.1) = 1.0;
 
+// Star size controls (fraction of cell)
+uniform float star_size_min: hint_range(0.0, 1.0, 0.01) = 0.02;
+uniform float star_size_max: hint_range(0.0, 1.0, 0.01) = 0.06;
 
-const float transverseSpeed = 1.0; //zoom;
-const float cloud = 0.17;
-
-
-float triangle(float x, float a) {
-	float output2 = 2.0*abs(  3.0*  ( (x/a) - floor( (x/a) + 0.5) ) ) - 1.0;
-	return output2;
-}
-
-float field(in vec3 p) {
-	float strength = 7.0;  // Made constant to remove flickering
-	float accum = 0.;
-	float prev = 0.;
-	float tw = 0.;
-
-	for (int i = 0; i < 6; ++i) {
-		float mag = dot(p, p);
-		p = abs(p) / mag + vec3(-.5, -.8, -1.1);  // Removed time-based oscillation
-		float w = exp(-float(i) / 7.);
-		accum += w * exp(-strength * pow(abs(mag - prev), 2.3));
-		tw += w;
-		prev = mag;
-	}
-	return max(0., 5. * accum / tw - .7);
+// Simple 2D hash for per-cell randomness
+float rand2(vec2 v) {
+    return fract(sin(dot(v, vec2(12.9898, 78.233))) * 43758.5453123);
 }
 
 void fragment() {
-    vec2 uv2 = 2. * FRAGCOORD.xy / vec2(512) - 1.;
-	vec2 uvs = uv2 * vec2(512)  / 512.;
+    vec3 col = sky_color;
+    vec2 uv2 = UV * star_density;
+    vec2 cell = floor(uv2);
 
-	//float time = TIME;
-	float time2 = time;
-    float speed = -speed2;
-    speed = .005 * cos(time2*0.02 + 3.1415926/4.0);
-	//speed = 0.0;
-    float formuparam = formuparam2;
+    // Primary random for placement & seed
+    float seed = rand2(cell);
+    if (seed > star_chance) {
+        // Jitter each star's center within its cell
+        vec2 jitter = vec2(
+            rand2(cell + vec2(5.3, 1.7)),
+            rand2(cell + vec2(2.8, 7.1))
+        );
+        vec2 star_center = cell + jitter;
+        vec2 diff = uv2 - star_center;
+        float dist = length(diff);
 
-    	//get coords and direction
-	vec2 uv = uvs;
-	//mouse rotation
-	float a_xz = 0.9;
-	float a_yz = -.6;
-	float a_xy = 0.9 + time*0.08;
+        // Randomize size per-star
+        float size = mix(star_size_min, star_size_max, rand2(cell + vec2(9.2, 3.4)));
 
-	mat2 rot_xz = mat2(vec2(cos(a_xz),sin(a_xz)),vec2(-sin(a_xz),cos(a_xz)));
-	mat2 rot_yz = mat2(vec2(cos(a_yz),sin(a_yz)),vec2(-sin(a_yz),cos(a_yz)));
-	mat2 rot_xy = mat2(vec2(cos(a_xy),sin(a_xy)),vec2(-sin(a_xy),cos(a_xy)));
+        // Twinkle rate & brightness
+        float speed = mix(twinkle_speed_min, twinkle_speed_max, rand2(cell + vec2(6.9, 4.2)));
+        float phase = sin(TIME * speed + seed * twinkle_scale * TAU);
+        float brightness = mix(0.0, twinkle_intensity, phase * 0.5 + 0.5);
 
-	float v2 =1.0;
-	vec3 dir=vec3(uv*zoom,1.);
-	vec3 from=vec3(0.0, 0.0,0.0);
-        from.x -= 2.0*(mouse.x-0.5);
-        from.y -= 2.0*(mouse.y-0.5);
+        // Soft circular mask
+        float mask = 1.0 - smoothstep(size * 0.8, size, dist);
+        col += star_color * brightness * mask;
+    }
 
-	vec3 forward = vec3(0.,0.,1.);
-	from.x += transverseSpeed*(1.0)*cos(0.01*time) + 0.001*time;
-	from.y += transverseSpeed*(1.0)*sin(0.01*time) +0.001*time;
-	from.z += 0.003*time;
-
-	dir.xy*=rot_xy;
-	forward.xy *= rot_xy;
-	dir.xz*=rot_xz;
-	forward.xz *= rot_xz;
-	dir.yz*= rot_yz;
-	forward.yz *= rot_yz;
-
-	from.xy*=-1.0*rot_xy;
-	from.xz*=rot_xz;
-	from.yz*= rot_yz;
-
-	//zoom
-	float zooom = (time2-3311.)*speed;
-	from += forward* zooom;
-	float sampleShift = mod( zooom, stepsize );
-
-	float zoffset = -sampleShift;
-	sampleShift /= stepsize; // make from 0 to 1
-
-	//volumetric rendering
-	float s=0.24;
-	float s3 = s + stepsize/2.0;
-	vec3 v=vec3(0.);
-	float t3 = 0.0;
-
-	vec3 backCol2 = vec3(0.);
-	for (float r=0.0; r<volsteps; r++) {
-		vec3 p2=from+(s+zoffset)*dir;// + vec3(0.,0.,zoffset);
-		vec3 p3=from+(s3+zoffset)*dir;// + vec3(0.,0.,zoffset);
-
-		p2 = abs(vec3(tile)-mod(p2,vec3(tile*2.))); // tiling fold
-		p3 = abs(vec3(tile)-mod(p3,vec3(tile*2.))); // tiling fold
-		// #ifdef cloud
-		t3 = field(p3);
-
-		float pa,a=pa=0.;
-		for (int i=0; i<iterations; i++) {
-			p2=abs(p2)/dot(p2,p2)-formuparam; // the magic formula
-			//p=abs(p)/max(dot(p,p),0.005)-formuparam; // another interesting way to reduce noise
-			float D = abs(length(p2)-pa); // absolute sum of average change
-			a += i > 7 ? min( 12., D) : D;
-			pa=length(p2);
-		}
-
-
-		//float dm=max(0.,darkmatter-a*a*.001); //dark matter
-		a*=a*a; // add contrast
-		//if (r>3) fade*=1.-dm; // dark matter, don't render near
-		// brightens stuff up a bit
-		float s1 = s+zoffset;
-		// need closed form expression for this, now that we shift samples
-		float fade = pow(distfading,max(0.,float(r)-sampleShift));
-		//t3 += fade;
-		v+=fade;
-	       	//backCol2 -= fade;
-
-		// fade out samples as they approach the camera
-		if( r == 0.0 )
-			fade *= (1. - (sampleShift));
-		// fade in samples as they approach from the distance
-		if( r == volsteps-1.0 )
-			fade *= sampleShift;
-		v+=vec3(s1,s1*s1,s1*s1*s1*s1)*a*brightness*fade; // coloring based on distance
-
-		backCol2 += mix(.4, 1., v2) * vec3(1.8 * t3 * t3 * t3, 1.4 * t3 * t3, t3) * fade;
-
-
-		s+=stepsize;
-		s3 += stepsize;
-	}
-
-	v = mix(vec3(length(v)),v,saturation); //color adjust
-
-	vec4 forCol2 = vec4(v*.01,1.);
-	backCol2 *= cloud;
-	backCol2.b *= 1.8;
-	backCol2.r *= 0.05;
-
-	backCol2.b = 0.5*mix(backCol2.g, backCol2.b, 0.8);
-	backCol2.g = 0.0;
-	backCol2.bg = mix(backCol2.gb, backCol2.bg, 0.5);  // Removed time-based color flickering
-	COLOR = forCol2 + vec4(backCol2, 1.0);
+    ALBEDO = col;
 }
