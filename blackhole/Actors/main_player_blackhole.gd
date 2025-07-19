@@ -66,6 +66,7 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 			GameState.on_consume_increase_currency(amount)
 			_spawn_floating_number_go_up(amount)
 			body.queue_free()
+			$"../Sound_Node".play_mass_consumed_sound()
 		else:
 			#spawn particles on body
 			pass

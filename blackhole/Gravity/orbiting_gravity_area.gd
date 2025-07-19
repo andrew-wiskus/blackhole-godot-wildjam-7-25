@@ -1,8 +1,8 @@
 extends Area3D
 
 @onready var bodies = []
-@export var orbital_speed: float = 1.0  # Adjustable orbital speed
-
+var orbital_speed: float = 1000 # Adjustable orbital speed
+var main_body
 func _physics_process(delta: float) -> void:
 	for body in bodies:
 		if is_instance_valid(body):
@@ -22,13 +22,9 @@ func _physics_process(delta: float) -> void:
 			
 			# Update the body's position
 			body.linear_velocity = orbital_velocity
-
 func _on_body_entered(body: Node3D) -> void:
 	if body not in bodies:
-		if body == get_parent():
-			return
-		elif body is MainPlayerRigidBody:
-			#ignore the player, send particles to him
+		if body == get_parent() or body is MainPlayerRigidBody:
 			return
 		bodies.append(body)
 		

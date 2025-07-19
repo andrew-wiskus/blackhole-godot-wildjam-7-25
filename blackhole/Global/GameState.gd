@@ -28,7 +28,8 @@ func _save_game_state():
 func _handle_game_paused(paused: bool):
 	game_paused = paused
 	# do other things probably
-
+	# you can use 
+	# get_tree().paused = true
 func pause_game(): _handle_game_paused(true)
 func resume_game(): _handle_game_paused(false)
 func toggle_pause(): _handle_game_paused(!game_paused)

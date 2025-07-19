@@ -13,28 +13,29 @@ curve = SubResource("Curve_rb2ds")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ji8nh"]
 emission_shape = 2
-emission_sphere_radius = 1.0
+emission_sphere_radius = 50.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
 radial_velocity_min = -2.23517e-05
 radial_velocity_max = 24.69
 gravity = Vector3(0, 0, 0)
 radial_accel_curve = SubResource("CurveTexture_vsahu")
+scale_max = 2.0
 collision_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_runbo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsahu"]
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("1_ji8nh")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rd86j"]
-material = SubResource("StandardMaterial3D_runbo")
-orientation = 2
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ji8nh"]
+material = SubResource("StandardMaterial3D_vsahu")
 
 [node name="Repelling Particles" type="GPUParticles3D"]
 amount = 58
 lifetime = 1.65
+collision_base_size = 34.65
 visibility_aabb = AABB(-125, -125, -125, 250, 250, 250)
 process_material = SubResource("ParticleProcessMaterial_ji8nh")
-draw_pass_1 = SubResource("PlaneMesh_rd86j")
+draw_pass_1 = SubResource("CapsuleMesh_ji8nh")
 script = ExtResource("1_vsahu")
