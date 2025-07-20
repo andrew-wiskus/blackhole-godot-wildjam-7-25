@@ -110,14 +110,17 @@ func _level_description(value):
 		return "- gravity multi +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.AOE_1:
 		return "- area of effect +" + str(int((value - 1) * 100)) + "%"
-	if upgrade_id == ShopCC.UpgradeID.SPEED_1:
-		return "- increase speed by " + str(int((value - 1) * 100)) + "%"
+	if upgrade_id == ShopCC.UpgradeID.SPEED_1 \
+		or upgrade_id == ShopCC.UpgradeID.SPEED_2 \
+		or upgrade_id == ShopCC.UpgradeID.SPEED_3 \
+		or upgrade_id == ShopCC.UpgradeID.SPEED_4:
+			return "- speed +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.MASS_EFFICENCY_1:
-		return "- increase mass efficiency by " + str(int((value - 1) * 100)) + "%"
+		return "- mass efficiency +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.PASSIVE_MASS_1:
-		return "- increase passive mass by " + str(int((value - 1) * 100)) + "%"
+		return "- passive mass +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.MAX_ZOOM:
-		return "- increase max zoom to " + str(value) + "x"
+		return "- max zoom: " + str(value) + "x"
 	return "NOT_SET"
 
 # TODO: Need an input listener if they click outside of the tooltip to close the tooltip

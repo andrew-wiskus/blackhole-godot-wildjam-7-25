@@ -6,7 +6,10 @@ enum UpgradeID {
 	SPEED_1,
 	MASS_EFFICENCY_1,
 	PASSIVE_MASS_1,
-	MAX_ZOOM
+	MAX_ZOOM,
+	SPEED_2,
+	SPEED_3,
+	SPEED_4,
 }
 
 const UPGRADE_CONFIG = [
@@ -17,11 +20,11 @@ const UPGRADE_CONFIG = [
 		levels = [
 			{ value = 1.25, cost = 50, unlocks = [UpgradeID.GRAVITY_1, UpgradeID.SPEED_1] },
 			{ value = 1.5, cost = 100, unlocks = [] },
-			{ value = 2.0, cost = 200, unlocks = [UpgradeID.MAX_ZOOM] },
+			{ value = 2.0, cost = 200, unlocks = [] },
 			{ value = 2.5, cost = 400, unlocks = [] },
 			{ value = 3.0, cost = 800, unlocks = [] },
 			{ value = 4.0, cost = 1500, unlocks = [] },
-			{ value = 5.0, cost = 3000, unlocks = [UpgradeID.MASS_EFFICENCY_1]},
+			{ value = 5.0, cost = 3000, unlocks = []},
 			{ value = 7.0, cost = 5000, unlocks = [] },
 			{ value = 10.0, cost = 8000, unlocks = [] },
 			{ value = 15.0, cost = 12000, unlocks = [] },
@@ -43,7 +46,7 @@ const UPGRADE_CONFIG = [
 		title = "Gravity Force",
 		button_node_label = "Gv",
 		levels = [
-			{ value = 1.25, cost = 75, unlocks = [] },
+			{ value = 1.25, cost = 75, unlocks = [UpgradeID.MASS_EFFICENCY_1] },
 			{ value = 1.5, cost = 150, unlocks = [] },
 			{ value = 2.0, cost = 300, unlocks = [] },
 			{ value = 2.5, cost = 600, unlocks = [] },
@@ -71,28 +74,26 @@ const UPGRADE_CONFIG = [
 		title = "Velocity Boost",
 		button_node_label = "Sp",
 		levels = [
-			{ value = 1.25, cost = 60, unlocks = [] },
+			{ value = 1.25, cost = 60, unlocks = [UpgradeID.MAX_ZOOM] },
 			{ value = 1.5, cost = 120, unlocks = [] },
 			{ value = 2.0, cost = 250, unlocks = [] },
 			{ value = 2.5, cost = 500, unlocks = [] },
-			{ value = 3.0, cost = 1000, unlocks = [] },
+			{ value = 3.0, cost = 1000, unlocks = [UpgradeID.SPEED_2] },
+		]
+	},
+	
+		{
+		id = UpgradeID.SPEED_2,
+		title = "Velocity Boost",
+		button_node_label = "Sp",
+		levels = [
 			{ value = 4.0, cost = 2000, unlocks = [] },
 			{ value = 5.0, cost = 4000, unlocks = [] },
 			{ value = 7.0, cost = 7000, unlocks = [] },
-			{ value = 10.0, cost = 11000, unlocks = [] },
-			{ value = 15.0, cost = 16000, unlocks = [] },
-			{ value = 20.0, cost = 23000, unlocks = [] },
-			{ value = 25.0, cost = 32000, unlocks = [] },
-			{ value = 35.0, cost = 45000, unlocks = [] },
-			{ value = 45.0, cost = 65000, unlocks = [] },
-			{ value = 55.0, cost = 90000, unlocks = [] },
-			{ value = 65.0, cost = 120000, unlocks = [] },
-			{ value = 75.0, cost = 155000, unlocks = [] },
-			{ value = 85.0, cost = 195000, unlocks = [] },
-			{ value = 95.0, cost = 240000, unlocks = [] },
-			{ value = 100.0, cost = 290000, unlocks = [] }
+			{ value = 10.0, cost = 11000, unlocks = [UpgradeID.SPEED_3]  },
 		]
 	},
+			
 	
 	{
 		id = UpgradeID.MASS_EFFICENCY_1,
@@ -154,26 +155,25 @@ const UPGRADE_CONFIG = [
 	title = "Extended Zoom Range",
 	button_node_label = "Zm",
 	levels = [
-		{ value = 30.0, cost = 50, unlocks = [] },
-		{ value = 40.0, cost = 100, unlocks = [] },
-		{ value = 55.0, cost = 200, unlocks = [] },
-		{ value = 75.0, cost = 400, unlocks = [] },
-		{ value = 100.0, cost = 800, unlocks = [] },
-		{ value = 130.0, cost = 1600, unlocks = [] },
-		{ value = 170.0, cost = 3200, unlocks = [] },
-		{ value = 220.0, cost = 6400, unlocks = [] },
-		{ value = 280.0, cost = 12800, unlocks = [] },
-		{ value = 350.0, cost = 25600, unlocks = [] },
-		{ value = 450.0, cost = 51200, unlocks = [] },
-		{ value = 580.0, cost = 102400, unlocks = [] },
-		{ value = 750.0, cost = 204800, unlocks = [] },
-		{ value = 1000.0, cost = 409600, unlocks = [] },
-		{ value = 1300.0, cost = 819200, unlocks = [] },
-		{ value = 1700.0, cost = 1638400, unlocks = [] },
-		{ value = 2200.0, cost = 3276800, unlocks = [] },
-		{ value = 2800.0, cost = 6553600, unlocks = [] },
-		{ value = 3500.0, cost = 13107200, unlocks = [] },
-		{ value = 5000.0, cost = 26214400, unlocks = [] }
+		{ value = 1.5, cost = 4000, unlocks = [] },
+		{ value = 2.0, cost = 8000, unlocks = [] },
+		{ value = 2.5, cost = 15000, unlocks = [] },
+		{ value = 3.0, cost = 25000, unlocks = [] },
+		{ value = 4.0, cost = 40000, unlocks = [] },
+		{ value = 5.0, cost = 60000, unlocks = [] },
+		{ value = 7.0, cost = 85000, unlocks = [] },
+		{ value = 10.0, cost = 115000, unlocks = [] },
+		{ value = 15.0, cost = 150000, unlocks = [] },
+		{ value = 20.0, cost = 190000, unlocks = [] },
+		{ value = 25.0, cost = 240000, unlocks = [] },
+		{ value = 35.0, cost = 300000, unlocks = [] },
+		{ value = 45.0, cost = 370000, unlocks = [] },
+		{ value = 55.0, cost = 450000, unlocks = [] },
+		{ value = 65.0, cost = 540000, unlocks = [] },
+		{ value = 75.0, cost = 640000, unlocks = [] },
+		{ value = 85.0, cost = 750000, unlocks = [] },
+		{ value = 95.0, cost = 870000, unlocks = [] },
+		{ value = 100.0, cost = 1000000, unlocks = [] },
 	]
 }
 ]
@@ -181,7 +181,6 @@ const UPGRADE_CONFIG = [
 
 
 static func get_upgrade_config(upgrade_id: UpgradeID):
-
 	for config in UPGRADE_CONFIG:
 		if config.id == upgrade_id:
 			return config

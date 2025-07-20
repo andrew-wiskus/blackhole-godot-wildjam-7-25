@@ -39,6 +39,12 @@ func try_purchase_upgrade(upgrade_node: ShopUI_UpgradeNode):
 			_gc.handle_gravity_upgrade(next_level)
 		if id == ShopCC.UpgradeID.SPEED_1:
 			_gc.handle_speed_upgrade(next_level)
+		if id == ShopCC.UpgradeID.SPEED_2:
+			_gc.handle_speed_upgrade(next_level)
+		if id == ShopCC.UpgradeID.SPEED_3:
+			_gc.handle_speed_upgrade(next_level)
+		if id == ShopCC.UpgradeID.SPEED_4:
+			_gc.handle_speed_upgrade(next_level)
 		if id == ShopCC.UpgradeID.AOE_1:
 			_gc.handle_aoe_upgrade(next_level)
 		if id == ShopCC.UpgradeID.MASS_EFFICENCY_1:

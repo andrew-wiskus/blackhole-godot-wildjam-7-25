@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvad76jge7r6d"
 path.s3tc="res://.godot/imported/eye_iris.png-0f86738f48fe0dda42410a7f1f3b0096.s3tc.ctex"
+path.etc2="res://.godot/imported/eye_iris.png-0f86738f48fe0dda42410a7f1f3b0096.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/blackhole/eye_iris.png"
-dest_files=["res://.godot/imported/eye_iris.png-0f86738f48fe0dda42410a7f1f3b0096.s3tc.ctex"]
+dest_files=["res://.godot/imported/eye_iris.png-0f86738f48fe0dda42410a7f1f3b0096.s3tc.ctex", "res://.godot/imported/eye_iris.png-0f86738f48fe0dda42410a7f1f3b0096.etc2.ctex"]
 
 [params]
 

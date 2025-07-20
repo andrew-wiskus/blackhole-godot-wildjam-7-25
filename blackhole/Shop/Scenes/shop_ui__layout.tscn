@@ -48,24 +48,32 @@ upgrade_id = 2
 
 [node name="Upgrade - Mass Efficiency" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 5092.0
-offset_top = 5039.0
-offset_right = 5123.0
-offset_bottom = 5069.0
+offset_left = 4989.0
+offset_top = 4684.0
+offset_right = 5020.0
+offset_bottom = 4714.0
 upgrade_id = 3
 
 [node name="Upgrade - Passive Mass" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 4851.0
-offset_top = 5042.0
-offset_right = 4882.0
-offset_bottom = 5072.0
+offset_left = 4835.0
+offset_top = 4763.0
+offset_right = 4866.0
+offset_bottom = 4793.0
 upgrade_id = 4
 
 [node name="Upgrade -  Zoom" parent="." instance=ExtResource("3_4o111")]
 layout_mode = 0
-offset_left = 4964.0
-offset_top = 5119.0
-offset_right = 4995.0
-offset_bottom = 5149.0
+offset_left = 4992.0
+offset_top = 4804.0
+offset_right = 5023.0
+offset_bottom = 4834.0
 upgrade_id = 5
+
+[node name="Speed 2" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
+offset_left = 5104.0
+offset_top = 4847.0
+offset_right = 5135.0
+offset_bottom = 4877.0
+upgrade_id = 6

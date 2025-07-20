@@ -1,20 +1,24 @@
 extends Node
 
-var currency: int = 100:
+var currency: float = 10.0:
 	get:
 		return currency
 	set(value):
 		currency = value
-		game_controller.update_currency_hud()
+		if !game_controller: 
+			game_controller = get_tree().get_first_node_in_group("game_controller")
+		if game_controller:
+			game_controller.update_currency_hud()
 		
 var current_upgrade_levels: Dictionary[ShopConfig.UpgradeID, int] = {}
 var game_paused: bool = false
 var game_controller: GameController
 var config_lookup: Dictionary[CC.ConsumableType, BaseConsumable] = {}
+var mass_efficiency: float = 1.0
+var stop_spawning_smalls = false
 
 func _ready():
 	_load_game_state()
-	game_controller = get_tree().get_first_node_in_group("game_controller")
 	pass
 
 func _load_game_state():
@@ -36,7 +40,7 @@ func resume_game(): _handle_game_paused(false)
 func toggle_pause(): _handle_game_paused(!game_paused)
 
 
-func try_purchase(cost: int):
+func try_purchase(cost: float):
 	if currency < cost:
 		return false
 	
@@ -44,11 +48,10 @@ func try_purchase(cost: int):
 	return true
 
 func on_consume_increase_currency(amount: float):
-	if !game_controller: game_controller = get_tree().get_first_node_in_group("game_controller")
-	currency += amount*game_controller.mass_efficiency
+	currency += amount * GameState.mass_efficiency
 
 func handle_consume_object(type: CC.ConsumableType, size: float):
-	currency += 1.0
+	currency += size * mass_efficiency
 
 func player_can_instant_consume(type: CC.ConsumableType):
 	if type == CC.ConsumableType.ASTEROID_SM:
@@ -58,9 +61,9 @@ func player_can_instant_consume(type: CC.ConsumableType):
 		
 func get_consume_rate_per_sec(type: CC.ConsumableType):
 	var config: BaseConsumable = config_lookup.get(type) as BaseConsumable
-	return config.consumption_rate_per_sec # TODO: alter depending on upgrades
+	return (config.consumption_rate_per_sec) * GameState.mass_efficiency # TODO: alter depending on upgrades
 	
 func gravity_scale_for_type(type):
 	if type == CC.ConsumableType.ASTEROID_SM:
 		return 1.5
-	return 0.0
+	return 0.1

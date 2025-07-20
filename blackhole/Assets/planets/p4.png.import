@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc51e8u4xfypq"
 path.s3tc="res://.godot/imported/p4.png-d5a12efef5ad80385c269d4ae266b361.s3tc.ctex"
+path.etc2="res://.godot/imported/p4.png-d5a12efef5ad80385c269d4ae266b361.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/planets/p4.png"
-dest_files=["res://.godot/imported/p4.png-d5a12efef5ad80385c269d4ae266b361.s3tc.ctex"]
+dest_files=["res://.godot/imported/p4.png-d5a12efef5ad80385c269d4ae266b361.s3tc.ctex", "res://.godot/imported/p4.png-d5a12efef5ad80385c269d4ae266b361.etc2.ctex"]
 
 [params]
 

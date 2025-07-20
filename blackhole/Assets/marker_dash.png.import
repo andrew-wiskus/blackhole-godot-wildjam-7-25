@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnlqa3bda8dbq"
 path.s3tc="res://.godot/imported/marker_dash.png-8f1723e0caabb652cd045fff17307cca.s3tc.ctex"
+path.etc2="res://.godot/imported/marker_dash.png-8f1723e0caabb652cd045fff17307cca.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/marker_dash.png"
-dest_files=["res://.godot/imported/marker_dash.png-8f1723e0caabb652cd045fff17307cca.s3tc.ctex"]
+dest_files=["res://.godot/imported/marker_dash.png-8f1723e0caabb652cd045fff17307cca.s3tc.ctex", "res://.godot/imported/marker_dash.png-8f1723e0caabb652cd045fff17307cca.etc2.ctex"]
 
 [params]
 

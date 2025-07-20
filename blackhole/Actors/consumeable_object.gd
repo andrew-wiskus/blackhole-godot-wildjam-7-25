@@ -128,7 +128,6 @@ func handle_collision_with_player(delta: float):
 		if new_size <= MIN_SIZE_FOR_QUEUE_FREE:
 			_spawn_controller.handle_consumable_queue_free(self)
 			GameState.handle_consume_object(type, max(0, new_size))
-			print("Consumed to min size -> queue free :D")
 		else: 
 			set_size(new_size)
 			GameState.handle_consume_object(type, consumed_this_tick)

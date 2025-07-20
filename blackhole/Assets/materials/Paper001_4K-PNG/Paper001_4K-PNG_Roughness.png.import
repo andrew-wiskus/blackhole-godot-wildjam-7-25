@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://e4i8nfedqynt"
 path.s3tc="res://.godot/imported/Paper001_4K-PNG_Roughness.png-95f9311061038e4f1f445e831240c527.s3tc.ctex"
+path.etc2="res://.godot/imported/Paper001_4K-PNG_Roughness.png-95f9311061038e4f1f445e831240c527.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/materials/Paper001_4K-PNG/Paper001_4K-PNG_Roughness.png"
-dest_files=["res://.godot/imported/Paper001_4K-PNG_Roughness.png-95f9311061038e4f1f445e831240c527.s3tc.ctex"]
+dest_files=["res://.godot/imported/Paper001_4K-PNG_Roughness.png-95f9311061038e4f1f445e831240c527.s3tc.ctex", "res://.godot/imported/Paper001_4K-PNG_Roughness.png-95f9311061038e4f1f445e831240c527.etc2.ctex"]
 
 [params]
 

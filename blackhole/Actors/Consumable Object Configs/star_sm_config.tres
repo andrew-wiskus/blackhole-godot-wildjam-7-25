@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_idoxi")
-base_value = 10.0
-consumption_rate_per_sec = 1.0
+base_value = 20.0
+consumption_rate_per_sec = 3.0
 base_respawn_timer = 5.0
 _min_size = 130.0
 _max_size = 150.0

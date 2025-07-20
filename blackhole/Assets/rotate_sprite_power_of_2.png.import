@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://u8xtqd4kcg88"
 path.s3tc="res://.godot/imported/rotate_sprite_power_of_2.png-78189d3e33e0e0de3608031f6a04f17b.s3tc.ctex"
+path.etc2="res://.godot/imported/rotate_sprite_power_of_2.png-78189d3e33e0e0de3608031f6a04f17b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/rotate_sprite_power_of_2.png"
-dest_files=["res://.godot/imported/rotate_sprite_power_of_2.png-78189d3e33e0e0de3608031f6a04f17b.s3tc.ctex"]
+dest_files=["res://.godot/imported/rotate_sprite_power_of_2.png-78189d3e33e0e0de3608031f6a04f17b.s3tc.ctex", "res://.godot/imported/rotate_sprite_power_of_2.png-78189d3e33e0e0de3608031f6a04f17b.etc2.ctex"]
 
 [params]
 

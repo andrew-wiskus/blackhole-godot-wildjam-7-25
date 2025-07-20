@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2m0gvrrytrg1"
 path.s3tc="res://.godot/imported/rotate_texture_try.png-7a1098cc99ca5b775def3b6360f8f1f7.s3tc.ctex"
+path.etc2="res://.godot/imported/rotate_texture_try.png-7a1098cc99ca5b775def3b6360f8f1f7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/rotate_texture_try.png"
-dest_files=["res://.godot/imported/rotate_texture_try.png-7a1098cc99ca5b775def3b6360f8f1f7.s3tc.ctex"]
+dest_files=["res://.godot/imported/rotate_texture_try.png-7a1098cc99ca5b775def3b6360f8f1f7.s3tc.ctex", "res://.godot/imported/rotate_texture_try.png-7a1098cc99ca5b775def3b6360f8f1f7.etc2.ctex"]
 
 [params]
 

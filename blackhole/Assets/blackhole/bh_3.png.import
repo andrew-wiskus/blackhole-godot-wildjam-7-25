@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cldlxi2883ooo"
 path.s3tc="res://.godot/imported/bh_3.png-19d31f3e999b1e6213cc62742b13e443.s3tc.ctex"
+path.etc2="res://.godot/imported/bh_3.png-19d31f3e999b1e6213cc62742b13e443.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/blackhole/bh_3.png"
-dest_files=["res://.godot/imported/bh_3.png-19d31f3e999b1e6213cc62742b13e443.s3tc.ctex"]
+dest_files=["res://.godot/imported/bh_3.png-19d31f3e999b1e6213cc62742b13e443.s3tc.ctex", "res://.godot/imported/bh_3.png-19d31f3e999b1e6213cc62742b13e443.etc2.ctex"]
 
 [params]
 

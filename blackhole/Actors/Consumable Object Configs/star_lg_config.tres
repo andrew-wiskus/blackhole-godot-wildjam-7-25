@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_udnso")
-base_value = 10.0
-consumption_rate_per_sec = 1.0
+base_value = 25.0
+consumption_rate_per_sec = 5.0
 base_respawn_timer = 5.0
 _min_size = 200.0
 _max_size = 250.0

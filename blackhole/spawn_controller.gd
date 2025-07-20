@@ -23,5 +23,12 @@ func handle_consumable_queue_free(node: ConsumeableObject):
 	spawn_points.erase(node.uuid)
 	node.queue_free()
 	
-	await get_tree().create_timer(GameState.config_lookup.get(ref.type).base_respawn_timer).timeout
-	_spawn_util.spawn_consumable_object(self, ref.type, ref.spawn_point)
+	if ref.type == CC.ConsumableType.ASTEROID_SM or ref.type == CC.ConsumableType.ASTEROID_LG:
+		if GameState.stop_spawning_smalls == true:
+			var random_chance = randf() 
+			if random_chance <= 0.005:
+				await get_tree().create_timer(GameState.config_lookup.get(ref.type).base_respawn_timer).timeout
+				_spawn_util.spawn_consumable_object(self, CC.ConsumableType.PLANET_SM, ref.spawn_point)
+			if random_chance <= 0.05:
+				await get_tree().create_timer(GameState.config_lookup.get(ref.type).base_respawn_timer).timeout
+				_spawn_util.spawn_consumable_object(self, ref.type, ref.spawn_point)
