@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_64pfl")
-_min_size = 0.2
-_max_size = 0.8
+_min_size = 0.5
+_max_size = 1.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([])
 _min_velocity = Vector3(-0.06, 0, -0.05)

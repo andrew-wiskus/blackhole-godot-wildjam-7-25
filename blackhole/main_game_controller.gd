@@ -19,6 +19,8 @@ func handle_mass_efficiency_upgrade(level_config):
 	mass_efficiency = initial_mass_efficiency*level_config.value
 func handle_passive_mass_upgrade(level_config):
 	main_character.set_passive_mass(level_config.value)
+func handle_max_zoom_upgrade(level_config):
+	main_character.camera.increase_max_zoom(level_config.value)
 func update_currency_hud():
 	var label_text = "MASS CONSUMED:\n" + str(GameState.currency) + " kg"
 	currency_label.text = label_text

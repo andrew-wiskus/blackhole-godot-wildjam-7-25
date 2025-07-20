@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_udnso")
-_min_size = 120.0
-_max_size = 150.0
+_min_size = 80.0
+_max_size = 110.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([])
 _min_velocity = Vector3(0, 0, 0)

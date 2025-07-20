@@ -94,7 +94,8 @@ texture = ExtResource("3_24jsw")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
 amount = 40
-lifetime = 32.24
+lifetime = 35.02
+preprocess = 2.07
 collision_base_size = 3.86
 visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
 local_coords = true
