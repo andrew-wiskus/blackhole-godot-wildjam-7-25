@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=39 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="2_82xsv"]
@@ -15,13 +15,14 @@
 [ext_resource type="Resource" uid="uid://c7fl57er0sg3u" path="res://Actors/Consumable Object Configs/asteroid_lg_config.tres" id="8_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://d1g2klsm0e82" path="res://Assets/astroids/a_lg_4.png" id="9_1u8w0"]
 [ext_resource type="Resource" uid="uid://chdx73brdevmk" path="res://Actors/Consumable Object Configs/planet_sm_config.tres" id="9_w48qg"]
+[ext_resource type="Script" uid="uid://dukoe8usyc01c" path="res://Assets/Particles/repelling_particles.gd" id="10_0odxb"]
 [ext_resource type="Resource" uid="uid://b7us44gb6nx8d" path="res://Actors/Consumable Object Configs/planet_lg_config.tres" id="10_vivmo"]
 [ext_resource type="Resource" uid="uid://bnnsrom7pih71" path="res://Actors/Consumable Object Configs/star_sm_config.tres" id="11_2cqfq"]
 [ext_resource type="Resource" uid="uid://cu2c5kqhou2yy" path="res://Actors/Consumable Object Configs/star_lg_config.tres" id="12_yaehf"]
 [ext_resource type="Script" uid="uid://cpcum24i1xlux" path="res://fix_paper_sprite_z_levels.gd" id="18_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://bhci000xmt8cc" path="res://Assets/paper_sheet_texture_4k.png" id="19_xuqvo"]
 [ext_resource type="PackedScene" uid="uid://bi1rpbm67j8q1" path="res://Assets/Sound/sound_node.tscn" id="20_qsp4k"]
-[ext_resource type="Script" uid="uid://dp4h2ubs20gi1" path="res://spawn_controller.gd" id="22_1u8w0"]
+[ext_resource type="Script" path="res://spawn_controller.gd" id="22_1u8w0"]
 [ext_resource type="Script" uid="uid://bn50goda8fbf2" path="res://spawn_area.gd" id="22_d13ii"]
 [ext_resource type="Material" uid="uid://dnk8mb4tav6bd" path="res://Assets/_debug_materials/debug__yellow.tres" id="22_ryguw"]
 
@@ -203,6 +204,7 @@ lifetime = 3.14
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_d13ii")
 draw_pass_1 = SubResource("PlaneMesh_lswn8")
+script = ExtResource("10_0odxb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 210.562, 0.722661)
