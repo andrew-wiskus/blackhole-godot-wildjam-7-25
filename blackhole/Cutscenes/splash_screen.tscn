@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn2h7qr75ow80"]
+
+[ext_resource type="Texture2D" uid="uid://bm6ruy008ddqc" path="res://Cutscenes/Capture.PNG" id="1_5dhc6"]
+[ext_resource type="Script" uid="uid://rjs5wbdsalos" path="res://Cutscenes/splash_screen.gd" id="1_kyg01"]
+[ext_resource type="Texture2D" uid="uid://csew3rjqdw1my" path="res://Cutscenes/Consume.PNG" id="2_kyg01"]
+[ext_resource type="Texture2D" uid="uid://duljy5wm4t8lp" path="res://Cutscenes/wildcard.PNG" id="3_xb173"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7x28f"]
+bg_color = Color(0.152941, 0.203922, 0.305882, 1)
+
+[node name="Splash Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyg01")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7x28f")
+
+[node name="Capture" type="Sprite2D" parent="PanelContainer/Panel"]
+position = Vector2(433, 474)
+texture = ExtResource("1_5dhc6")
+
+[node name="Consume" type="Sprite2D" parent="PanelContainer/Panel"]
+position = Vector2(632, 155)
+texture = ExtResource("2_kyg01")
+
+[node name="Wildcard" type="Sprite2D" parent="PanelContainer/Panel"]
+position = Vector2(788, 471)
+texture = ExtResource("3_xb173")
+
+[node name="Label" type="Label" parent="PanelContainer/Panel"]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 657.0
+offset_right = 665.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 26
+text = "Loading..."
