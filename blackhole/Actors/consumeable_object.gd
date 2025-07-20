@@ -3,14 +3,18 @@ class_name ConsumeableObject extends RigidBody3D
 @export var use_custom_sprite: bool = false
 @export var particles: GPUParticles3D
 
-@onready var _gravity_area_3d = $GravityArea3D
-@onready var _gravity_collision_shape = $GravityArea3D/CollisionShape3D
-@onready var _collision_detector = $CollisionShape3D
-@onready var _sprite = $"Sprite3D"
+@onready var _gravity_area_3d: Area3D = $GravityArea3D
+@onready var _gravity_collision_shape: CollisionShape3D = $GravityArea3D/CollisionShape3D
+@onready var _collision_detector: CollisionShape3D = $CollisionShape3D
+@onready var _sprite_container: Node3D = $"Sprite Container"
+@onready var _image__sprite: Sprite3D = $"Sprite Container/Image - Sprite"
+@onready var _image__rotation_material: RotationShaderSprite = $"Sprite Container/Image - Rotation Material"
 
 var type: CC.ConsumableType = CC.ConsumableType.NOT_SET
 var general_size 
 var _is_on_screen = false
+var object_display_uses_sprite3D = false
+
 @onready var screen_notifier := $VisibleOnScreenNotifier3D
 func _ready() -> void:
 	_on_screen_exited()
@@ -28,41 +32,49 @@ func _on_screen_entered():
 func _on_screen_exited():
 	_is_on_screen = false
 	set_physics_process(false)
-	# Keep visible = true for a moment to avoid pop-in
-	# Or set visible = false for maximum performance
 
 func init(
 		type_id: CC.ConsumableType, 
 		grav_str: float, 
 		size_value: float, 
-		texture: Texture2D, 
 		velocity_direction: Vector3, 
 		velocity_mag: float, 
 		spin_direction: Vector3, 
 		spin_speed: float,
+		config: BaseConsumable
 	):
-	
+	_gravity_area_3d.monitoring = false # updated in set_size
 	type = type_id
 	_gravity_area_3d.gravity = grav_str
 	set_size(size_value)
-	if size_value <=50: $GravityArea3D.monitoring = false
-	if use_custom_sprite != true:
-		_sprite.texture = texture
+
+	if use_custom_sprite != true: 
+		set_object_display_for_type(config)
+	else: # ^ think we can remove this if/else and just `set_object_display_for_type(config)`
+		_image__sprite.show()
+		_image__rotation_material.hide()
+		object_display_uses_sprite3D = true
 		
 	linear_velocity = velocity_direction * velocity_mag
 	#angular_velocity = spin_direction * spin_speed
 
 
-func set_size(to_size): # set to 20.0
-	general_size = to_size
+func set_size(target_size): # set to 20.0
+	general_size = target_size
 	_collision_detector.scale = Vector3.ONE * general_size
 
 	_gravity_collision_shape.scale = Vector3.ONE * general_size
-	_sprite.scale = Vector3.ONE * general_size
+	set_object_display_scale(general_size)
 	if particles:
-		particles.multiplier_particle_size(to_size)
+		particles.multiplier_particle_size(target_size)
+	
 	if has_node("Player_Vicinity_Check"):
 		$Player_Vicinity_Check.get_child(0).scale = Vector3.ONE * general_size
+		
+	if target_size <= 50: 
+		monitor_gravity(false)
+	else:
+		monitor_gravity(true)
 
 func set_size_multiplier(multi): # increase by 2.0x
 	var new_size = general_size * multi
@@ -71,9 +83,34 @@ func set_size_multiplier(multi): # increase by 2.0x
 func on_death():
 	var t = Timer.new()
 	t.connect("timeout", _on_death_timer_timeout)
-	$Sprite3D.hide()
+	hide_object_display()
 	add_child(t)
 	t.start()
+
 func _on_death_timer_timeout() -> void:
 	self.queue_free()
 	pass # Replace with function body.
+
+func set_object_display_for_type(config: BaseConsumable):
+	var sprites = config._sprite_list
+	var materials = config._material_list
+	if len(materials) > 0:
+		var material = materials.pick_random()
+		_image__rotation_material.set_material(material)
+		_image__sprite.hide()
+		return
+	
+	_image__rotation_material.hide()
+	_image__sprite.texture = config.get_sprite()
+
+func set_object_display_scale(size_value):
+	var updated_scale = Vector3.ONE * general_size
+	_sprite_container.scale = updated_scale
+
+func hide_object_display():
+	_image__sprite.hide()
+	_image__rotation_material.hide()
+	
+func monitor_gravity(should_monitor):
+	_gravity_area_3d.monitoring = false # should_monitor
+	

@@ -665,34 +665,36 @@ polygon = PackedVector2Array(-1470.79, -417.656, -1649.37, -465.05, -1739.92, -1
 [node name="Level 1 Asteroids - Planets" type="Node3D" parent="."]
 
 [node name="Asteroid_System_Small" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
-total_asteroids = 450
+total_asteroids = 200
 spawn_rate = 0.0
 consumable_types = Array[int]([1])
 boundary_radius = 200.0
-min_distance_from_center = 0.0
+min_distance_from_center = 50.0
 
 [node name="Asteroid_System_Small2" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
 total_asteroids = 55
 spawn_rate = 0.0
 consumable_types = Array[int]([1, 2])
-boundary_radius = 1500.0
-min_distance_from_center = 1000.0
+boundary_radius = 250.0
+min_distance_from_center = 180.0
 
 [node name="Asteroid_System_Small3" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
-total_asteroids = 55
+total_asteroids = 5
 spawn_rate = 0.0
-consumable_types = Array[int]([2])
-boundary_radius = 1500.0
-min_distance_from_center = 800.0
+consumable_types = Array[int]([3])
+boundary_radius = 350.0
+min_distance_from_center = 250.0
 
 [node name="Asteroid_System_Small5" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
+visible = false
 total_asteroids = 80
 spawn_rate = 0.0
-consumable_types = Array[int]([3, 2])
-boundary_radius = 3200.0
-min_distance_from_center = 3000.0
+consumable_types = Array[int]([4])
+boundary_radius = 1250.0
+min_distance_from_center = 800.0
 
 [node name="Asteroid_System_Small4" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
+visible = false
 total_asteroids = 20
 spawn_rate = 0.0
 consumable_types = Array[int]([4, 5])

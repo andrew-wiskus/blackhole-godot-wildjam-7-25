@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("1_2t0eh")
-_min_size = 25.0
-_max_size = 45.0
+_min_size = 5.0
+_max_size = 5.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([])
 _material_list = Array[Material]([ExtResource("1_4l7kp"), ExtResource("2_n3h3q")])

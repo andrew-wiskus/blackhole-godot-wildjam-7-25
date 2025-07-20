@@ -6,10 +6,11 @@
 
 [resource]
 script = ExtResource("2_l88q3")
-_min_size = 3.0
-_max_size = 5.0
+_min_size = 10.0
+_max_size = 15.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([ExtResource("1_l88q3"), ExtResource("2_dls3u")])
+_material_list = Array[Material]([])
 _min_velocity = Vector3(0, 0, 0)
 _max_velocity = Vector3(0, 0, 0)
 _min_magnitude = 0.1

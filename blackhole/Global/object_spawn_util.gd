@@ -88,11 +88,11 @@ func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn
 		type, 
 		config.get_gravity(), 
 		config.random_size(), 
-		config.get_sprite(), 
 		config.velocity_dir(), 
 		config.velocity_magnitude(), 
 		config.spin_dir(), 
-		config.spin_magnitude()
+		config.spin_magnitude(),
+		config
 	)
 	
 	return instance
