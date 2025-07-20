@@ -10,6 +10,7 @@ var currency: int = 100:
 var current_upgrade_levels: Dictionary[ShopConfig.UpgradeID, int] = {}
 var game_paused: bool = false
 var game_controller: GameController
+var config_lookup: Dictionary[CC.ConsumableType, BaseConsumable] = {}
 
 func _ready():
 	_load_game_state()
@@ -44,4 +45,21 @@ func try_purchase(cost: int):
 
 func on_consume_increase_currency(amount: float):
 	currency += amount*game_controller.mass_efficiency
+
+func handle_consume_object(type: CC.ConsumableType, size: float):
+	currency += 1.0
+
+func player_can_instant_consume(type: CC.ConsumableType):
+	if type == CC.ConsumableType.ASTEROID_SM:
+		return true
+	else:
+		return false # TODO: check upgrades to see if you can instant consume
+		
+func get_consume_rate_per_sec(type: CC.ConsumableType):
+	var config: BaseConsumable = config_lookup.get(type) as BaseConsumable
+	return config.consumption_rate_per_sec # TODO: alter depending on upgrades
 	
+func gravity_scale_for_type(type):
+	if type == CC.ConsumableType.ASTEROID_SM:
+		return 1.5
+	return 0.0

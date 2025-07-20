@@ -9,6 +9,7 @@ class_name ConsumeableObject extends RigidBody3D
 @onready var _sprite_container: Node3D = $"Sprite Container"
 @onready var _image__sprite: Sprite3D = $"Sprite Container/Image - Sprite"
 @onready var _image__rotation_material: RotationShaderSprite = $"Sprite Container/Image - Rotation Material"
+@onready var screen_notifier := $VisibleOnScreenNotifier3D
 
 var type: CC.ConsumableType = CC.ConsumableType.NOT_SET
 var general_size 
@@ -18,7 +19,6 @@ var uuid: String
 var config: BaseConsumable
 var _spawn_controller: SpawnController
 
-@onready var screen_notifier := $VisibleOnScreenNotifier3D
 func _ready() -> void:
 	_on_screen_exited()
 	_collision_detector.shape = _collision_detector.shape.duplicate()
@@ -62,6 +62,7 @@ func init(
 		object_display_uses_sprite3D = true
 		
 	linear_velocity = velocity_direction * velocity_mag
+	update_gravity_scale()
 
 
 func set_size(target_size): # set to 20.0
@@ -69,6 +70,7 @@ func set_size(target_size): # set to 20.0
 	_collision_detector.scale = Vector3.ONE * general_size
 
 	_gravity_collision_shape.scale = Vector3.ONE * general_size
+
 	set_object_display_scale(general_size)
 	if particles:
 		particles.multiplier_particle_size(target_size)
@@ -86,15 +88,7 @@ func set_size_multiplier(multi): # increase by 2.0x
 	set_size(new_size)
 
 func on_death():
-	var t = Timer.new()
-	t.connect("timeout", func(): _spawn_controller.handle_consumable_queue_free(self))
-	hide_object_display()
-	add_child(t)
-	t.start()
-
-func _on_death_timer_timeout() -> void:
-	self.queue_free()
-	pass # Replace with function body.
+	_spawn_controller.handle_consumable_queue_free(self)
 
 func set_object_display_for_type():
 	var sprites = config._sprite_list
@@ -119,3 +113,25 @@ func hide_object_display():
 func monitor_gravity(should_monitor):
 	_gravity_area_3d.monitoring = false # should_monitor
 	
+# event listener fired from @
+func handle_collision_with_player(delta: float):
+	const MIN_SIZE_FOR_QUEUE_FREE = 0.2 
+	
+	if GameState.player_can_instant_consume(type):
+		GameState.handle_consume_object(type, general_size)
+		_spawn_controller.handle_consumable_queue_free(self)
+	else:
+		var consume_rate_per_sec = GameState.get_consume_rate_per_sec(type)
+		var consumed_this_tick = consume_rate_per_sec * delta
+		var new_size = general_size - consumed_this_tick
+		
+		if new_size <= MIN_SIZE_FOR_QUEUE_FREE:
+			_spawn_controller.handle_consumable_queue_free(self)
+			GameState.handle_consume_object(type, max(0, new_size))
+			print("Consumed to min size -> queue free :D")
+		else: 
+			set_size(new_size)
+			GameState.handle_consume_object(type, consumed_this_tick)
+
+func update_gravity_scale():
+	gravity_scale = GameState.gravity_scale_for_type(type)

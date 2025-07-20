@@ -8,9 +8,10 @@
 [resource]
 script = ExtResource("1_64pfl")
 base_value = 10.0
+consumption_rate_per_sec = 1.0
 base_respawn_timer = 5.0
-_min_size = 0.5
-_max_size = 1.2
+_min_size = 1.0
+_max_size = 1.5
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([ExtResource("1_axvoe"), ExtResource("2_2hak4"), ExtResource("3_ifl70")])
 _material_list = Array[Material]([])

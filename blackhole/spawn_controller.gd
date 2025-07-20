@@ -12,6 +12,8 @@ func save_spawn_reference(node: ConsumeableObject, spawn_point: Vector3):
 	node_lookup.set(node.uuid, node)
 
 func handle_consumable_queue_free(node: ConsumeableObject):
+	if node.type != CC.ConsumableType.ASTEROID_SM:
+		print("Respawning...")
 	if !node_lookup.has(node.uuid):
 		return
 	
@@ -21,5 +23,5 @@ func handle_consumable_queue_free(node: ConsumeableObject):
 	spawn_points.erase(node.uuid)
 	node.queue_free()
 	
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(GameState.config_lookup.get(ref.type).base_respawn_timer).timeout
 	_spawn_util.spawn_consumable_object(self, ref.type, ref.spawn_point)

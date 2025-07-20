@@ -101,6 +101,7 @@ shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997409, 0)
+visible = false
 amount = 12
 lifetime = 106.72
 preprocess = 10.0

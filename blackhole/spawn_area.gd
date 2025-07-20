@@ -12,18 +12,20 @@ extends Node3D
 var _spawn_util: ObjectSpawnUtil
 var _spawn_controller: Node3D
 var _polygon_points: PackedVector2Array
+var _spawn_counter: int = 1
 
 func _ready() -> void:
+	
 	var drawn_shape_points = spawn_boundary.polygon.duplicate()
 	for point in drawn_shape_points:
-		_polygon_points.append(Vector2(point.x + global_position.x, point.y + global_position.z))
+		_polygon_points.append(Vector2(point.x + global_position.x + spawn_boundary.global_position.x, point.y + global_position.z + spawn_boundary.global_position.y))
 	_spawn_util = get_tree().get_first_node_in_group("object_spawn_util")
 	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
 	
 	await _spawn_controller.ready
 	
 	spawn_object_field(CC.ConsumableType.ASTEROID_SM, sm_asteroid_amount)
-	spawn_object_field(CC.ConsumableType.ASTEROID_LG, sm_asteroid_amount)
+	spawn_object_field(CC.ConsumableType.ASTEROID_LG, lg_asteroid_amount)
 	spawn_object_field(CC.ConsumableType.PLANET_SM, sm_planet_amount)
 	spawn_object_field(CC.ConsumableType.PLANET_LG, lg_planet_amount)
 	spawn_object_field(CC.ConsumableType.STAR_SM, sm_star_amount)
@@ -34,10 +36,13 @@ func _ready() -> void:
 func spawn_object_field(type, amount):
 	
 	var spawn_points = get_gaussian_distribution(_polygon_points, amount)
+	print(len(spawn_points))
 	
 	for point in spawn_points:
-		var spawn_point = Vector3(point.x, 0, point.y)
+		await get_tree().create_timer(0.2).timeout
+		var spawn_point = Vector3(point.x, _spawn_counter * -0.01, point.y)
 		var object_node = _spawn_util.spawn_consumable_object(_spawn_controller, type, spawn_point)
+		_spawn_counter += 1
 
 
 func get_gaussian_distribution(polygon: Array[Vector2], num_points: int) -> Array[Vector2]:

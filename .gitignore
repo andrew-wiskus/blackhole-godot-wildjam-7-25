@@ -18,3 +18,7 @@ Desktop.ini
 .idea/
 *.sublime-project
 *.sublime-workspace 
+
+exports/*
+blackhole/exports/blackholde_2025-07-20_11-16-39.zip
+blackhole/exports/web_export_1.zip
