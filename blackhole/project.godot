@@ -35,12 +35,6 @@ window/size/window_width_override=3840
 window/size/window_height_override=2160
 window/stretch/mode="canvas_items"
 
-[file_customization]
-
-folder_colors={
-"res://Gravity/Archive/": "red"
-}
-
 [global_group]
 
 shop_ui_upgrade_nodes=""
@@ -115,4 +109,5 @@ Esc={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

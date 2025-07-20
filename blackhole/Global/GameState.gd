@@ -44,6 +44,7 @@ func try_purchase(cost: int):
 	return true
 
 func on_consume_increase_currency(amount: float):
+	if !game_controller: game_controller = get_tree().get_first_node_in_group("game_controller")
 	currency += amount*game_controller.mass_efficiency
 
 func handle_consume_object(type: CC.ConsumableType, size: float):

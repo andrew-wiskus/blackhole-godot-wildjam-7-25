@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bphqsqkanbwj"]
-
-[ext_resource type="PackedScene" uid="uid://bydybg2a467ws" path="res://Gravity/Archive/gravitational_area.tscn" id="1_3h1mr"]
-
-[node name="Gravity Node" type="Node2D"]
-
-[node name="Gravitational Area" parent="." instance=ExtResource("1_3h1mr")]

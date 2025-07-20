@@ -63,6 +63,7 @@ offset_bottom = 5072.0
 upgrade_id = 4
 
 [node name="Upgrade -  Zoom" parent="." instance=ExtResource("3_4o111")]
+layout_mode = 0
 offset_left = 4964.0
 offset_top = 5119.0
 offset_right = 4995.0
