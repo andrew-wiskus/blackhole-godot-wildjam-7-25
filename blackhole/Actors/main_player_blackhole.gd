@@ -73,26 +73,14 @@ func _physics_process(delta: float):
 		debug_velocity_line.draw_velocity_line(linear_velocity, immediate_mesh, 100.0)
 
 func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
-	if body == $".":
-		return
-	
-	if body is ConsumeableObject:
-		if (body.general_size / 2.0) <= general_size: 
-			var amount = ceil(general_size * 10) # need to add/adjust a new value instead of general size.. add into configs.. after the suck-particle system so we can do both at once
-			GameState.on_consume_increase_currency(amount)
-			_spawn_floating_number_go_up(amount)
-			_audio_controller.play_mass_consumed_sound()
-			body.on_death()
-		else:
-			#spawn particles on body
-			pass
+	pass
 
 func _update_components_for_size(size):
 	general_size = size
 	$"Blackhole Animated Sprite".scale  = Vector3.ONE * size
 	$CollisionShape3D.scale = Vector3.ONE * size
 	$Rigid_Body_Gravity_Area/CollisionShape3D.scale = Vector3.ONE * size
-	$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
+	#$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
 	$GPUParticlesAttractorSphere3D.scale = Vector3.ONE * size
 	$GPUParticlesCollisionSphere3D.scale = Vector3.ONE * size
 	

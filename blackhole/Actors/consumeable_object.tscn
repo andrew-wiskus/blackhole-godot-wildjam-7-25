@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://qk5awbg5lktq"]
+[gd_scene load_steps=17 format=3 uid="uid://qk5awbg5lktq"]
 
 [ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_is3l8"]
 [ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_lxvm2"]
@@ -14,29 +14,38 @@ radius = 2.24012
 [sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
 radius = 6.12942
 
-[sub_resource type="Curve" id="Curve_rb2ds"]
-_limits = [-200.0, 5.0, 0.0, 1.0]
+[sub_resource type="Curve" id="Curve_lxvm2"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2oog2"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vsahu"]
-curve = SubResource("Curve_rb2ds")
+[sub_resource type="Curve" id="Curve_nhfy3"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uafo2"]
+curve_x = SubResource("Curve_lxvm2")
+curve_y = SubResource("Curve_2oog2")
+curve_z = SubResource("Curve_nhfy3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2oog2"]
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
-emission_ring_radius = 52.74
-emission_ring_inner_radius = 50.0
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 2.0
 emission_ring_cone_angle = 36.93
 direction = Vector3(0, 1, 0)
-spread = 0.0
-orbit_velocity_min = 9.49949e-08
-orbit_velocity_max = 9.49949e-08
-radial_velocity_min = -2.23517e-05
-radial_velocity_max = 8.22998
+orbit_velocity_min = -0.428
+orbit_velocity_max = 0.395
+orbit_velocity_curve = SubResource("CurveXYZTexture_uafo2")
 gravity = Vector3(0, 0, 0)
-radial_accel_curve = SubResource("CurveTexture_vsahu")
+scale_min = 0.2
 collision_mode = 2
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1uqp5"]
@@ -45,8 +54,7 @@ shading_mode = 0
 [sub_resource type="SphereMesh" id="SphereMesh_nhfy3"]
 resource_local_to_scene = true
 material = SubResource("ORMMaterial3D_1uqp5")
-radius = 0.1
-height = 0.2
+height = 0.7
 radial_segments = 5
 rings = 5
 
@@ -61,7 +69,7 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_onj7j")
 script = ExtResource("1_is3l8")
-particles = NodePath("Repelling Particles")
+particles = NodePath("Orbiting Particles")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_onj7j")
@@ -83,10 +91,10 @@ shape = SubResource("SphereShape3D_x8i04")
 axis = 1
 texture = ExtResource("3_24jsw")
 
-[node name="Repelling Particles" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-amount = 15
-lifetime = 1.64
+[node name="Orbiting Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.465, 0, 0, 0, 1.465, 0, 0, 0, 1.465, 0, 0, 0)
+amount = 40
+lifetime = 32.24
 collision_base_size = 60.67
 visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
 process_material = SubResource("ParticleProcessMaterial_2oog2")
@@ -100,8 +108,6 @@ script = ExtResource("5_2oog2")
 shape = SubResource("SphereShape3D_uafo2")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-
-[node name="Death_Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Player_Vicinity_Check" to="Player_Vicinity_Check" method="_on_body_entered"]
 [connection signal="body_exited" from="Player_Vicinity_Check" to="Player_Vicinity_Check" method="_on_body_exited"]

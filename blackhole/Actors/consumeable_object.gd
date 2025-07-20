@@ -60,12 +60,20 @@ func set_size(to_size): # set to 20.0
 	_gravity_collision_shape.scale = Vector3.ONE * general_size
 	_sprite.scale = Vector3.ONE * general_size
 	if particles:
-		particles.multiplier_particle_size(to_size*.7)
+		particles.multiplier_particle_size(to_size)
 	if has_node("Player_Vicinity_Check"):
 		$Player_Vicinity_Check.get_child(0).scale = Vector3.ONE * general_size
 
 func set_size_multiplier(multi): # increase by 2.0x
 	var new_size = general_size * multi
 	set_size(new_size)
+
 func on_death():
+	var t = Timer.new()
+	t.connect("timeout", _on_death_timer_timeout)
+	$Sprite3D.hide()
+	add_child(t)
+	t.start()
+func _on_death_timer_timeout() -> void:
 	self.queue_free()
+	pass # Replace with function body.
