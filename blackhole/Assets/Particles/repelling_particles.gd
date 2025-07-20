@@ -3,6 +3,5 @@ extends GPUParticles3D
 
 func multiplier_particle_size(multiplier):
 	draw_pass_1.size = initial_particle_size*multiplier
-	
 	scale = multiplier*Vector3.ONE
 	pass

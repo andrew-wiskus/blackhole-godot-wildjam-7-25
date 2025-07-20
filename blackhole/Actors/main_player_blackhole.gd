@@ -83,7 +83,7 @@ func _update_components_for_size(size):
 	#$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
 	$GPUParticlesAttractorSphere3D.scale = Vector3.ONE * size
 	$GPUParticlesCollisionSphere3D.scale = Vector3.ONE * size
-	$GPUParticles3D.scale = Vector3.ONE * size
+	$GPUParticles3D.multiplier_particle_size(size)
 func set_gravity_multiplier(multiplier):
 	$"Rigid_Body_Gravity_Area".gravity = initial_gravity * multiplier
 	$GPUParticlesAttractorSphere3D.strength = _initial_gpu_attractr_gravity*multiplier
