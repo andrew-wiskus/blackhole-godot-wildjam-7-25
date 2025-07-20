@@ -14,14 +14,19 @@ var type: CC.ConsumableType = CC.ConsumableType.NOT_SET
 var general_size 
 var _is_on_screen = false
 var object_display_uses_sprite3D = false
+var uuid: String
+var config: BaseConsumable
+var _spawn_controller: SpawnController
 
 @onready var screen_notifier := $VisibleOnScreenNotifier3D
 func _ready() -> void:
 	_on_screen_exited()
 	_collision_detector.shape = _collision_detector.shape.duplicate()
 	_gravity_collision_shape.shape = _gravity_collision_shape.shape.duplicate()
+	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
 	screen_notifier.screen_entered.connect(_on_screen_entered)
 	screen_notifier.screen_exited.connect(_on_screen_exited)
+	uuid = "consumable_obj__" + str(randi_range(0, 9999999))
 
 func _on_screen_entered():
 	_is_on_screen = true
@@ -41,22 +46,22 @@ func init(
 		velocity_mag: float, 
 		spin_direction: Vector3, 
 		spin_speed: float,
-		config: BaseConsumable
+		_config: BaseConsumable
 	):
 	type = type_id
+	config = _config
 	_gravity_area_3d.gravity = grav_str
 	_gravity_area_3d.monitoring = false # updated in set_size
 	set_size(size_value)
 
 	if use_custom_sprite != true: 
-		set_object_display_for_type(config)
+		set_object_display_for_type()
 	else: # ^ think we can remove this if/else and just `set_object_display_for_type(config)`
 		_image__sprite.show()
 		_image__rotation_material.hide()
 		object_display_uses_sprite3D = true
 		
 	linear_velocity = velocity_direction * velocity_mag
-	#angular_velocity = spin_direction * spin_speed
 
 
 func set_size(target_size): # set to 20.0
@@ -82,7 +87,7 @@ func set_size_multiplier(multi): # increase by 2.0x
 
 func on_death():
 	var t = Timer.new()
-	t.connect("timeout", _on_death_timer_timeout)
+	t.connect("timeout", func(): _spawn_controller.handle_consumable_queue_free(self))
 	hide_object_display()
 	add_child(t)
 	t.start()
@@ -91,7 +96,7 @@ func _on_death_timer_timeout() -> void:
 	self.queue_free()
 	pass # Replace with function body.
 
-func set_object_display_for_type(config: BaseConsumable):
+func set_object_display_for_type():
 	var sprites = config._sprite_list
 	var materials = config._material_list
 	if len(materials) > 0:

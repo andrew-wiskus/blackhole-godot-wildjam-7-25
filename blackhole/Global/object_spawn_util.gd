@@ -53,13 +53,16 @@ class_name ObjectSpawnUtil extends Node
 
 @export var star_lg_overrides: BaseConsumable
 
+var _spawn_controller: SpawnController
 
+func _ready() -> void:
+	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
 
-func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn_position: Vector3):
+func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn_position: Vector3) -> ConsumeableObject:
 	var config: BaseConsumable
 	var scene = preload("res://Actors/consumeable_object.tscn")
 	if type == CC.ConsumableType.ASTEROID_SM: 
-			config = global_settings if asteroid_sm_overrides == null else asteroid_sm_overrides.init(global_settings, asteroid_sm_override_gravity, asteroid_sm_override_size, asteroid_sm_override_spin, asteroid_sm_override_velocity)
+		config = global_settings if asteroid_sm_overrides == null else asteroid_sm_overrides.init(global_settings, asteroid_sm_override_gravity, asteroid_sm_override_size, asteroid_sm_override_spin, asteroid_sm_override_velocity)
 	
 	if type == CC.ConsumableType.ASTEROID_LG: 
 		config = global_settings if asteroid_lg_overrides == null else asteroid_lg_overrides.init(global_settings, asteroid_lg_override_gravity, asteroid_lg_override_size, asteroid_lg_override_spin, asteroid_lg_override_velocity)
@@ -76,7 +79,8 @@ func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn
 	if type == CC.ConsumableType.STAR_LG:
 		config = global_settings if star_lg_overrides == null else star_lg_overrides.init(global_settings, star_lg_override_gravity, star_lg_override_size, star_lg_override_spin, star_lg_override_velocity)
 	
-	
+	if config == null:
+		print("???", type)
 	
 	
 	var instance := scene.instantiate() as ConsumeableObject
@@ -95,4 +99,8 @@ func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn
 		config
 	)
 	
+	_spawn_controller.save_spawn_reference(instance, spawn_position)
+	
+	print("SPAWNED NODE!")
+
 	return instance

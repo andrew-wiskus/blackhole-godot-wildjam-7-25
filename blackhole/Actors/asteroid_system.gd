@@ -32,12 +32,14 @@ func _ready():
 	_noise.seed = _rng.randi()
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	_noise.fractal_type = FastNoiseLite.FRACTAL_FBM
+	_noise.get_noise_2d(0, 0)
 	
 	_player_node = get_tree().get_first_node_in_group("player_node")
 	_object_spawner = get_tree().get_first_node_in_group("object_spawn_util")
 	
-	if spawn_on_ready:
-		spawn_asteroid_field(total_asteroids)
+	if visible:
+		if spawn_on_ready:
+			spawn_asteroid_field(total_asteroids)
 
 func _process(delta):
 	if continuous_spawning:
@@ -61,7 +63,7 @@ func spawn_single_object():
 func _get_spawn_position() -> Vector3:
 	var position: Vector3
 
-		# Use noise to create more natural clustering
+	# Use noise to create more natural clustering
 	var angle = _rng.randf() * TAU  # Random angle in radians
 	var distance = _rng.randf_range(min_distance_from_center, boundary_radius)
 	
