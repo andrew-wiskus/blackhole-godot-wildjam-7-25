@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn8notrn6q2bl"]
+
+[ext_resource type="Script" uid="uid://b43e4r0o7uj5h" path="res://Assets/blackhole/blackhole_character_animator.gd" id="1_rgrus"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="1_xq8jd"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="2_rgrus"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="3_61iue"]
+[ext_resource type="Texture2D" uid="uid://d1ka7ekscnfnx" path="res://Assets/blackhole/eye_white.png" id="4_82rs5"]
+[ext_resource type="Texture2D" uid="uid://bvad76jge7r6d" path="res://Assets/blackhole/eye_iris.png" id="5_7miul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv5a0"]
+shading_mode = 0
+albedo_color = Color(0.819608, 0, 0, 1)
+
+[node name="Blackhole Animated Sprite" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -7.10543e-15, 0, 7.10543e-15, 1, 0, 0, 0)
+script = ExtResource("1_rgrus")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("1_xq8jd")
+script = ExtResource("2_rgrus")
+SPEED = 25.0
+
+[node name="EYE_RIGHT__EYEBALL" type="Sprite3D" parent="AnimatedSprite3D"]
+transform = Transform3D(0.495, 0, 0, 0, 0.495, 0, 0, 0, 0.495, 0.75, 0, 0.5)
+billboard = 1
+texture = ExtResource("4_82rs5")
+region_enabled = true
+region_rect = Rect2(63, 41.5, 346, 341)
+
+[node name="EYE_RIGHT__IRIS" type="Sprite3D" parent="AnimatedSprite3D/EYE_RIGHT__EYEBALL"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.47033e-22, 0, 8.47033e-22, 1, 0, 0, 0.5)
+billboard = 1
+texture = ExtResource("5_7miul")
+
+[node name="EYE_LEFT__EYEBALL" type="Sprite3D" parent="AnimatedSprite3D"]
+transform = Transform3D(0.495, 0, 0, 0, 0.495, 0, 0, 0, 0.495, -0.75, 0, 0.5)
+billboard = 1
+texture = ExtResource("4_82rs5")
+region_enabled = true
+region_rect = Rect2(63, 41.5, 346, 341)
+
+[node name="EYE_LEFT__IRIS" type="Sprite3D" parent="AnimatedSprite3D/EYE_LEFT__EYEBALL"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.13025e-21, 0, 1.13025e-21, 1, 0, 0, 0.5)
+billboard = 1
+texture = ExtResource("5_7miul")
+
+[node name="SHADOW_TODO" type="Sprite3D" parent="."]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+visible = false
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("3_61iue")
+
+[node name="EDITOR_DEBUG_SPHERE" type="CSGSphere3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 2.84217e-14, 0, -2.84217e-14, 10, 0, 3.05176e-05, 0.603851)
+visible = false
+material = SubResource("StandardMaterial3D_kv5a0")

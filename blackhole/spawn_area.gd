@@ -14,7 +14,9 @@ var _spawn_controller: Node3D
 var _polygon_points: PackedVector2Array
 
 func _ready() -> void:
-	_polygon_points = spawn_boundary.polygon.duplicate()
+	var drawn_shape_points = spawn_boundary.polygon.duplicate()
+	for point in drawn_shape_points:
+		_polygon_points.append(Vector2(point.x + global_position.x, point.y + global_position.z))
 	_spawn_util = get_tree().get_first_node_in_group("object_spawn_util")
 	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
 	

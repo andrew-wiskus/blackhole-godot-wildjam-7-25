@@ -1,14 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://bhelq35441kr6"]
+[gd_scene load_steps=37 format=3 uid="uid://bhelq35441kr6"]
 
 [ext_resource type="Script" uid="uid://cu07qd0smarvj" path="res://main_game_controller.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="2_82xsv"]
 [ext_resource type="Script" uid="uid://bx6ucmmgafusc" path="res://Actors/main_player_camera.gd" id="3_getpj"]
+[ext_resource type="PackedScene" uid="uid://dn8notrn6q2bl" path="res://Assets/blackhole/blackhole_animated_sprite.tscn" id="4_d13ii"]
 [ext_resource type="Shader" uid="uid://b1y0gsr6xsflk" path="res://_archive_/star_bg_1.gdshader" id="4_ryguw"]
-[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="5_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ccy8kdylj8yqp" path="res://Shop/Scenes/shop_ui__main.tscn" id="5_lquwl"]
-[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="6_1u8w0"]
 [ext_resource type="Script" uid="uid://gkdbmm4hkv2y" path="res://Global/object_spawn_util.gd" id="6_272bh"]
-[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="7_0odxb"]
 [ext_resource type="Resource" uid="uid://jnr6mqxkh8wg" path="res://Actors/Consumable Object Configs/_global_defaults.tres" id="7_272bh"]
 [ext_resource type="Resource" uid="uid://b7t4878gb74r" path="res://Actors/Consumable Object Configs/asteroid_sm_config.tres" id="7_dg77c"]
 [ext_resource type="Script" uid="uid://c0bjo2y3cqn0b" path="res://Actors/debug_velocity_line.gd" id="8_lswn8"]
@@ -22,9 +20,10 @@
 [ext_resource type="Script" uid="uid://cpcum24i1xlux" path="res://fix_paper_sprite_z_levels.gd" id="18_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://bhci000xmt8cc" path="res://Assets/paper_sheet_texture_4k.png" id="19_xuqvo"]
 [ext_resource type="PackedScene" uid="uid://bi1rpbm67j8q1" path="res://Assets/Sound/sound_node.tscn" id="20_qsp4k"]
-[ext_resource type="Script" path="res://spawn_controller.gd" id="22_1u8w0"]
+[ext_resource type="Script" uid="uid://dp4h2ubs20gi1" path="res://spawn_controller.gd" id="22_1u8w0"]
 [ext_resource type="Script" uid="uid://bn50goda8fbf2" path="res://spawn_area.gd" id="22_d13ii"]
 [ext_resource type="Material" uid="uid://dnk8mb4tav6bd" path="res://Assets/_debug_materials/debug__yellow.tres" id="22_ryguw"]
+[ext_resource type="Material" uid="uid://bjbffghuxwh6j" path="res://Assets/_debug_materials/debug__orange.tres" id="24_1u8w0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rd3fw"]
 friction = 0.15
@@ -35,10 +34,6 @@ radius = 2.73665
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
 radius = 23.2459
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv5a0"]
-shading_mode = 0
-albedo_color = Color(0.819608, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ttpe4"]
 size = Vector2(1500, 900)
@@ -157,26 +152,7 @@ fov = 121.5
 size = 200.0
 near = 0.001
 
-[node name="Blackhole Animated Sprite" type="Node3D" parent="Main Character"]
-transform = Transform3D(1, 0, 0, 0, 1, -7.10543e-15, 0, 7.10543e-15, 1, 0, 0, 0)
-metadata/_edit_group_ = true
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Main Character/Blackhole Animated Sprite"]
-rotation_edit_mode = 1
-sprite_frames = ExtResource("5_d13ii")
-script = ExtResource("6_1u8w0")
-SPEED = 25.0
-
-[node name="Sprite3D" type="Sprite3D" parent="Main Character/Blackhole Animated Sprite"]
-transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
-visible = false
-modulate = Color(0.214103, 0.214103, 0.214103, 1)
-texture = ExtResource("7_0odxb")
-
-[node name="EDITOR_DEBUG_SPHERE" type="CSGSphere3D" parent="Main Character/Blackhole Animated Sprite"]
-transform = Transform3D(10, 0, 0, 0, 10, 2.84217e-14, 0, -2.84217e-14, 10, 0, 3.05176e-05, 0.603851)
-visible = false
-material = SubResource("StandardMaterial3D_kv5a0")
+[node name="Blackhole Animated Sprite" parent="Main Character" instance=ExtResource("4_d13ii")]
 
 [node name="DebugVelocityLine" type="Node3D" parent="Main Character"]
 script = ExtResource("8_lswn8")
@@ -29572,20 +29548,45 @@ polygon = PackedVector2Array(-1470.79, -417.656, -1649.37, -465.05, -1739.92, -1
 [node name="Spawn Controller" type="Node3D" parent="." groups=["spawn_controller"]]
 script = ExtResource("22_1u8w0")
 
-[node name="SpawnArea_1" type="Node3D" parent="Spawn Controller"]
+[node name="Small Asteroid - Dense - 1" type="Node3D" parent="Spawn Controller"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.204, 0)
 script = ExtResource("22_d13ii")
-sm_asteroid_amount = 100
-lg_asteroid_amount = 1
-sm_planet_amount = 1
-lg_planet_amount = 1
-sm_star_amount = 1
-lg_star_amount = 1
+sm_asteroid_amount = 200
 
-[node name="Spawn Area Boundary" type="CSGPolygon3D" parent="Spawn Controller/SpawnArea_1"]
+[node name="Spawn Area Boundary" type="CSGPolygon3D" parent="Spawn Controller/Small Asteroid - Dense - 1"]
 transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0, 0)
-polygon = PackedVector2Array(-976.643, -353.612, -58.9351, -1052.42, 741.878, -469.855, 544.042, 1038.63, -1195.54, 471.482)
+polygon = PackedVector2Array(-9.31425, -507.919, -344.833, -488.447, -302.894, -85.5242, -566.516, 178.098, -280.426, 453.703, 525.419, 570.536, 715.647, -140.945, 583.836, -400.073, 267.789, -401.571)
 material = ExtResource("22_ryguw")
+
+[node name="Large Asteroid Patch - 1" type="Node3D" parent="Spawn Controller"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.204, 0)
+script = ExtResource("22_d13ii")
+lg_asteroid_amount = 10
+
+[node name="Spawn Area Boundary" type="CSGPolygon3D" parent="Spawn Controller/Large Asteroid Patch - 1"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, -6.10425, -19.8383, 9.53674e-07)
+polygon = PackedVector2Array(471.2, -184.809, 623.803, -251.955, 547.501, 346.247, 281.973, 428.652, 463.57, 79.1926)
+material = ExtResource("24_1u8w0")
+
+[node name="Large Asteroid Patch - 2" type="Node3D" parent="Spawn Controller"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.204, 0)
+script = ExtResource("22_d13ii")
+lg_asteroid_amount = 10
+
+[node name="Spawn Area Boundary" type="CSGPolygon3D" parent="Spawn Controller/Large Asteroid Patch - 2"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, -6.10425, -19.8383, 9.53674e-07)
+polygon = PackedVector2Array(-235.349, 150.916, -81.2203, 277.576, -184.99, 372.189, -336.066, 356.929, -407.79, 193.644)
+material = ExtResource("24_1u8w0")
+
+[node name="Large Asteroid Patch - 3" type="Node3D" parent="Spawn Controller"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -9.204, 0)
+script = ExtResource("22_d13ii")
+lg_asteroid_amount = 10
+
+[node name="Spawn Area Boundary" type="CSGPolygon3D" parent="Spawn Controller/Large Asteroid Patch - 3"]
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, -6.10425, -19.8383, 9.53674e-07)
+polygon = PackedVector2Array(-72.0643, -439.656, -12.5494, -317.574, -81.2203, -248.902, -241.453, -276.371, -236.875, -427.447)
+material = ExtResource("24_1u8w0")
 
 [connection signal="body_entered" from="Main Character" to="Main Character" method="_on_body_entered"]
 [connection signal="body_entered" from="Main Character/Rigid_Body_Gravity_Area" to="Main Character" method="_on_rigid_body_gravity_area_body_entered"]
