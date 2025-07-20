@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cocvivhky423"]
+
+[ext_resource type="Script" uid="uid://dcbxvlylaf2h7" path="res://UI/years_counter.gd" id="1_0q05b"]
+
+[node name="Years Counter" type="Node3D"]
+script = ExtResource("1_0q05b")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Label" type="Label3D" parent="."]
+text = "Year: 0"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

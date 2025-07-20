@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BaseConsumable" load_steps=3 format=3 uid="uid://cu2c5kqhou2yy"]
+
+[ext_resource type="Material" uid="uid://b8vqmprbrcwtw" path="res://Assets/_colored_assets/planet_star_rotate_colors/planet_rotate_material__c_1.tres" id="1_jxbbg"]
+[ext_resource type="Script" uid="uid://cj281qse2gxa0" path="res://Actors/base_consumable_config.gd" id="1_udnso"]
+
+[resource]
+script = ExtResource("1_udnso")
+base_value = 25.0
+consumption_rate_per_sec = 5.0
+base_respawn_timer = 5.0
+_min_size = 200.0
+_max_size = 250.0
+_gravity = 0.0
+_sprite_list = Array[Texture2D]([])
+_material_list = Array[Material]([ExtResource("1_jxbbg")])
+_min_velocity = Vector3(0, 0, 0)
+_max_velocity = Vector3(0, 0, 0)
+_min_magnitude = 0.1
+_max_magnitude = 0.1
+_min_spin_direction = Vector3(0, 0, 0)
+_max_spin_direction = Vector3(0, 0, 0)
+_min_spin_magnitude = 0.0
+_max_spin_magnitude = 1.0
+metadata/_custom_type_script = "uid://cj281qse2gxa0"

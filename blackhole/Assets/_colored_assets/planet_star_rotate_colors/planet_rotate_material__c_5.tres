@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://fbu02je0du4x"]
+
+[ext_resource type="Shader" uid="uid://b4cpknpt0v2nw" path="res://circle_crop_3d.gdshader" id="1_ondfo"]
+[ext_resource type="Texture2D" uid="uid://c4rtwb76d7pfo" path="res://Assets/_colored_assets/planet_star_rotate_colors/c_5.png" id="2_ondfo"]
+
+[resource]
+render_priority = 9
+shader = ExtResource("1_ondfo")
+shader_parameter/tex = ExtResource("2_ondfo")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/feather = 0.0
+shader_parameter/aspect_ratio = 4.0
+shader_parameter/scroll_speed = 0.1

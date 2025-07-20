@@ -1,0 +1,16 @@
+id,title,button_node_label,level,value,cost,unlocks
+AOE_1,Growth,Sz,1,1.2,50,"GRAVITY_1,SPEED_1"
+AOE_1,Growth,Sz,2,1.3,100,
+AOE_1,Growth,Sz,3,1.4,150,
+AOE_1,Growth,Sz,4,1.6,250,
+AOE_1,Growth,Sz,5,2,400,
+AOE_1,Growth,Sz,6,2.5,1000,
+GRAVITY_1,Gravity Go Up,Gv,1,2,20,
+GRAVITY_1,Gravity Go Up,Gv,2,4,30,
+GRAVITY_1,Gravity Go Up,Gv,3,6,100,
+SPEED_1,Zoom Zoom,Sp,1,1.33,50,
+SPEED_1,Zoom Zoom,Sp,2,1.66,100,
+SPEED_1,Zoom Zoom,Sp,3,2,250,
+SPEED_1,Zoom Zoom,Sp,4,2.66,50,
+SPEED_1,Zoom Zoom,Sp,5,3.59,100,
+SPEED_1,Zoom Zoom,Sp,6,2,250,

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvkbpj0dnycsd"]
+
+[ext_resource type="Script" uid="uid://baefliwac8qf8" path="res://number_go_up_particle.gd" id="1_4t6yk"]
+
+[node name="NumberGoUpParticle" type="Node3D"]
+script = ExtResource("1_4t6yk")
+
+[node name="Label3D" type="Label3D" parent="."]
+layers = 15
+billboard = 2
+double_sided = false
+render_priority = 127
+outline_render_priority = 126
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 0, 1)
+text = "+5"
+font_size = 300
+outline_size = 33

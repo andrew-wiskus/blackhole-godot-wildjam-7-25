@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwl4pcg2iks7p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qnenn"]
+radius = 11.0717
+
+[node name="Attraction_Components_Attractor_Body" type="Node3D"]
+
+[node name="Rigid_Body_Gravity_Area" type="Area3D" parent="."]
+disable_mode = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid_Body_Gravity_Area"]
+shape = SubResource("SphereShape3D_qnenn")

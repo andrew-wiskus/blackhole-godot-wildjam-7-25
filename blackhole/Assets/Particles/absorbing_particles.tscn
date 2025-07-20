@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://8bi6wjwfekka"]
+
+[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="1_7sgrf"]
+
+[sub_resource type="Curve" id="Curve_lvq6v"]
+_limits = [-200.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_br3hy"]
+curve = SubResource("Curve_lvq6v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qutf2"]
+emission_shape = 2
+emission_sphere_radius = 50.22
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = -24.69
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -2.23517e-06
+radial_accel_curve = SubResource("CurveTexture_br3hy")
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br3hy"]
+shading_mode = 0
+albedo_texture = ExtResource("1_7sgrf")
+
+[sub_resource type="SphereMesh" id="SphereMesh_lvq6v"]
+material = SubResource("StandardMaterial3D_br3hy")
+
+[node name="Absorbing Particles" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 148
+lifetime = 0.72
+process_material = SubResource("ParticleProcessMaterial_qutf2")
+draw_pass_1 = SubResource("SphereMesh_lvq6v")

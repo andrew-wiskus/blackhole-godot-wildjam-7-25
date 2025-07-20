@@ -1,0 +1,134 @@
+[gd_scene load_steps=19 format=3 uid="uid://qk5awbg5lktq"]
+
+[ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_is3l8"]
+[ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_lxvm2"]
+[ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="3_24jsw"]
+[ext_resource type="Texture2D" uid="uid://b62sysd3impts" path="res://Assets/astroids/a_sm_3.png" id="3_nhfy3"]
+[ext_resource type="Script" uid="uid://dukoe8usyc01c" path="res://Assets/Particles/repelling_particles.gd" id="4_lxvm2"]
+[ext_resource type="Script" uid="uid://vcyqvpbn7lmg" path="res://Gravity/player_vicinity_check.gd" id="5_2oog2"]
+[ext_resource type="PackedScene" uid="uid://b7ehkqpa5upog" path="res://Assets/_colored_assets/planet_star_rotate_colors/planet_rotate_sprite.tscn" id="6_2oog2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_onj7j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onj7j"]
+radius = 2.24012
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
+radius = 6.12942
+
+[sub_resource type="Curve" id="Curve_lxvm2"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2oog2"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_nhfy3"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_uafo2"]
+curve_x = SubResource("Curve_lxvm2")
+curve_y = SubResource("Curve_2oog2")
+curve_z = SubResource("Curve_nhfy3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2oog2"]
+resource_local_to_scene = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 36.93
+angle_min = 1.07288e-05
+angle_max = 272.6
+direction = Vector3(0, 1, 0)
+orbit_velocity_min = -0.258
+orbit_velocity_max = 0.357
+orbit_velocity_curve = SubResource("CurveXYZTexture_uafo2")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uafo2"]
+render_priority = -1
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_nhfy3")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cnxbt"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_uafo2")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uafo2"]
+radius = 3.97807
+
+[node name="Consumeable Object" type="RigidBody3D" node_paths=PackedStringArray("particles")]
+process_mode = 1
+collision_layer = 2
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_onj7j")
+script = ExtResource("1_is3l8")
+particles = NodePath("Orbiting Particles")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_onj7j")
+debug_color = Color(0.966632, 0.151832, 0.266338, 0.42)
+
+[node name="GravityArea3D" type="Area3D" parent="."]
+disable_mode = 2
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+script = ExtResource("2_lxvm2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravityArea3D"]
+shape = SubResource("SphereShape3D_x8i04")
+
+[node name="Orbiting Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997409, 0)
+visible = false
+amount = 12
+lifetime = 106.72
+preprocess = 10.0
+collision_base_size = 3.86
+visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_2oog2")
+draw_pass_1 = SubResource("PlaneMesh_cnxbt")
+script = ExtResource("4_lxvm2")
+
+[node name="Player_Vicinity_Check" type="Area3D" parent="."]
+script = ExtResource("5_2oog2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_Vicinity_Check"]
+shape = SubResource("SphereShape3D_uafo2")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Sprite Container" type="Node3D" parent="."]
+
+[node name="Image - Sprite" type="Sprite3D" parent="Sprite Container"]
+transform = Transform3D(0.535475, 0, 0, 0, 0.467, 0, 0, 0, 0.535475, 0, 0, 0)
+axis = 1
+texture = ExtResource("3_24jsw")
+
+[node name="Image - Rotation Material" parent="Sprite Container" instance=ExtResource("6_2oog2")]
+transform = Transform3D(0.160528, 0, 0, 0, -7.01689e-09, -0.14, 0, 0.160528, -6.11959e-09, 0, 0, 0)
+
+[connection signal="body_entered" from="Player_Vicinity_Check" to="Player_Vicinity_Check" method="_on_body_entered"]
+[connection signal="body_exited" from="Player_Vicinity_Check" to="Player_Vicinity_Check" method="_on_body_exited"]

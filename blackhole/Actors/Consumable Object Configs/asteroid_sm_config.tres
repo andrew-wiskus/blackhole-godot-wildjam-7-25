@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BaseConsumable" load_steps=5 format=3 uid="uid://b7t4878gb74r"]
+
+[ext_resource type="Script" uid="uid://cj281qse2gxa0" path="res://Actors/base_consumable_config.gd" id="1_64pfl"]
+[ext_resource type="Texture2D" uid="uid://lotbbg5f7kdd" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__4.png" id="1_axvoe"]
+[ext_resource type="Texture2D" uid="uid://cdtku3ohoo8h7" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__5.png" id="2_2hak4"]
+[ext_resource type="Texture2D" uid="uid://bc5b6b3bhyfhq" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__1.png" id="3_ifl70"]
+
+[resource]
+script = ExtResource("1_64pfl")
+base_value = 10.0
+consumption_rate_per_sec = 1.0
+base_respawn_timer = 5.0
+_min_size = 1.0
+_max_size = 1.5
+_gravity = 0.0
+_sprite_list = Array[Texture2D]([ExtResource("1_axvoe"), ExtResource("2_2hak4"), ExtResource("3_ifl70")])
+_material_list = Array[Material]([])
+_min_velocity = Vector3(-0.06, 0, -0.05)
+_max_velocity = Vector3(0.065, 0, 0.055)
+_min_magnitude = 0.1
+_max_magnitude = 0.1
+_min_spin_direction = Vector3(0, 0, 0)
+_max_spin_direction = Vector3(0, 0, 0)
+_min_spin_magnitude = 0.0
+_max_spin_magnitude = 1.0
+metadata/_custom_type_script = "uid://cj281qse2gxa0"

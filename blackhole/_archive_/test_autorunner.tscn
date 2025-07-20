@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu6ycn6mxhpsj"]
+
+[ext_resource type="Texture2D" uid="uid://bgud52eak5wov" path="res://Assets/astroids/a_lg_2.png" id="2_qckkc"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_iv8en"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_gat8e"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="4_iv8en"]
+
+[node name="TestAutorunner" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.09318)
+
+[node name="Target Position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1064, 0, 953.873)
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.607, 0, -100.683)
+texture = ExtResource("2_qckkc")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.9117, 330.846)
+
+[node name="bg" type="Sprite3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, -401.349)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_iv8en")
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.4734)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+sprite_frames = ExtResource("3_iv8en")
+script = ExtResource("4_gat8e")
+SPEED = 25.0

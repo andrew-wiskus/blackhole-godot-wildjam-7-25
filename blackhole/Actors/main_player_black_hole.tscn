@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs78l0x4hyviy"]
+
+[ext_resource type="Script" uid="uid://cfnjwif6x4shw" path="res://Actors/main_player_blackhole.gd" id="1_hf0rb"]
+[ext_resource type="Script" uid="uid://bx6ucmmgafusc" path="res://Actors/main_player_camera.gd" id="2_pe21h"]
+[ext_resource type="SpriteFrames" uid="uid://benj1shi6etps" path="res://_archive_/blackhole_sprite_anim.tres" id="3_ekjeq"]
+[ext_resource type="Script" uid="uid://cxgosmt7vpd0s" path="res://Assets/rotate_3d_sprite.gd" id="4_1dynj"]
+[ext_resource type="Texture2D" uid="uid://ixparnytkd4l" path="res://Assets/circle.png" id="5_qoil4"]
+[ext_resource type="Script" uid="uid://c0bjo2y3cqn0b" path="res://Actors/debug_velocity_line.gd" id="7_ibxld"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rd3fw"]
+friction = 0.15
+absorbent = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vrwos"]
+radius = 1.71858
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pe21h"]
+radius = 3.1811
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
+radius = 23.2459
+
+[node name="Attractor_Body_3D" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_rd3fw")
+linear_damp = 4.5
+script = ExtResource("1_hf0rb")
+camera_distancing_step = 1.17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vrwos")
+
+[node name="Detectable Inner Radius" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detectable Inner Radius"]
+shape = SubResource("SphereShape3D_pe21h")
+
+[node name="Rigid_Body_Gravity_Area" type="Area3D" parent="."]
+disable_mode = 2
+collision_mask = 2
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 200.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rigid_Body_Gravity_Area"]
+shape = SubResource("SphereShape3D_3ll2g")
+
+[node name="Main_Player_Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.909701, 0.415265, 0, -0.415265, 0.909701, 0, 1.718, 4.513)
+far = 100000.0
+script = ExtResource("2_pe21h")
+zoom_speed = 0.05
+max_zoom = 10000.0
+
+[node name="Blackhole Animated Sprite" type="Node3D" parent="."]
+transform = Transform3D(0.223807, 0, 0, 0, 0.223807, 0, 0, 0, 0.223807, 0, 0, 0)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Blackhole Animated Sprite"]
+rotation_edit_mode = 1
+modulate = Color(1, 0.176471, 0.176471, 1)
+sprite_frames = ExtResource("3_ekjeq")
+script = ExtResource("4_1dynj")
+SPEED = 25.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Blackhole Animated Sprite"]
+transform = Transform3D(1.54203, 0, 0, 0, -1.72371e-08, -1, 0, 0.394338, -4.37114e-08, 0, -3.50135, 0)
+visible = false
+modulate = Color(0.214103, 0.214103, 0.214103, 1)
+texture = ExtResource("5_qoil4")
+
+[node name="DebugVelocityLine" type="Node3D" parent="."]
+script = ExtResource("7_ibxld")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+strength = 1000.0
+radius = 124.057
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+radius = 2.33742
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Detectable Inner Radius" to="." method="_on_detectable_inner_radius_body_entered"]
+[connection signal="body_entered" from="Rigid_Body_Gravity_Area" to="." method="_on_rigid_body_gravity_area_body_entered"]

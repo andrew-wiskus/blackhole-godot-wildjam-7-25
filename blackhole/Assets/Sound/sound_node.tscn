@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi1rpbm67j8q1"]
+
+[ext_resource type="Script" uid="uid://c4rwpu3kkysra" path="res://Assets/Sound/sound_node.gd" id="1_gbp32"]
+[ext_resource type="AudioStream" uid="uid://ctrabgrnrb1k3" path="res://Assets/Sound/sfx-deep-space-travel-ambience-01-358466.mp3" id="2_0kuiw"]
+[ext_resource type="AudioStream" uid="uid://darpkb1442oqa" path="res://Assets/Sound/sucking-on-a-popsicle-75782.ogg" id="3_0kuiw"]
+[ext_resource type="AudioStream" uid="uid://g43f40et4e8f" path="res://Assets/Sound/rocks-falling-44890.mp3" id="4_jg6ek"]
+
+[node name="Sound_Node" type="Node3D"]
+script = ExtResource("1_gbp32")
+
+[node name="White Noise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0kuiw")
+autoplay = true
+
+[node name="On_Mass_Consumed_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0kuiw")
+bus = &"Sfx"
+
+[node name="On_Consuming_Larger_Object_Loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jg6ek")
+bus = &"Sfx"
