@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://qk5awbg5lktq"]
+[gd_scene load_steps=19 format=3 uid="uid://qk5awbg5lktq"]
 
 [ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_is3l8"]
 [ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_lxvm2"]
@@ -15,14 +15,6 @@ radius = 2.24012
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
 radius = 6.12942
-
-[sub_resource type="Curve" id="Curve_uafo2"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0, 165.843), 0.0, 0.0, 0, 0, Vector2(1, 222.472), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_cnxbt"]
-curve = SubResource("Curve_uafo2")
 
 [sub_resource type="Curve" id="Curve_lxvm2"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0, 0.1), 0.0, 0.0, 0, 0]
@@ -44,16 +36,18 @@ curve_y = SubResource("Curve_2oog2")
 curve_z = SubResource("Curve_nhfy3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2oog2"]
+resource_local_to_scene = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 3.0
 emission_ring_inner_radius = 2.0
 emission_ring_cone_angle = 36.93
-angle_curve = SubResource("CurveTexture_cnxbt")
+angle_min = 1.07288e-05
+angle_max = 272.6
 direction = Vector3(0, 1, 0)
-orbit_velocity_min = -0.985
-orbit_velocity_max = 0.917
+orbit_velocity_min = -0.258
+orbit_velocity_max = 0.357
 orbit_velocity_curve = SubResource("CurveXYZTexture_uafo2")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
@@ -65,10 +59,16 @@ render_priority = -1
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("3_nhfy3")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cnxbt"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_uafo2")
 size = Vector2(1, 1)
+orientation = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uafo2"]
 radius = 3.97807
@@ -101,9 +101,9 @@ shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997409, 0)
-amount = 9
-lifetime = 2.0
-preprocess = 2.07
+amount = 119
+lifetime = 173.86
+preprocess = 10.0
 collision_base_size = 3.86
 visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
 local_coords = true
