@@ -11,8 +11,10 @@ extends Node3D
 
 var _spawn_util: ObjectSpawnUtil
 var _spawn_controller: Node3D
+var _polygon_points: PackedVector2Array
 
 func _ready() -> void:
+	_polygon_points = spawn_boundary.polygon.duplicate()
 	_spawn_util = get_tree().get_first_node_in_group("object_spawn_util")
 	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
 	
@@ -24,11 +26,12 @@ func _ready() -> void:
 	spawn_object_field(CC.ConsumableType.PLANET_LG, lg_planet_amount)
 	spawn_object_field(CC.ConsumableType.STAR_SM, sm_star_amount)
 	spawn_object_field(CC.ConsumableType.STAR_LG, lg_star_amount)
+	spawn_boundary.queue_free()
 
 
 func spawn_object_field(type, amount):
-	var polygon_points = spawn_boundary.polygon
-	var spawn_points = get_gaussian_distribution(polygon_points, amount)
+	
+	var spawn_points = get_gaussian_distribution(_polygon_points, amount)
 	
 	for point in spawn_points:
 		var spawn_point = Vector3(point.x, 0, point.y)
