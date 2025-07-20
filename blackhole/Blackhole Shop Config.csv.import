@@ -3,11 +3,13 @@
 importer="csv_translation"
 type="Translation"
 uid="uid://ducki28hx031f"
-valid=false
 
 [deps]
 
+files=["res://Blackhole Shop Config.title.translation", "res://Blackhole Shop Config.button.translation", "res://Blackhole Shop Config.level.translation", "res://Blackhole Shop Config.value.translation", "res://Blackhole Shop Config.cost.translation", "res://Blackhole Shop Config.unlocks.translation"]
+
 source_file="res://Blackhole Shop Config.csv"
+dest_files=["res://Blackhole Shop Config.title.translation", "res://Blackhole Shop Config.button.translation", "res://Blackhole Shop Config.level.translation", "res://Blackhole Shop Config.value.translation", "res://Blackhole Shop Config.cost.translation", "res://Blackhole Shop Config.unlocks.translation"]
 
 [params]
 

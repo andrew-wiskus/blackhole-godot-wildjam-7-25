@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="BaseConsumable" load_steps=2 format=3 uid="uid://b7t4878gb74r"]
+[gd_resource type="Resource" script_class="BaseConsumable" load_steps=5 format=3 uid="uid://b7t4878gb74r"]
 
 [ext_resource type="Script" uid="uid://cj281qse2gxa0" path="res://Actors/base_consumable_config.gd" id="1_64pfl"]
+[ext_resource type="Texture2D" uid="uid://lotbbg5f7kdd" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__4.png" id="1_axvoe"]
+[ext_resource type="Texture2D" uid="uid://cdtku3ohoo8h7" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__5.png" id="2_2hak4"]
+[ext_resource type="Texture2D" uid="uid://bc5b6b3bhyfhq" path="res://Assets/_colored_assets/asteroids_colored/asteroid_v2__1.png" id="3_ifl70"]
 
 [resource]
 script = ExtResource("1_64pfl")
-_min_size = 0.2
-_max_size = 0.8
+_min_size = 0.4
+_max_size = 1.2
 _gravity = 0.0
-_sprite_list = Array[Texture2D]([])
+_sprite_list = Array[Texture2D]([ExtResource("1_axvoe"), ExtResource("2_2hak4"), ExtResource("3_ifl70")])
 _min_velocity = Vector3(-0.06, 0, -0.05)
 _max_velocity = Vector3(0.065, 0, 0.055)
 _min_magnitude = 0.1

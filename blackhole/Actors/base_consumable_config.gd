@@ -5,6 +5,7 @@ class_name BaseConsumable extends Resource
 @export var _max_size: float = 1.5
 @export var _gravity: float = 0
 @export var _sprite_list: Array[Texture2D] = []
+@export var _material_list: Array[Material] = []
 
 @export_group("Initial Velocity")
 @export var _min_velocity: Vector3

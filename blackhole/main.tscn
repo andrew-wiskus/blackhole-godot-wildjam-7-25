@@ -185,6 +185,7 @@ asteroid_lg_override_size = true
 asteroid_lg_overrides = ExtResource("8_ycdy4")
 planet_sm_override_size = true
 planet_sm_overrides = ExtResource("9_w48qg")
+planet_lg_override_size = true
 planet_lg_overrides = ExtResource("10_vivmo")
 star_sm_override_size = true
 star_sm_overrides = ExtResource("11_2cqfq")
@@ -193,7 +194,6 @@ star_lg_overrides = ExtResource("12_yaehf")
 
 [node name="BG_AREA_paper_circle" type="Node3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, -84.076, 0)
-visible = false
 
 [node name="paper_sprites" type="Node3D" parent="BG_AREA_paper_circle"]
 script = ExtResource("18_a6jrf")
