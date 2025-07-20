@@ -33,7 +33,7 @@ absorbent = true
 radius = 2.73665
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ll2g"]
-radius = 23.2459
+radius = 37.1124
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ttpe4"]
 size = Vector2(1500, 900)
@@ -143,7 +143,7 @@ far = 100000.0
 script = ExtResource("3_getpj")
 zoom_speed = 2.78
 min_zoom = 10.0
-max_zoom = 1000.0
+max_zoom = 100.0
 
 [node name="Main_Player_Camera_PERSPECTIVE" type="Camera3D" parent="Main Character"]
 transform = Transform3D(1, 0, 0, 0, 0.918895, -0.394503, 0, 0.394503, 0.918895, 0, -10.3348, 28.6815)
@@ -159,7 +159,7 @@ script = ExtResource("8_lswn8")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="Main Character"]
 strength = 1000.0
-radius = 23.5431
+radius = 41.7369
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="Main Character"]
 radius = 2.85456

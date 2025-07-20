@@ -101,8 +101,8 @@ shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997409, 0)
-amount = 119
-lifetime = 173.86
+amount = 12
+lifetime = 106.72
 preprocess = 10.0
 collision_base_size = 3.86
 visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
