@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://qk5awbg5lktq"]
+[gd_scene load_steps=21 format=3 uid="uid://qk5awbg5lktq"]
 
 [ext_resource type="Script" uid="uid://byqnnaei35ive" path="res://Actors/consumeable_object.gd" id="1_is3l8"]
 [ext_resource type="Script" uid="uid://c003cnjl048ak" path="res://Gravity/orbiting_gravity_area.gd" id="2_lxvm2"]
 [ext_resource type="Texture2D" uid="uid://bpmk638758mfa" path="res://Assets/astroids/a_lg_1.png" id="3_24jsw"]
+[ext_resource type="Texture2D" uid="uid://b62sysd3impts" path="res://Assets/astroids/a_sm_3.png" id="3_nhfy3"]
 [ext_resource type="Script" uid="uid://dukoe8usyc01c" path="res://Assets/Particles/repelling_particles.gd" id="4_lxvm2"]
 [ext_resource type="Script" uid="uid://vcyqvpbn7lmg" path="res://Gravity/player_vicinity_check.gd" id="5_2oog2"]
 [ext_resource type="PackedScene" uid="uid://b7ehkqpa5upog" path="res://Assets/_colored_assets/planet_star_rotate_colors/planet_rotate_sprite.tscn" id="6_2oog2"]
@@ -14,6 +15,14 @@ radius = 2.24012
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x8i04"]
 radius = 6.12942
+
+[sub_resource type="Curve" id="Curve_uafo2"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 165.843), 0.0, 0.0, 0, 0, Vector2(1, 222.472), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnxbt"]
+curve = SubResource("Curve_uafo2")
 
 [sub_resource type="Curve" id="Curve_lxvm2"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0, 0.1), 0.0, 0.0, 0, 0]
@@ -41,24 +50,25 @@ emission_ring_height = 0.0
 emission_ring_radius = 3.0
 emission_ring_inner_radius = 2.0
 emission_ring_cone_angle = 36.93
+angle_curve = SubResource("CurveTexture_cnxbt")
 direction = Vector3(0, 1, 0)
 orbit_velocity_min = -0.985
 orbit_velocity_max = 0.917
 orbit_velocity_curve = SubResource("CurveXYZTexture_uafo2")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.8
+scale_min = 0.5
+scale_max = 1.5
 collision_mode = 2
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1uqp5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uafo2"]
+render_priority = -1
+transparency = 1
 shading_mode = 0
+albedo_texture = ExtResource("3_nhfy3")
 
-[sub_resource type="SphereMesh" id="SphereMesh_nhfy3"]
-resource_local_to_scene = true
-material = SubResource("ORMMaterial3D_1uqp5")
-radius = 0.25
-height = 0.5
-radial_segments = 5
-rings = 5
+[sub_resource type="PlaneMesh" id="PlaneMesh_cnxbt"]
+material = SubResource("StandardMaterial3D_uafo2")
+size = Vector2(1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uafo2"]
 radius = 3.97807
@@ -90,14 +100,15 @@ script = ExtResource("2_lxvm2")
 shape = SubResource("SphereShape3D_x8i04")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
-amount = 40
-lifetime = 35.02
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997409, 0)
+amount = 9
+lifetime = 2.0
 preprocess = 2.07
 collision_base_size = 3.86
 visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_2oog2")
-draw_pass_1 = SubResource("SphereMesh_nhfy3")
+draw_pass_1 = SubResource("PlaneMesh_cnxbt")
 script = ExtResource("4_lxvm2")
 
 [node name="Player_Vicinity_Check" type="Area3D" parent="."]
