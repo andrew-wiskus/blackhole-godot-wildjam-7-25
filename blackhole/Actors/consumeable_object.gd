@@ -43,9 +43,9 @@ func init(
 		spin_speed: float,
 		config: BaseConsumable
 	):
-	_gravity_area_3d.monitoring = false # updated in set_size
 	type = type_id
 	_gravity_area_3d.gravity = grav_str
+	_gravity_area_3d.monitoring = false # updated in set_size
 	set_size(size_value)
 
 	if use_custom_sprite != true: 

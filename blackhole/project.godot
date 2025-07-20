@@ -49,6 +49,7 @@ game_controller=""
 player_node=""
 object_spawn_util=""
 audio_controller=""
+spawned_object_container=""
 
 [input]
 
