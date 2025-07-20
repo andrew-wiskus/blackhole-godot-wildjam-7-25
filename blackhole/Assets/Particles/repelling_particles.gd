@@ -1,12 +1,8 @@
 extends GPUParticles3D
-#@onready var initial_particle_size = draw_pass_1.height
+@onready var initial_particle_size = draw_pass_1.size
 
 func multiplier_particle_size(multiplier):
-	#draw_pass_1.height = initial_particle_size*multiplier
-	#draw_pass_1.radius = draw_pass_1.height/2
+	draw_pass_1.size = initial_particle_size*multiplier
 	
 	scale = multiplier*Vector3.ONE
-	pass
-func _process(delta: float) -> void:
-
 	pass

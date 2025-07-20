@@ -27,7 +27,7 @@ var immediate_mesh: ImmediateMesh
 @export var initial_passive_mass = 1
 
 @onready var _passive_mass = initial_passive_mass
-
+@onready var _initial_gpu_attractr_gravity = $GPUParticlesAttractorSphere3D.strength
 @onready var debug_sphere = $"Blackhole Animated Sprite/EDITOR_DEBUG_SPHERE"
 var _audio_controller: AudioController
 
@@ -83,9 +83,10 @@ func _update_components_for_size(size):
 	#$"Detectable Inner Radius/CollisionShape3D".scale = Vector3.ONE * size
 	$GPUParticlesAttractorSphere3D.scale = Vector3.ONE * size
 	$GPUParticlesCollisionSphere3D.scale = Vector3.ONE * size
-	
+	$GPUParticles3D.scale = Vector3.ONE * size
 func set_gravity_multiplier(multiplier):
 	$"Rigid_Body_Gravity_Area".gravity = initial_gravity * multiplier
+	$GPUParticlesAttractorSphere3D.strength = _initial_gpu_attractr_gravity*multiplier
 
 func set_movement_multiplier(multiplier):
 	force_multiplier = initial_force_multiplier * multiplier

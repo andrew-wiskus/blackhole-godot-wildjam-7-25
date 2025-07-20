@@ -6,7 +6,7 @@ var _spawn_container: Node3D
 
 func _ready() -> void:
 	var polygon_points = spawn_boundary.polygon
-	var spawn_points = get_uniform_points_in_polygon(polygon_points, 10)
+	var spawn_points = get_uniform_points_in_polygon(polygon_points, 200)
 	_spawn_util = get_tree().get_first_node_in_group("object_spawn_util")
 	_spawn_container = get_tree().get_first_node_in_group("spawned_object_container")
 	await _spawn_container.ready

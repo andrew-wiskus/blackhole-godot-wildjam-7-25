@@ -6,6 +6,6 @@ func _ready():
 		var updated_y = Vector3.ZERO
 		updated_y.y -= y_step
 		child.translate(updated_y)
-		y_step += 0.1
+		y_step += 0.01
 		if child is Sprite3D:
 			child.render_priority = render_priority
