@@ -41,11 +41,11 @@ emission_ring_radius = 3.0
 emission_ring_inner_radius = 2.0
 emission_ring_cone_angle = 36.93
 direction = Vector3(0, 1, 0)
-orbit_velocity_min = -0.428
-orbit_velocity_max = 0.395
+orbit_velocity_min = -0.985
+orbit_velocity_max = 0.917
 orbit_velocity_curve = SubResource("CurveXYZTexture_uafo2")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.2
+scale_min = 0.8
 collision_mode = 2
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1uqp5"]
@@ -54,7 +54,8 @@ shading_mode = 0
 [sub_resource type="SphereMesh" id="SphereMesh_nhfy3"]
 resource_local_to_scene = true
 material = SubResource("ORMMaterial3D_1uqp5")
-height = 0.7
+radius = 0.25
+height = 0.5
 radial_segments = 5
 rings = 5
 
@@ -92,11 +93,11 @@ axis = 1
 texture = ExtResource("3_24jsw")
 
 [node name="Orbiting Particles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1.465, 0, 0, 0, 1.465, 0, 0, 0, 1.465, 0, 0, 0)
 amount = 40
 lifetime = 32.24
-collision_base_size = 60.67
-visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+collision_base_size = 3.86
+visibility_aabb = AABB(-15, -15, -15, 30, 30, 30)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_2oog2")
 draw_pass_1 = SubResource("SphereMesh_nhfy3")
 script = ExtResource("4_lxvm2")
