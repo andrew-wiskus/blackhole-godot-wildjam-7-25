@@ -93,7 +93,8 @@ near = 0.001
 far = 100000.0
 script = ExtResource("3_getpj")
 zoom_speed = 2.78
-max_zoom = 1000.0
+min_zoom = 10.0
+max_zoom = 150.0
 
 [node name="bg_scales_to_max_camera_size" type="MeshInstance3D" parent="Main Character/Main_Player_Camera_ORTHO"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 6.10352e-05, -130.387)
@@ -672,7 +673,7 @@ boundary_radius = 200.0
 min_distance_from_center = 50.0
 
 [node name="Asteroid_System_Small2" parent="Level 1 Asteroids - Planets" instance=ExtResource("21_getpj")]
-total_asteroids = 55
+total_asteroids = 50
 spawn_rate = 0.0
 consumable_types = Array[int]([1, 2])
 boundary_radius = 250.0

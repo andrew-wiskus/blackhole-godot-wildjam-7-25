@@ -10,7 +10,7 @@ var velocity_x: float = 0.0
 var velocity_y: float = 0.0
 var dragging: bool = false
 var radius: float
-
+var initial_max_zoom = max_zoom
 # Target rotation values for smoothing
 var target_rotation_x: float = 0.0
 var target_rotation_y: float = 0.0
@@ -77,3 +77,5 @@ func decrease_zoom():
 func increase_zoom():
 	size += zoom_speed
 	size = min(size, max_zoom)
+func increase_max_zoom(multiplier):
+	max_zoom = initial_max_zoom*multiplier

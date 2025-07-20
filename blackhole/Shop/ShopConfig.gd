@@ -17,11 +17,11 @@ const UPGRADE_CONFIG = [
 		levels = [
 			{ value = 1.25, cost = 50, unlocks = [UpgradeID.GRAVITY_1, UpgradeID.SPEED_1] },
 			{ value = 1.5, cost = 100, unlocks = [] },
-			{ value = 2.0, cost = 200, unlocks = [] },
+			{ value = 2.0, cost = 200, unlocks = [UpgradeID.MAX_ZOOM] },
 			{ value = 2.5, cost = 400, unlocks = [] },
 			{ value = 3.0, cost = 800, unlocks = [] },
 			{ value = 4.0, cost = 1500, unlocks = [] },
-			{ value = 5.0, cost = 3000, unlocks = [UpgradeID.MASS_EFFICENCY_1] },
+			{ value = 5.0, cost = 3000, unlocks = [UpgradeID.MASS_EFFICENCY_1]},
 			{ value = 7.0, cost = 5000, unlocks = [] },
 			{ value = 10.0, cost = 8000, unlocks = [] },
 			{ value = 15.0, cost = 12000, unlocks = [] },
@@ -148,7 +148,34 @@ const UPGRADE_CONFIG = [
 			{ value = 95.0, cost = 1040000, unlocks = [] },
 			{ value = 100.0, cost = 1200000, unlocks = [] }
 		]
-	}
+	},
+	{
+	id = UpgradeID.MAX_ZOOM,
+	title = "Extended Zoom Range",
+	button_node_label = "Zm",
+	levels = [
+		{ value = 30.0, cost = 50, unlocks = [] },
+		{ value = 40.0, cost = 100, unlocks = [] },
+		{ value = 55.0, cost = 200, unlocks = [] },
+		{ value = 75.0, cost = 400, unlocks = [] },
+		{ value = 100.0, cost = 800, unlocks = [] },
+		{ value = 130.0, cost = 1600, unlocks = [] },
+		{ value = 170.0, cost = 3200, unlocks = [] },
+		{ value = 220.0, cost = 6400, unlocks = [] },
+		{ value = 280.0, cost = 12800, unlocks = [] },
+		{ value = 350.0, cost = 25600, unlocks = [] },
+		{ value = 450.0, cost = 51200, unlocks = [] },
+		{ value = 580.0, cost = 102400, unlocks = [] },
+		{ value = 750.0, cost = 204800, unlocks = [] },
+		{ value = 1000.0, cost = 409600, unlocks = [] },
+		{ value = 1300.0, cost = 819200, unlocks = [] },
+		{ value = 1700.0, cost = 1638400, unlocks = [] },
+		{ value = 2200.0, cost = 3276800, unlocks = [] },
+		{ value = 2800.0, cost = 6553600, unlocks = [] },
+		{ value = 3500.0, cost = 13107200, unlocks = [] },
+		{ value = 5000.0, cost = 26214400, unlocks = [] }
+	]
+}
 ]
 
 

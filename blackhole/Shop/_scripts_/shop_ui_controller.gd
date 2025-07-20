@@ -45,5 +45,7 @@ func try_purchase_upgrade(upgrade_node: ShopUI_UpgradeNode):
 			_gc.handle_mass_efficiency_upgrade(next_level)
 		if id == ShopCC.UpgradeID.PASSIVE_MASS_1:
 			_gc.handle_passive_mass_upgrade(next_level)
+		if id== ShopCC.UpgradeID.MAX_ZOOM:
+			_gc.handle_max_zoom_upgrade(next_level)
 		upgrade_node.update_after_purchase_success(upgrade_node.current_level + 1)
 		shop_layout.on_node_upgraded(upgrade_node, unlocked_ids)

@@ -14,7 +14,7 @@ enum BoundaryType { SPHERE, BOX }
 @export var boundary_type: BoundaryType = BoundaryType.SPHERE
 @export var boundary_radius: float = 1000.0  # For sphere
 @export var min_distance_from_center: float = 1
-
+@export var spawn_distance_threshold: float = 500.0  # Only spawn within this distance from player
 
 
 
@@ -46,17 +46,15 @@ func _process(delta):
 		if to_spawn >= 1:
 			_spawn_timer -= to_spawn / spawn_rate
 			for i in range(to_spawn):
-				spawn_single_object(CC.ConsumableType.ASTEROID_SM)
+				spawn_single_object()
 	
 func spawn_asteroid_field(count: int):
 	for i in range(count):
-		spawn_single_object(CC.ConsumableType.ASTEROID_SM)
+		spawn_single_object()
 
-func spawn_single_object(type: CC.ConsumableType):
+func spawn_single_object():
 	var id
 	id = randi() % len(consumable_types)
-	if consumable_types[id] == CC.ConsumableType.STAR_SM:
-		pass
 	_object_spawner.spawn_consumable_object(self, consumable_types[id], _get_spawn_position())
 	
 
