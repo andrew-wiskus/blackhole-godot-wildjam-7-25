@@ -1,17 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctqeryw5kllpr"]
+[gd_scene load_steps=2 format=3 uid="uid://ctqeryw5kllpr"]
 
-[ext_resource type="PackedScene" uid="uid://cs78l0x4hyviy" path="res://Actors/main_player_black_hole.tscn" id="1_smb1r"]
-[ext_resource type="PackedScene" uid="uid://dq205txmxkog3" path="res://Actors/asteroid_system.tscn" id="2_tddjw"]
-[ext_resource type="PackedScene" uid="uid://bla3m48h3nbgs" path="res://Actors/star_system.tscn" id="3_sddkt"]
+[ext_resource type="Script" uid="uid://d2gj0im5jcqrt" path="res://Gravity/test_3d.gd" id="1_sddkt"]
 
 [node name="Test3D" type="Node3D"]
-
-[node name="Attractor_Body_3D" parent="." instance=ExtResource("1_smb1r")]
-initial_force_multiplier = 110.91
-initial_size = 2.0
-
-[node name="Asteroid_System" parent="." instance=ExtResource("2_tddjw")]
-boundary_size = Vector3(300, 0, 300)
-
-[node name="Star System" parent="." instance=ExtResource("3_sddkt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16794, -7.62939e-06, 135.725)
+script = ExtResource("1_sddkt")

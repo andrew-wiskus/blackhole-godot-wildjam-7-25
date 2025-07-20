@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_idoxi")
-_min_size = 30.0
-_max_size = 75.0
+_min_size = 80.0
+_max_size = 100.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([ExtResource("1_g3r0h")])
 _min_velocity = Vector3(0, 0, 0)

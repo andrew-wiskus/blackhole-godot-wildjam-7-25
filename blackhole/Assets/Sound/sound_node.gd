@@ -7,4 +7,5 @@ func play_mass_consumed_sound():
 	var random_pitch = 1.0 + randf_range(-sfx_pitch_variation_range, sfx_pitch_variation_range)
 	$On_Mass_Consumed_Sound.pitch_scale = random_pitch
 	$On_Mass_Consumed_Sound.play()
-	
+func play_on_consuming_larger_object():
+	$On_Consuming_Larger_Object_Loop.play()

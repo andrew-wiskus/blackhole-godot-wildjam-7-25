@@ -1,6 +1,5 @@
 class_name ConsumeableObject extends RigidBody3D
 
-@export var custom_size: float = 0.0
 @export var use_custom_sprite: bool = false
 @export var particles: GPUParticles3D
 
@@ -11,11 +10,26 @@ class_name ConsumeableObject extends RigidBody3D
 
 var type: CC.ConsumableType = CC.ConsumableType.NOT_SET
 var general_size 
-
+var _is_on_screen = false
+@onready var screen_notifier := $VisibleOnScreenNotifier3D
 func _ready() -> void:
+	_on_screen_exited()
 	_collision_detector.shape = _collision_detector.shape.duplicate()
 	_gravity_collision_shape.shape = _gravity_collision_shape.shape.duplicate()
-	if custom_size > 0.0: set_size(custom_size)
+	screen_notifier.screen_entered.connect(_on_screen_entered)
+	screen_notifier.screen_exited.connect(_on_screen_exited)
+
+func _on_screen_entered():
+	_is_on_screen = true
+	set_physics_process(true)
+	visible = true
+	# Resume any particle effects, animations, etc.
+
+func _on_screen_exited():
+	_is_on_screen = false
+	set_physics_process(false)
+	# Keep visible = true for a moment to avoid pop-in
+	# Or set visible = false for maximum performance
 
 func init(
 		type_id: CC.ConsumableType, 
@@ -30,7 +44,8 @@ func init(
 	
 	type = type_id
 	_gravity_area_3d.gravity = grav_str
-	set_size(custom_size if custom_size > 0.0 else size_value)
+	set_size(size_value)
+	if size_value <=50: $GravityArea3D.monitoring = false
 	if use_custom_sprite != true:
 		_sprite.texture = texture
 		
@@ -41,13 +56,16 @@ func init(
 func set_size(to_size): # set to 20.0
 	general_size = to_size
 	_collision_detector.scale = Vector3.ONE * general_size
+
 	_gravity_collision_shape.scale = Vector3.ONE * general_size
 	_sprite.scale = Vector3.ONE * general_size
 	if particles:
-		particles.multiplier_particle_size(to_size)
+		particles.multiplier_particle_size(to_size*.7)
 	if has_node("Player_Vicinity_Check"):
 		$Player_Vicinity_Check.get_child(0).scale = Vector3.ONE * general_size
 
 func set_size_multiplier(multi): # increase by 2.0x
 	var new_size = general_size * multi
 	set_size(new_size)
+func on_death():
+	self.queue_free()

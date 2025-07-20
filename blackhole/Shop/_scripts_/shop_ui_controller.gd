@@ -41,6 +41,9 @@ func try_purchase_upgrade(upgrade_node: ShopUI_UpgradeNode):
 			_gc.handle_speed_upgrade(next_level)
 		if id == ShopCC.UpgradeID.AOE_1:
 			_gc.handle_aoe_upgrade(next_level)
-	
+		if id == ShopCC.UpgradeID.MASS_EFFICENCY_1:
+			_gc.handle_mass_efficiency_upgrade(next_level)
+		if id == ShopCC.UpgradeID.PASSIVE_MASS_1:
+			_gc.handle_passive_mass_upgrade(next_level)
 		upgrade_node.update_after_purchase_success(upgrade_node.current_level + 1)
 		shop_layout.on_node_upgraded(upgrade_node, unlocked_ids)

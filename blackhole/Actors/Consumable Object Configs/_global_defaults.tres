@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource("1_oeptq")
-_min_size = 1.0
-_max_size = 1.5
+_min_size = 100.0
+_max_size = 150.0
 _gravity = 0.0
 _sprite_list = Array[Texture2D]([])
-_min_velocity = Vector3(0.1, 0.1, 0.1)
-_max_velocity = Vector3(0.1, 0.1, 0.1)
+_min_velocity = Vector3(0.1, 0, 0.1)
+_max_velocity = Vector3(0.1, 0, 0.1)
 _min_magnitude = 0.1
 _max_magnitude = 1.0
 _min_spin_direction = Vector3(0, 0, 0)

@@ -112,7 +112,10 @@ func _level_description(value):
 		return "- area of effect +" + str(int((value - 1) * 100)) + "%"
 	if upgrade_id == ShopCC.UpgradeID.SPEED_1:
 		return "- increase speed by " + str(int((value - 1) * 100)) + "%"
-	
+	if upgrade_id == ShopCC.UpgradeID.MASS_EFFICENCY_1:
+		return "- increase mass efficiency by " + str(int((value - 1) * 100)) + "%"
+	if upgrade_id == ShopCC.UpgradeID.PASSIVE_MASS_1:
+		return "- increase passive mass by " + str(int((value - 1) * 100)) + "%"
 	return "NOT_SET"
 
 # TODO: Need an input listener if they click outside of the tooltip to close the tooltip

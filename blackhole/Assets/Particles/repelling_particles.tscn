@@ -12,15 +12,14 @@ point_count = 2
 curve = SubResource("Curve_rb2ds")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ji8nh"]
-emission_shape = 2
-emission_sphere_radius = 50.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
 radial_velocity_min = -2.23517e-05
-radial_velocity_max = 24.69
+radial_velocity_max = 172.84
 gravity = Vector3(0, 0, 0)
 radial_accel_curve = SubResource("CurveTexture_vsahu")
-scale_max = 2.0
 collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsahu"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ducki28hx031f"
+valid=false
+
+[deps]
+
+source_file="res://Blackhole Shop Config.csv"
+
+[params]
+
+compress=true
+delimiter=0

@@ -51,8 +51,8 @@ func spin_magnitude():
 	return randf_range(_min_spin_magnitude, _max_spin_magnitude)
 
 func random_size(): 
-	if _use_global_velocity:
-		return _use_global_velocity
+	if _use_global_size:
+		return _use_global_size
 	return randf_range(_min_size, _max_size)
 
 func get_gravity():

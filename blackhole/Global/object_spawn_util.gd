@@ -54,9 +54,10 @@ class_name ObjectSpawnUtil extends Node
 @export var star_lg_overrides: BaseConsumable
 
 
+
 func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn_position: Vector3):
 	var config: BaseConsumable
-	
+	var scene = preload("res://Actors/consumeable_object.tscn")
 	if type == CC.ConsumableType.ASTEROID_SM: 
 			config = global_settings if asteroid_sm_overrides == null else asteroid_sm_overrides.init(global_settings, asteroid_sm_override_gravity, asteroid_sm_override_size, asteroid_sm_override_spin, asteroid_sm_override_velocity)
 	
@@ -72,18 +73,19 @@ func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn
 	if type == CC.ConsumableType.STAR_SM:   
 		config = global_settings if star_sm_overrides == null else star_sm_overrides.init(global_settings, star_sm_override_gravity, star_sm_override_size, star_sm_override_spin, star_sm_override_velocity)
 	
-	if type == CC.ConsumableType.STAR_LG:   
+	if type == CC.ConsumableType.STAR_LG:
 		config = global_settings if star_lg_overrides == null else star_lg_overrides.init(global_settings, star_lg_override_gravity, star_lg_override_size, star_lg_override_spin, star_lg_override_velocity)
 	
 	
-	var scene = preload("res://Actors/consumeable_object.tscn")
+	
+	
 	var instance := scene.instantiate() as ConsumeableObject
 	parent_node.add_child(instance)
 	
 	instance.position = spawn_position
 	
 	instance.init(
-		CC.ConsumableType.PLANET_SM, 
+		type, 
 		config.get_gravity(), 
 		config.random_size(), 
 		config.get_sprite(), 

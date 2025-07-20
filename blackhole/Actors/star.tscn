@@ -13,13 +13,13 @@ bounce = 1.0
 radius = 2.37803
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1uqp5"]
-radius = 34.4599
+radius = 6.20312
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1uqp5"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8txd5"]
 shading_mode = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_8txd5"]
-material = SubResource("ORMMaterial3D_1uqp5")
+material = SubResource("ORMMaterial3D_8txd5")
 radius = 0.1
 height = 0.2
 radial_segments = 5
@@ -29,6 +29,7 @@ rings = 5
 radius = 2.97598
 
 [node name="Star" type="RigidBody3D" node_paths=PackedStringArray("particles")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 4
 axis_lock_linear_x = true
 axis_lock_linear_y = true

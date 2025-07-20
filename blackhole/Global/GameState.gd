@@ -43,5 +43,5 @@ func try_purchase(cost: int):
 	return true
 
 func on_consume_increase_currency(amount: float):
-	currency += amount
+	currency += amount*game_controller.mass_efficiency
 	

@@ -9,7 +9,7 @@ extends RigidBody3D
 @export var max_speed = 100.0
 
 
-@onready var camera = $Main_Player_Camera
+@onready var camera = $Main_Player_Camera_ORTHO
 @onready var debug_velocity_line = $DebugVelocityLine
 @export var show_velocity_line: bool = false
 
@@ -24,6 +24,9 @@ var immediate_mesh: ImmediateMesh
 @export_group("consuming")
 @export var camera_distancing_step: float = 0.0001
 @export var initial_gravity = 10
+@export var initial_passive_mass = 1
+
+@onready var _passive_mass = initial_passive_mass
 
 @onready var debug_sphere = $"Blackhole Animated Sprite/EDITOR_DEBUG_SPHERE"
 var _audio_controller: AudioController
@@ -78,8 +81,8 @@ func _on_detectable_inner_radius_body_entered(body) -> void: # on CONSUME :D
 			var amount = ceil(general_size * 10) # need to add/adjust a new value instead of general size.. add into configs.. after the suck-particle system so we can do both at once
 			GameState.on_consume_increase_currency(amount)
 			_spawn_floating_number_go_up(amount)
-			_audio_controller.play_mass_consumed_sound
-			body.queue_free()
+			_audio_controller.play_mass_consumed_sound()
+			body.on_death()
 		else:
 			#spawn particles on body
 			pass
@@ -101,8 +104,9 @@ func set_movement_multiplier(multiplier):
 
 func set_player_size_multiplier(multiplier):
 	_update_components_for_size(initial_size * multiplier)
-	
 
+func set_passive_mass(multiplier):
+	_passive_mass = initial_passive_mass*multiplier
 
 func _on_rigid_body_gravity_area_body_entered(body: RigidBody3D) -> void:
 		body.linear_velocity.x = 0.1
@@ -122,3 +126,8 @@ func _process(delta: float) -> void:
 		_spawn_floating_number_go_up(2000)
 
 		
+
+
+func _on_passive_mass_timer_timeout() -> void:
+	GameState.on_consume_increase_currency(_passive_mass)
+	pass # Replace with function body.
