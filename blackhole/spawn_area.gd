@@ -1,19 +1,64 @@
 extends Node3D
 
+@export var sm_asteroid_amount: int = 0
+@export var lg_asteroid_amount: int = 0
+@export var sm_planet_amount: int = 0
+@export var lg_planet_amount: int = 0
+@export var sm_star_amount: int = 0
+@export var lg_star_amount: int = 0
+
 @onready var spawn_boundary: CSGPolygon3D = $"Spawn Area Boundary"
+
 var _spawn_util: ObjectSpawnUtil
-var _spawn_container: Node3D
+var _spawn_controller: Node3D
 
 func _ready() -> void:
-	var polygon_points = spawn_boundary.polygon
-	var spawn_points = get_uniform_points_in_polygon(polygon_points, 10)
 	_spawn_util = get_tree().get_first_node_in_group("object_spawn_util")
-	_spawn_container = get_tree().get_first_node_in_group("spawned_object_container")
-	await _spawn_container.ready
+	_spawn_controller = get_tree().get_first_node_in_group("spawn_controller")
+	
+	await _spawn_controller.ready
+	
+	spawn_object_field(CC.ConsumableType.ASTEROID_SM, sm_asteroid_amount)
+	spawn_object_field(CC.ConsumableType.ASTEROID_LG, sm_asteroid_amount)
+	spawn_object_field(CC.ConsumableType.PLANET_SM, sm_planet_amount)
+	spawn_object_field(CC.ConsumableType.PLANET_LG, lg_planet_amount)
+	spawn_object_field(CC.ConsumableType.STAR_SM, sm_star_amount)
+	spawn_object_field(CC.ConsumableType.STAR_LG, lg_star_amount)
+
+
+func spawn_object_field(type, amount):
+	var polygon_points = spawn_boundary.polygon
+	var spawn_points = get_gaussian_distribution(polygon_points, amount)
+	
 	for point in spawn_points:
-		_spawn_util.spawn_consumable_object(_spawn_container, CC.ConsumableType.ASTEROID_SM, Vector3(point.x, 0, point.y))	
+		var spawn_point = Vector3(point.x, 0, point.y)
+		var object_node = _spawn_util.spawn_consumable_object(_spawn_controller, type, spawn_point)
 
 
+func get_gaussian_distribution(polygon: Array[Vector2], num_points: int) -> Array[Vector2]:
+	# Compute bounding box
+	var xs := polygon.map(func(p): return p.x)
+	var ys := polygon.map(func(p): return p.y)
+	var min_x = xs.min()
+	var max_x = xs.max()
+	var min_y = ys.min()
+	var max_y = ys.max()
+	
+	var mean := Vector2((min_x + max_x) * 0.5, (min_y + max_y) * 0.5)
+	var deviation := Vector2((max_x - min_x) * 0.25, (max_y - min_y) * 0.25)
+	
+	var result: Array[Vector2] = []  # Array[Vector2]
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	
+	while result.size() < num_points:
+		var x := rng.randfn(mean.x, deviation.x)
+		var y := rng.randfn(mean.y, deviation.y)
+		if point_is_in_polygon(x, y, polygon):
+			result.append(Vector2(x, y))
+	
+	return result
+	
 ### BELOW THIS POINT IS GPT-MATH-MAGIC TO CALCULATE POINTS INSIDE AN ARBITRARY POLYGON ###
 ################## EDIT ANY VALUES AT RISK OF IMPOSSIBLE TO FIX ERRORS ##################
 
@@ -108,11 +153,11 @@ func get_uniform_points_in_polygon(polygon: Array[Vector2], num_points: int) -> 
 
 	# If enough, sample evenly along the candidate list
 	if candidates.size() >= num_points:
-		var step: float = candidates.size() / num_points
-		var result: Array[Vector2] = []
+		var step: float = float(candidates.size()) / num_points
+		var even_sample_result: Array[Vector2] = []
 		for k in range(num_points):
-			result.append(candidates[int(k * step)])
-		return result
+			even_sample_result.append(candidates[int(k * step)])
+		return even_sample_result
 
 	# Otherwise, fall back to random sampling to fill up
 	var result: Array[Vector2] = candidates.duplicate()

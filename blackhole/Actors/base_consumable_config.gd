@@ -1,5 +1,9 @@
 class_name BaseConsumable extends Resource
 
+@export_group("Gameplay")
+@export var base_value = 10.0
+@export var base_respawn_timer = 5.0
+
 @export_group("Visuals")
 @export var _min_size: float = 1.0
 @export var _max_size: float = 1.5
