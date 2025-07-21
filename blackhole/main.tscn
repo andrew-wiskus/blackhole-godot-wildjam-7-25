@@ -152,7 +152,7 @@ far = 100000.0
 script = ExtResource("3_getpj")
 zoom_speed = 2.78
 min_zoom = 10.0
-max_zoom = 100.0
+max_zoom = 100000.0
 
 [node name="Main_Player_Camera_PERSPECTIVE" type="Camera3D" parent="Main Character"]
 transform = Transform3D(1, 0, 0, 0, 0.918895, -0.394503, 0, 0.394503, 0.918895, 0, -10.3348, 28.6815)

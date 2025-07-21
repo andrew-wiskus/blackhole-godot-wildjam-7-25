@@ -115,7 +115,7 @@ func monitor_gravity(should_monitor):
 	
 # event listener fired from @
 func handle_collision_with_player(delta: float):
-	const MIN_SIZE_FOR_QUEUE_FREE = 0.2 
+	const MIN_SIZE_FOR_QUEUE_FREE = 0.2
 	
 	if GameState.player_can_instant_consume(type):
 		GameState.handle_consume_object(type, general_size)

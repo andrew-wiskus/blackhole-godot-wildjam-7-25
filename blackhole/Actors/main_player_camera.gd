@@ -3,14 +3,14 @@ extends Camera3D
 #@export var rotation_speed: float = 0.005
 @export var zoom_speed: float = 0.1
 @export var min_zoom: float = 2.0
-@export var max_zoom: float = 20.0
+@export var max_zoom: float = 100.0
 #@export var smoothing_speed: float = 10.0  # Higher values = less smoothing
 # Add these new variables for dampening
 var velocity_x: float = 0.0
 var velocity_y: float = 0.0
 var dragging: bool = false
 var radius: float
-var initial_max_zoom = max_zoom
+@onready var initial_max_zoom = max_zoom
 # Target rotation values for smoothing
 var target_rotation_x: float = 0.0
 var target_rotation_y: float = 0.0
