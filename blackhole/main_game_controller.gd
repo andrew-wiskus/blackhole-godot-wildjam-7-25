@@ -2,7 +2,7 @@ class_name GameController extends Node3D
 
 @onready var main_character: MainPlayerRigidBody = $"Main Character"
 @onready var currency_label: Label = $"GameHUD/Currency Label"
-@export var initial_mass_efficiency = 3.0
+@export var initial_mass_efficiency = 2.0
 @onready var mass_efficiency = initial_mass_efficiency
 func _ready() -> void:
 	update_currency_hud()
@@ -28,7 +28,7 @@ func handle_max_zoom_upgrade(level_config):
 func update_currency_hud():
 	var mass_str = ""
 	if GameState.currency > 10000:
-		mass_str = str(round(GameState.currency))
+		mass_str = round(GameState.currency)
 	else:
 		mass_str = str(roundf(GameState.currency * 100.0) / 100.0)
 	

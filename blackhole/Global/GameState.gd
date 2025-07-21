@@ -1,6 +1,6 @@
 extends Node
 
-var currency: float = 50.0:
+var currency: float = 10.0:
 	get:
 		return currency
 	set(value):

@@ -52,7 +52,7 @@ class_name ObjectSpawnUtil extends Node
 @export var star_lg_override_velocity: bool = false
 
 @export var star_lg_overrides: BaseConsumable
-var _consumable_object_collection := []
+
 var _spawn_controller: SpawnController
 
 func _ready() -> void:
@@ -90,5 +90,5 @@ func spawn_consumable_object(parent_node: Node3D, type: CC.ConsumableType, spawn
 	)
 	
 	_spawn_controller.save_spawn_reference(instance, spawn_position)
-	_consumable_object_collection.append(instance)
+
 	return instance

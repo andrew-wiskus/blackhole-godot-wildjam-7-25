@@ -41,7 +41,7 @@ func _on_loading_complete():
 	var loaded_scene = ResourceLoader.load_threaded_get(main_scene_path)
 	
 	# Optional: Add a small delay to show 100% completion
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(0.5).timeout
 	
 	# Optional: Fade out before switching
 	var tween = create_tween()

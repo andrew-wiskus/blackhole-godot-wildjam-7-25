@@ -113,7 +113,6 @@ draw_pass_1 = SubResource("PlaneMesh_cnxbt")
 script = ExtResource("4_lxvm2")
 
 [node name="Player_Vicinity_Check" type="Area3D" parent="."]
-collision_mask = 4
 script = ExtResource("5_2oog2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player_Vicinity_Check"]
